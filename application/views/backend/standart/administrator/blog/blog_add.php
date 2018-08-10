@@ -1,4 +1,11 @@
 
+<!-- Fine Uploader Gallery CSS file
+    ====================================================================== -->
+<link href="<?= BASE_ASSET; ?>/fine-upload/fine-uploader-gallery.min.css" rel="stylesheet">
+<!-- Fine Uploader jQuery JS file
+    ====================================================================== -->
+<script src="<?= BASE_ASSET; ?>/fine-upload/jquery.fine-uploader.js"></script>
+<?php $this->load->view('core_template/fine_upload'); ?>
 <script src="<?= BASE_ASSET; ?>/js/jquery.hotkeys.js"></script>
 <script type="text/javascript">
     function domo(){
@@ -26,11 +33,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Wilayah        <small><?= cclang('new', ['Wilayah']); ?> </small>
+        Blog        <small><?= cclang('new', ['Blog']); ?> </small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a  href="<?= site_url('administrator/wilayah'); ?>">Wilayah</a></li>
+        <li class=""><a  href="<?= site_url('administrator/blog'); ?>">Blog</a></li>
         <li class="active"><?= cclang('new'); ?></li>
     </ol>
 </section>
@@ -48,58 +55,74 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username">Wilayah</h3>
-                            <h5 class="widget-user-desc"><?= cclang('new', ['Wilayah']); ?></h5>
+                            <h3 class="widget-user-username">Blog</h3>
+                            <h5 class="widget-user-desc"><?= cclang('new', ['Blog']); ?></h5>
                             <hr>
                         </div>
                         <?= form_open('', [
-                            'name'    => 'form_wilayah', 
+                            'name'    => 'form_blog', 
                             'class'   => 'form-horizontal', 
-                            'id'      => 'form_wilayah', 
+                            'id'      => 'form_blog', 
                             'enctype' => 'multipart/form-data', 
                             'method'  => 'POST'
                             ]); ?>
                          
                                                 <div class="form-group ">
-                            <label for="WilayahID" class="col-sm-2 control-label">WilayahID 
+                            <label for="title" class="col-sm-2 control-label">Title 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="WilayahID" id="WilayahID" placeholder="WilayahID" value="<?= set_value('WilayahID'); ?>">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?= set_value('title'); ?>">
                                 <small class="info help-block">
-                                <b>Input WilayahID</b> Max Length : 255.</small>
+                                <b>Input Title</b> Max Length : 200.</small>
                             </div>
                         </div>
                                                  
                                                 <div class="form-group ">
-                            <label for="WilayahCode" class="col-sm-2 control-label">WilayahCode 
+                            <label for="content" class="col-sm-2 control-label">Content 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="WilayahCode" id="WilayahCode" placeholder="WilayahCode" value="<?= set_value('WilayahCode'); ?>">
-                                <small class="info help-block">
-                                <b>Input WilayahCode</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="WilayahName" class="col-sm-2 control-label">WilayahName 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="WilayahName" id="WilayahName" placeholder="WilayahName" value="<?= set_value('WilayahName'); ?>">
-                                <small class="info help-block">
-                                <b>Input WilayahName</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="KodeWilayah" class="col-sm-2 control-label">KodeWilayah 
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="KodeWilayah" id="KodeWilayah" placeholder="KodeWilayah" value="<?= set_value('KodeWilayah'); ?>">
+                                <textarea id="content" name="content" rows="5" cols="80"><?= set_value('Content'); ?></textarea>
                                 <small class="info help-block">
                                 </small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="image" class="col-sm-2 control-label">Image 
+                            <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-8">
+                                <div id="blog_image_galery"></div>
+                                <input class="data_file" name="blog_image_uuid" id="blog_image_uuid" type="hidden" value="<?= set_value('blog_image_uuid'); ?>">
+                                <input class="data_file" name="blog_image_name" id="blog_image_name" type="hidden" value="<?= set_value('blog_image_name'); ?>">
+                                <small class="info help-block">
+                                </small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="category" class="col-sm-2 control-label">Category 
+                            <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="category" id="category" placeholder="Category" value="<?= set_value('category'); ?>">
+                                <small class="info help-block">
+                                <b>Input Category</b> Max Length : 200.</small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="created_at" class="col-sm-2 control-label">Created At 
+                            <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-6">
+                            <div class="input-group date col-sm-8">
+                              <input type="text" class="form-control pull-right datetimepicker" name="created_at"  id="created_at">
+                            </div>
+                            <small class="info help-block">
+                            </small>
                             </div>
                         </div>
                                                 
@@ -129,9 +152,12 @@
     </div>
 </section>
 <!-- /.content -->
+<script src="<?= BASE_ASSET; ?>ckeditor/ckeditor.js"></script>
 <!-- Page script -->
 <script>
     $(document).ready(function(){
+            CKEDITOR.replace('content'); 
+      var content = CKEDITOR.instances.content;
                    
       $('#btn_cancel').click(function(){
         swal({
@@ -147,7 +173,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/wilayah';
+              window.location.href = BASE_URL + 'administrator/blog';
             }
           });
     
@@ -156,9 +182,10 @@
     
       $('.btn_save').click(function(){
         $('.message').fadeOut();
-            
-        var form_wilayah = $('#form_wilayah');
-        var data_post = form_wilayah.serializeArray();
+        $('#content').val(content.getData());
+                    
+        var form_blog = $('#form_blog');
+        var data_post = form_blog.serializeArray();
         var save_type = $(this).attr('data-stype');
 
         data_post.push({name: 'save_type', value: save_type});
@@ -166,13 +193,14 @@
         $('.loading').show();
     
         $.ajax({
-          url: BASE_URL + '/administrator/wilayah/add_save',
+          url: BASE_URL + '/administrator/blog/add_save',
           type: 'POST',
           dataType: 'json',
           data: data_post,
         })
         .done(function(res) {
           if(res.success) {
+            var id_image = $('#blog_image_galery').find('li').attr('qq-file-id');
             
             if (save_type == 'back') {
               window.location.href = res.redirect;
@@ -182,7 +210,11 @@
             $('.message').printMessage({message : res.message});
             $('.message').fadeIn();
             resetForm();
+            if (typeof id_image !== 'undefined') {
+                    $('#blog_image_galery').fineUploader('deleteFile', id_image);
+                }
             $('.chosen option').prop('selected', false).trigger('chosen:updated');
+            content.setData('');
                 
           } else {
             $('.message').printMessage({message : res.message, type : 'warning'});
@@ -200,7 +232,56 @@
         return false;
       }); /*end btn save*/
       
-       
+              var params = {};
+       params[csrf] = token;
+
+       $('#blog_image_galery').fineUploader({
+          template: 'qq-template-gallery',
+          request: {
+              endpoint: BASE_URL + '/administrator/blog/upload_image_file',
+              params : params
+          },
+          deleteFile: {
+              enabled: true, 
+              endpoint: BASE_URL + '/administrator/blog/delete_image_file',
+          },
+          thumbnails: {
+              placeholders: {
+                  waitingPath: BASE_URL + '/asset/fine-upload/placeholders/waiting-generic.png',
+                  notAvailablePath: BASE_URL + '/asset/fine-upload/placeholders/not_available-generic.png'
+              }
+          },
+          multiple : false,
+          validation: {
+              allowedExtensions: ["*"],
+              sizeLimit : 0,
+                        },
+          showMessage: function(msg) {
+              toastr['error'](msg);
+          },
+          callbacks: {
+              onComplete : function(id, name, xhr) {
+                if (xhr.success) {
+                   var uuid = $('#blog_image_galery').fineUploader('getUuid', id);
+                   $('#blog_image_uuid').val(uuid);
+                   $('#blog_image_name').val(xhr.uploadName);
+                } else {
+                   toastr['error'](xhr.error);
+                }
+              },
+              onSubmit : function(id, name) {
+                  var uuid = $('#blog_image_uuid').val();
+                  $.get(BASE_URL + '/administrator/blog/delete_image_file/' + uuid);
+              },
+              onDeleteComplete : function(id, xhr, isError) {
+                if (isError == false) {
+                  $('#blog_image_uuid').val('');
+                  $('#blog_image_name').val('');
+                }
+              }
+          }
+      }); /*end image galery*/
+              
  
        
     

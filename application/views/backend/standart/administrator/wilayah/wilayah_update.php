@@ -91,6 +91,16 @@
                                 <b>Input WilayahName</b> Max Length : 255.</small>
                             </div>
                         </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="KodeWilayah" class="col-sm-2 control-label">KodeWilayah 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="KodeWilayah" id="KodeWilayah" placeholder="KodeWilayah" value="<?= set_value('KodeWilayah', $wilayah->KodeWilayah); ?>">
+                                <small class="info help-block">
+                                </small>
+                            </div>
+                        </div>
                                                 
                         <div class="message"></div>
                         <div class="row-fluid col-md-7">

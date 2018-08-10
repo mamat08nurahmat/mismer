@@ -26,11 +26,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Wilayah        <small><?= cclang('new', ['Wilayah']); ?> </small>
+        Applicationtype        <small><?= cclang('new', ['Applicationtype']); ?> </small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a  href="<?= site_url('administrator/wilayah'); ?>">Wilayah</a></li>
+        <li class=""><a  href="<?= site_url('administrator/applicationtype'); ?>">Applicationtype</a></li>
         <li class="active"><?= cclang('new'); ?></li>
     </ol>
 </section>
@@ -48,58 +48,37 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username">Wilayah</h3>
-                            <h5 class="widget-user-desc"><?= cclang('new', ['Wilayah']); ?></h5>
+                            <h3 class="widget-user-username">Applicationtype</h3>
+                            <h5 class="widget-user-desc"><?= cclang('new', ['Applicationtype']); ?></h5>
                             <hr>
                         </div>
                         <?= form_open('', [
-                            'name'    => 'form_wilayah', 
+                            'name'    => 'form_applicationtype', 
                             'class'   => 'form-horizontal', 
-                            'id'      => 'form_wilayah', 
+                            'id'      => 'form_applicationtype', 
                             'enctype' => 'multipart/form-data', 
                             'method'  => 'POST'
                             ]); ?>
                          
                                                 <div class="form-group ">
-                            <label for="WilayahID" class="col-sm-2 control-label">WilayahID 
+                            <label for="ApplicationName" class="col-sm-2 control-label">ApplicationName 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="WilayahID" id="WilayahID" placeholder="WilayahID" value="<?= set_value('WilayahID'); ?>">
+                                <input type="text" class="form-control" name="ApplicationName" id="ApplicationName" placeholder="ApplicationName" value="<?= set_value('ApplicationName'); ?>">
                                 <small class="info help-block">
-                                <b>Input WilayahID</b> Max Length : 255.</small>
+                                <b>Input ApplicationName</b> Max Length : 255.</small>
                             </div>
                         </div>
                                                  
                                                 <div class="form-group ">
-                            <label for="WilayahCode" class="col-sm-2 control-label">WilayahCode 
+                            <label for="ApplicationSource" class="col-sm-2 control-label">ApplicationSource 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="WilayahCode" id="WilayahCode" placeholder="WilayahCode" value="<?= set_value('WilayahCode'); ?>">
+                                <input type="text" class="form-control" name="ApplicationSource" id="ApplicationSource" placeholder="ApplicationSource" value="<?= set_value('ApplicationSource'); ?>">
                                 <small class="info help-block">
-                                <b>Input WilayahCode</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="WilayahName" class="col-sm-2 control-label">WilayahName 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="WilayahName" id="WilayahName" placeholder="WilayahName" value="<?= set_value('WilayahName'); ?>">
-                                <small class="info help-block">
-                                <b>Input WilayahName</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="KodeWilayah" class="col-sm-2 control-label">KodeWilayah 
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="KodeWilayah" id="KodeWilayah" placeholder="KodeWilayah" value="<?= set_value('KodeWilayah'); ?>">
-                                <small class="info help-block">
-                                </small>
+                                <b>Input ApplicationSource</b> Max Length : 255.</small>
                             </div>
                         </div>
                                                 
@@ -147,7 +126,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/wilayah';
+              window.location.href = BASE_URL + 'administrator/applicationtype';
             }
           });
     
@@ -157,8 +136,8 @@
       $('.btn_save').click(function(){
         $('.message').fadeOut();
             
-        var form_wilayah = $('#form_wilayah');
-        var data_post = form_wilayah.serializeArray();
+        var form_applicationtype = $('#form_applicationtype');
+        var data_post = form_applicationtype.serializeArray();
         var save_type = $(this).attr('data-stype');
 
         data_post.push({name: 'save_type', value: save_type});
@@ -166,7 +145,7 @@
         $('.loading').show();
     
         $.ajax({
-          url: BASE_URL + '/administrator/wilayah/add_save',
+          url: BASE_URL + '/administrator/applicationtype/add_save',
           type: 'POST',
           dataType: 'json',
           data: data_post,

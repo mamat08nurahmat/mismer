@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Model_wilayah extends MY_Model {
+class Model_systemupload extends MY_Model {
 
 	private $primary_key 	= 'ID';
-	private $table_name 	= 'wilayah';
-	private $field_search 	= ['WilayahID', 'WilayahCode', 'WilayahName', 'KodeWilayah'];
+	private $table_name 	= 'systemupload';
+	private $field_search 	= ['BatchID', 'UploadDate', 'UploadBy', 'UploadRemark', 'ApplicationSource', 'ProcessMonth', 'ProcessYear', 'FilePath', 'VirtualPath', 'FileSize', 'ReportPath', 'RowDataCount', 'RowDataSucceed', 'RowDataFailed', 'ApprovalID'];
 
 	public function __construct()
 	{
@@ -29,16 +29,16 @@ class Model_wilayah extends MY_Model {
         if (empty($field)) {
 	        foreach ($this->field_search as $field) {
 	            if ($iterasi == 1) {
-	                $where .= "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "systemupload.".$field . " LIKE '%" . $q . "%' ";
 	            } else {
-	                $where .= "OR " . "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "OR " . "systemupload.".$field . " LIKE '%" . $q . "%' ";
 	            }
 	            $iterasi++;
 	        }
 
 	        $where = '('.$where.')';
         } else {
-        	$where .= "(" . "wilayah.".$field . " LIKE '%" . $q . "%' )";
+        	$where .= "(" . "systemupload.".$field . " LIKE '%" . $q . "%' )";
         }
 
 		$this->join_avaiable();
@@ -59,16 +59,16 @@ class Model_wilayah extends MY_Model {
         if (empty($field)) {
 	        foreach ($this->field_search as $field) {
 	            if ($iterasi == 1) {
-	                $where .= "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "systemupload.".$field . " LIKE '%" . $q . "%' ";
 	            } else {
-	                $where .= "OR " . "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "OR " . "systemupload.".$field . " LIKE '%" . $q . "%' ";
 	            }
 	            $iterasi++;
 	        }
 
 	        $where = '('.$where.')';
         } else {
-        	$where .= "(" . "wilayah.".$field . " LIKE '%" . $q . "%' )";
+        	$where .= "(" . "systemupload.".$field . " LIKE '%" . $q . "%' )";
         }
 
         if (is_array($select_field) AND count($select_field)) {
@@ -78,18 +78,20 @@ class Model_wilayah extends MY_Model {
 		$this->join_avaiable();
         $this->db->where($where);
         $this->db->limit($limit, $offset);
-        $this->db->order_by('wilayah.'.$this->primary_key, "DESC");
+        $this->db->order_by('systemupload.'.$this->primary_key, "DESC");
 		$query = $this->db->get($this->table_name);
 
 		return $query->result();
 	}
 
 	public function join_avaiable() {
-		
+		$this->db->join('aauth_users', 'aauth_users.id = systemupload.UploadBy', 'LEFT');
+	    $this->db->join('applicationtype', 'applicationtype.ApplicationSource = systemupload.ApplicationSource', 'LEFT');
+	    
     	return $this;
 	}
 
 }
 
-/* End of file Model_wilayah.php */
-/* Location: ./application/models/Model_wilayah.php */
+/* End of file Model_systemupload.php */
+/* Location: ./application/models/Model_systemupload.php */

@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Model_wilayah extends MY_Model {
+class Model_applicationtype extends MY_Model {
 
 	private $primary_key 	= 'ID';
-	private $table_name 	= 'wilayah';
-	private $field_search 	= ['WilayahID', 'WilayahCode', 'WilayahName', 'KodeWilayah'];
+	private $table_name 	= 'applicationtype';
+	private $field_search 	= ['ApplicationName', 'ApplicationSource'];
 
 	public function __construct()
 	{
@@ -29,16 +29,16 @@ class Model_wilayah extends MY_Model {
         if (empty($field)) {
 	        foreach ($this->field_search as $field) {
 	            if ($iterasi == 1) {
-	                $where .= "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "applicationtype.".$field . " LIKE '%" . $q . "%' ";
 	            } else {
-	                $where .= "OR " . "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "OR " . "applicationtype.".$field . " LIKE '%" . $q . "%' ";
 	            }
 	            $iterasi++;
 	        }
 
 	        $where = '('.$where.')';
         } else {
-        	$where .= "(" . "wilayah.".$field . " LIKE '%" . $q . "%' )";
+        	$where .= "(" . "applicationtype.".$field . " LIKE '%" . $q . "%' )";
         }
 
 		$this->join_avaiable();
@@ -59,16 +59,16 @@ class Model_wilayah extends MY_Model {
         if (empty($field)) {
 	        foreach ($this->field_search as $field) {
 	            if ($iterasi == 1) {
-	                $where .= "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "applicationtype.".$field . " LIKE '%" . $q . "%' ";
 	            } else {
-	                $where .= "OR " . "wilayah.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "OR " . "applicationtype.".$field . " LIKE '%" . $q . "%' ";
 	            }
 	            $iterasi++;
 	        }
 
 	        $where = '('.$where.')';
         } else {
-        	$where .= "(" . "wilayah.".$field . " LIKE '%" . $q . "%' )";
+        	$where .= "(" . "applicationtype.".$field . " LIKE '%" . $q . "%' )";
         }
 
         if (is_array($select_field) AND count($select_field)) {
@@ -78,7 +78,7 @@ class Model_wilayah extends MY_Model {
 		$this->join_avaiable();
         $this->db->where($where);
         $this->db->limit($limit, $offset);
-        $this->db->order_by('wilayah.'.$this->primary_key, "DESC");
+        $this->db->order_by('applicationtype.'.$this->primary_key, "DESC");
 		$query = $this->db->get($this->table_name);
 
 		return $query->result();
@@ -91,5 +91,5 @@ class Model_wilayah extends MY_Model {
 
 }
 
-/* End of file Model_wilayah.php */
-/* Location: ./application/models/Model_wilayah.php */
+/* End of file Model_applicationtype.php */
+/* Location: ./application/models/Model_applicationtype.php */

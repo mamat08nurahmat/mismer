@@ -85,6 +85,7 @@ class Wilayah extends Admin
 				'WilayahID' => $this->input->post('WilayahID'),
 				'WilayahCode' => $this->input->post('WilayahCode'),
 				'WilayahName' => $this->input->post('WilayahName'),
+				'KodeWilayah' => $this->input->post('KodeWilayah'),
 			];
 
 			
@@ -166,6 +167,7 @@ class Wilayah extends Admin
 				'WilayahID' => $this->input->post('WilayahID'),
 				'WilayahCode' => $this->input->post('WilayahCode'),
 				'WilayahName' => $this->input->post('WilayahName'),
+				'KodeWilayah' => $this->input->post('KodeWilayah'),
 			];
 
 			

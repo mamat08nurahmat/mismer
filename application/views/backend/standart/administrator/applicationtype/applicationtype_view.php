@@ -23,11 +23,11 @@ jQuery(document).ready(domo);
 <!-- Content Header (Page header) -->
 <section class="content-header">
    <h1>
-      Wilayah      <small><?= cclang('detail', ['Wilayah']); ?> </small>
+      Applicationtype      <small><?= cclang('detail', ['Applicationtype']); ?> </small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class=""><a  href="<?= site_url('administrator/wilayah'); ?>">Wilayah</a></li>
+      <li class=""><a  href="<?= site_url('administrator/applicationtype'); ?>">Applicationtype</a></li>
       <li class="active"><?= cclang('detail'); ?></li>
    </ol>
 </section>
@@ -48,51 +48,35 @@ jQuery(document).ready(domo);
                         <img class="img-circle" src="<?= BASE_ASSET; ?>/img/view.png" alt="User Avatar">
                      </div>
                      <!-- /.widget-user-image -->
-                     <h3 class="widget-user-username">Wilayah</h3>
-                     <h5 class="widget-user-desc">Detail Wilayah</h5>
+                     <h3 class="widget-user-username">Applicationtype</h3>
+                     <h5 class="widget-user-desc">Detail Applicationtype</h5>
                      <hr>
                   </div>
 
                  
-                  <div class="form-horizontal" name="form_wilayah" id="form_wilayah" >
+                  <div class="form-horizontal" name="form_applicationtype" id="form_applicationtype" >
                    
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">ID </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($wilayah->ID); ?>
+                           <?= _ent($applicationtype->ID); ?>
                         </div>
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">WilayahID </label>
+                        <label for="content" class="col-sm-2 control-label">ApplicationName </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($wilayah->WilayahID); ?>
+                           <?= _ent($applicationtype->ApplicationName); ?>
                         </div>
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">WilayahCode </label>
+                        <label for="content" class="col-sm-2 control-label">ApplicationSource </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($wilayah->WilayahCode); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">WilayahName </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($wilayah->WilayahName); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">KodeWilayah </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($wilayah->KodeWilayah); ?>
+                           <?= _ent($applicationtype->ApplicationSource); ?>
                         </div>
                     </div>
                                         
@@ -100,10 +84,10 @@ jQuery(document).ready(domo);
                     <br>
 
                     <div class="view-nav">
-                        <?php is_allowed('wilayah_update', function() use ($wilayah){?>
-                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit wilayah (Ctrl+e)" href="<?= site_url('administrator/wilayah/edit/'.$wilayah->ID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Wilayah']); ?> </a>
+                        <?php is_allowed('applicationtype_update', function() use ($applicationtype){?>
+                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit applicationtype (Ctrl+e)" href="<?= site_url('administrator/applicationtype/edit/'.$applicationtype->ID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Applicationtype']); ?> </a>
                         <?php }) ?>
-                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/wilayah/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Wilayah']); ?></a>
+                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/applicationtype/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Applicationtype']); ?></a>
                      </div>
                     
                   </div>

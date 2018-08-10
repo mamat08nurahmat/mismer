@@ -7,7 +7,7 @@ function domo(){
  
    // Binding keys
    $('*').bind('keydown', 'Ctrl+a', function assets() {
-       window.location.href = BASE_URL + '/administrator/Wilayah/add';
+       window.location.href = BASE_URL + '/administrator/Applicationtype/add';
        return false;
    });
 
@@ -33,11 +33,11 @@ jQuery(document).ready(domo);
 <!-- Content Header (Page header) -->
 <section class="content-header">
    <h1>
-      Wilayah<small><?= cclang('list_all'); ?></small>
+      Applicationtype<small><?= cclang('list_all'); ?></small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Wilayah</li>
+      <li class="active">Applicationtype</li>
    </ol>
 </section>
 <!-- Main content -->
@@ -52,25 +52,25 @@ jQuery(document).ready(domo);
                   <!-- Add the bg color to the header using any of the bg-* classes -->
                   <div class="widget-user-header ">
                      <div class="row pull-right">
-                        <?php is_allowed('wilayah_add', function(){?>
-                        <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Wilayah']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/wilayah/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Wilayah']); ?></a>
+                        <?php is_allowed('applicationtype_add', function(){?>
+                        <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Applicationtype']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/applicationtype/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Applicationtype']); ?></a>
                         <?php }) ?>
-                        <?php is_allowed('wilayah_export', function(){?>
-                        <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> Wilayah" href="<?= site_url('administrator/wilayah/export'); ?>"><i class="fa fa-file-excel-o" ></i> <?= cclang('export'); ?> XLS</a>
+                        <?php is_allowed('applicationtype_export', function(){?>
+                        <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> Applicationtype" href="<?= site_url('administrator/applicationtype/export'); ?>"><i class="fa fa-file-excel-o" ></i> <?= cclang('export'); ?> XLS</a>
                         <?php }) ?>
-                        <?php is_allowed('wilayah_export', function(){?>
-                        <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> pdf Wilayah" href="<?= site_url('administrator/wilayah/export_pdf'); ?>"><i class="fa fa-file-pdf-o" ></i> <?= cclang('export'); ?> PDF</a>
+                        <?php is_allowed('applicationtype_export', function(){?>
+                        <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> pdf Applicationtype" href="<?= site_url('administrator/applicationtype/export_pdf'); ?>"><i class="fa fa-file-pdf-o" ></i> <?= cclang('export'); ?> PDF</a>
                         <?php }) ?>
                      </div>
                      <div class="widget-user-image">
                         <img class="img-circle" src="<?= BASE_ASSET; ?>/img/list.png" alt="User Avatar">
                      </div>
                      <!-- /.widget-user-image -->
-                     <h3 class="widget-user-username">Wilayah</h3>
-                     <h5 class="widget-user-desc"><?= cclang('list_all', ['Wilayah']); ?>  <i class="label bg-yellow"><?= $wilayah_counts; ?>  <?= cclang('items'); ?></i></h5>
+                     <h3 class="widget-user-username">Applicationtype</h3>
+                     <h5 class="widget-user-desc"><?= cclang('list_all', ['Applicationtype']); ?>  <i class="label bg-yellow"><?= $applicationtype_counts; ?>  <?= cclang('items'); ?></i></h5>
                   </div>
 
-                  <form name="form_wilayah" id="form_wilayah" action="<?= base_url('administrator/wilayah/index'); ?>">
+                  <form name="form_applicationtype" id="form_applicationtype" action="<?= base_url('administrator/applicationtype/index'); ?>">
                   
 
                   <div class="table-responsive"> 
@@ -80,41 +80,37 @@ jQuery(document).ready(domo);
                            <th>
                             <input type="checkbox" class="flat-red toltip" id="check_all" name="check_all" title="check all">
                            </th>
-                           <th>WilayahID</th>
-                           <th>WilayahCode</th>
-                           <th>WilayahName</th>
-                           <th>KodeWilayah</th>
+                           <th>ApplicationName</th>
+                           <th>ApplicationSource</th>
                            <th>Action</th>
                         </tr>
                      </thead>
-                     <tbody id="tbody_wilayah">
-                     <?php foreach($wilayahs as $wilayah): ?>
+                     <tbody id="tbody_applicationtype">
+                     <?php foreach($applicationtypes as $applicationtype): ?>
                         <tr>
                            <td width="5">
-                              <input type="checkbox" class="flat-red check" name="id[]" value="<?= $wilayah->ID; ?>">
+                              <input type="checkbox" class="flat-red check" name="id[]" value="<?= $applicationtype->ID; ?>">
                            </td>
                            
-                           <td><?= _ent($wilayah->WilayahID); ?></td> 
-                           <td><?= _ent($wilayah->WilayahCode); ?></td> 
-                           <td><?= _ent($wilayah->WilayahName); ?></td> 
-                           <td><?= _ent($wilayah->KodeWilayah); ?></td> 
+                           <td><?= _ent($applicationtype->ApplicationName); ?></td> 
+                           <td><?= _ent($applicationtype->ApplicationSource); ?></td> 
                            <td width="200">
-                              <?php is_allowed('wilayah_view', function() use ($wilayah){?>
-                              <a href="<?= site_url('administrator/wilayah/view/' . $wilayah->ID); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> <?= cclang('view_button'); ?>
+                              <?php is_allowed('applicationtype_view', function() use ($applicationtype){?>
+                              <a href="<?= site_url('administrator/applicationtype/view/' . $applicationtype->ID); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> <?= cclang('view_button'); ?>
                               <?php }) ?>
-                              <?php is_allowed('wilayah_update', function() use ($wilayah){?>
-                              <a href="<?= site_url('administrator/wilayah/edit/' . $wilayah->ID); ?>" class="label-default"><i class="fa fa-edit "></i> <?= cclang('update_button'); ?></a>
+                              <?php is_allowed('applicationtype_update', function() use ($applicationtype){?>
+                              <a href="<?= site_url('administrator/applicationtype/edit/' . $applicationtype->ID); ?>" class="label-default"><i class="fa fa-edit "></i> <?= cclang('update_button'); ?></a>
                               <?php }) ?>
-                              <?php is_allowed('wilayah_delete', function() use ($wilayah){?>
-                              <a href="javascript:void(0);" data-href="<?= site_url('administrator/wilayah/delete/' . $wilayah->ID); ?>" class="label-default remove-data"><i class="fa fa-close"></i> <?= cclang('remove_button'); ?></a>
+                              <?php is_allowed('applicationtype_delete', function() use ($applicationtype){?>
+                              <a href="javascript:void(0);" data-href="<?= site_url('administrator/applicationtype/delete/' . $applicationtype->ID); ?>" class="label-default remove-data"><i class="fa fa-close"></i> <?= cclang('remove_button'); ?></a>
                                <?php }) ?>
                            </td>
                         </tr>
                       <?php endforeach; ?>
-                      <?php if ($wilayah_counts == 0) :?>
+                      <?php if ($applicationtype_counts == 0) :?>
                          <tr>
                            <td colspan="100">
-                           Wilayah data is not available
+                           Applicationtype data is not available
                            </td>
                          </tr>
                       <?php endif; ?>
@@ -141,10 +137,8 @@ jQuery(document).ready(domo);
                      <div class="col-sm-3 padd-left-0 " >
                         <select type="text" class="form-control chosen chosen-select" name="f" id="field" >
                            <option value=""><?= cclang('all'); ?></option>
-                            <option <?= $this->input->get('f') == 'WilayahID' ? 'selected' :''; ?> value="WilayahID">WilayahID</option>
-                           <option <?= $this->input->get('f') == 'WilayahCode' ? 'selected' :''; ?> value="WilayahCode">WilayahCode</option>
-                           <option <?= $this->input->get('f') == 'WilayahName' ? 'selected' :''; ?> value="WilayahName">WilayahName</option>
-                           <option <?= $this->input->get('f') == 'KodeWilayah' ? 'selected' :''; ?> value="KodeWilayah">KodeWilayah</option>
+                            <option <?= $this->input->get('f') == 'ApplicationName' ? 'selected' :''; ?> value="ApplicationName">ApplicationName</option>
+                           <option <?= $this->input->get('f') == 'ApplicationSource' ? 'selected' :''; ?> value="ApplicationSource">ApplicationSource</option>
                           </select>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">
@@ -153,7 +147,7 @@ jQuery(document).ready(domo);
                         </button>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">
-                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url('administrator/wilayah');?>" title="<?= cclang('reset_filter'); ?>">
+                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url('administrator/applicationtype');?>" title="<?= cclang('reset_filter'); ?>">
                         <i class="fa fa-undo"></i>
                         </a>
                      </div>
@@ -205,7 +199,7 @@ jQuery(document).ready(domo);
     $('#apply').click(function(){
 
       var bulk = $('#bulk');
-      var serialize_bulk = $('#form_wilayah').serialize();
+      var serialize_bulk = $('#form_applicationtype').serialize();
 
       if (bulk.val() == 'delete') {
          swal({
@@ -221,7 +215,7 @@ jQuery(document).ready(domo);
           },
           function(isConfirm){
             if (isConfirm) {
-               document.location.href = BASE_URL + '/administrator/wilayah/delete?' + serialize_bulk;      
+               document.location.href = BASE_URL + '/administrator/applicationtype/delete?' + serialize_bulk;      
             }
           });
 
