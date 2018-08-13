@@ -9,14 +9,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 *| Systemupload site
 *|
 */
-class Systemupload extends Admin	
+class Systemupload extends Admin
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
 
 		$this->load->model('model_systemupload');
+
+		$this->load->library('CSVReader');
+
+	}
+
+	public function bacacsv()
+	{
+		// die('ssssssssssssss');
+$lokasi_file = base_url('/uploads/systemupload/mismer.csv');
+// print_r($lokasi_file);die();
+		// code...
+// <a href="<?= BASE_URL . 'uploads/systemupload/' . $systemupload->FilePath; ">
+ // $csvData = $this->csvreader->parse_file($lokasi_file); //path to csv file
+$csvData = csv_reader($lokasi_file);
+ print_r($csvData);
 	}
 
 	/**
@@ -46,7 +61,7 @@ class Systemupload extends Admin
 		$this->template->title('Systemupload List');
 		$this->render('backend/standart/administrator/systemupload/systemupload_list', $this->data);
 	}
-	
+
 	/**
 	* Add new systemuploads
 	*
@@ -66,6 +81,7 @@ class Systemupload extends Admin
 	*/
 	public function add_save()
 	{
+		// print_r($this->input->post('systemupload_FilePath_uuid'));die();
 		if (!$this->is_allowed('systemupload_add', false)) {
 			echo json_encode([
 				'success' => false,
@@ -88,12 +104,11 @@ class Systemupload extends Admin
 		$this->form_validation->set_rules('RowDataSucceed', 'RowDataSucceed', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('RowDataFailed', 'RowDataFailed', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('ApprovalID', 'ApprovalID', 'trim|required|max_length[11]');
-		
+
 
 		if ($this->form_validation->run()) {
 			$systemupload_FilePath_uuid = $this->input->post('systemupload_FilePath_uuid');
 			$systemupload_FilePath_name = $this->input->post('systemupload_FilePath_name');
-		
 			$save_data = [
 				'BatchID' => $this->input->post('BatchID'),
 				'UploadDate' => date('Y-m-d H:i:s'),
@@ -118,7 +133,7 @@ class Systemupload extends Admin
 			if (!empty($systemupload_FilePath_name)) {
 				$systemupload_FilePath_name_copy = date('YmdHis') . '-' . $systemupload_FilePath_name;
 
-				rename(FCPATH . 'uploads/tmp/' . $systemupload_FilePath_uuid . '/' . $systemupload_FilePath_name, 
+				rename(FCPATH . 'uploads/tmp/' . $systemupload_FilePath_uuid . '/' . $systemupload_FilePath_name,
 						FCPATH . 'uploads/systemupload/' . $systemupload_FilePath_name_copy);
 
 				if (!is_file(FCPATH . '/uploads/systemupload/' . $systemupload_FilePath_name_copy)) {
@@ -131,8 +146,10 @@ class Systemupload extends Admin
 
 				$save_data['FilePath'] = $systemupload_FilePath_name_copy;
 			}
-		
-			
+
+			$csvData = $this->csvreader->parse_file('base_url(uploads/systemupload/.csv)'); //path to csv file
+// print_r($csvData);die();
+
 			$save_systemupload = $this->model_systemupload->store($save_data);
 
 			if ($save_systemupload) {
@@ -170,7 +187,7 @@ class Systemupload extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 		/**
 	* Update view Systemuploads
 	*
@@ -200,7 +217,7 @@ class Systemupload extends Admin
 				]);
 			exit;
 		}
-		
+
 		$this->form_validation->set_rules('BatchID', 'BatchID', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('UploadBy', 'UploadBy', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('UploadRemark', 'UploadRemark', 'trim|required|max_length[255]');
@@ -215,11 +232,11 @@ class Systemupload extends Admin
 		$this->form_validation->set_rules('RowDataSucceed', 'RowDataSucceed', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('RowDataFailed', 'RowDataFailed', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('ApprovalID', 'ApprovalID', 'trim|required|max_length[11]');
-		
+
 		if ($this->form_validation->run()) {
 			$systemupload_FilePath_uuid = $this->input->post('systemupload_FilePath_uuid');
 			$systemupload_FilePath_name = $this->input->post('systemupload_FilePath_name');
-		
+
 			$save_data = [
 				'BatchID' => $this->input->post('BatchID'),
 				'UploadDate' => date('Y-m-d H:i:s'),
@@ -244,7 +261,7 @@ class Systemupload extends Admin
 			if (!empty($systemupload_FilePath_uuid)) {
 				$systemupload_FilePath_name_copy = date('YmdHis') . '-' . $systemupload_FilePath_name;
 
-				rename(FCPATH . 'uploads/tmp/' . $systemupload_FilePath_uuid . '/' . $systemupload_FilePath_name, 
+				rename(FCPATH . 'uploads/tmp/' . $systemupload_FilePath_uuid . '/' . $systemupload_FilePath_name,
 						FCPATH . 'uploads/systemupload/' . $systemupload_FilePath_name_copy);
 
 				if (!is_file(FCPATH . '/uploads/systemupload/' . $systemupload_FilePath_name_copy)) {
@@ -257,8 +274,8 @@ class Systemupload extends Admin
 
 				$save_data['FilePath'] = $systemupload_FilePath_name_copy;
 			}
-		
-			
+
+
 			$save_systemupload = $this->model_systemupload->change($id, $save_data);
 
 			if ($save_systemupload) {
@@ -293,7 +310,7 @@ class Systemupload extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 	/**
 	* delete Systemuploads
 	*
@@ -339,7 +356,7 @@ class Systemupload extends Admin
 		$this->template->title('Systemupload Detail');
 		$this->render('backend/standart/administrator/systemupload/systemupload_view', $this->data);
 	}
-	
+
 	/**
 	* delete Systemuploads
 	*
@@ -356,13 +373,13 @@ class Systemupload extends Admin
 				$delete_file = unlink($path);
 			}
 		}
-		
-		
+
+
 		return $this->model_systemupload->remove($id);
 	}
-	
+
 	/**
-	* Upload Image Systemupload	* 
+	* Upload Image Systemupload	*
 	* @return JSON
 	*/
 	public function upload_FilePath_file()
@@ -384,7 +401,7 @@ class Systemupload extends Admin
 	}
 
 	/**
-	* Delete Image Systemupload	* 
+	* Delete Image Systemupload	*
 	* @return JSON
 	*/
 	public function delete_FilePath_file($uuid)
@@ -398,9 +415,9 @@ class Systemupload extends Admin
 		}
 
 		echo $this->delete_file([
-            'uuid'              => $uuid, 
-            'delete_by'         => $this->input->get('by'), 
-            'field_name'        => 'FilePath', 
+            'uuid'              => $uuid,
+            'delete_by'         => $this->input->get('by'),
+            'field_name'        => 'FilePath',
             'upload_path_tmp'   => './uploads/tmp/',
             'table_name'        => 'systemupload',
             'primary_key'       => 'ID',
@@ -409,7 +426,7 @@ class Systemupload extends Admin
 	}
 
 	/**
-	* Get Image Systemupload	* 
+	* Get Image Systemupload	*
 	* @return JSON
 	*/
 	public function get_FilePath_file($id)
@@ -425,17 +442,17 @@ class Systemupload extends Admin
 		$systemupload = $this->model_systemupload->find($id);
 
 		echo $this->get_file([
-            'uuid'              => $id, 
-            'delete_by'         => 'id', 
-            'field_name'        => 'FilePath', 
+            'uuid'              => $id,
+            'delete_by'         => 'id',
+            'field_name'        => 'FilePath',
             'table_name'        => 'systemupload',
             'primary_key'       => 'ID',
             'upload_path'       => 'uploads/systemupload/',
             'delete_endpoint'   => 'administrator/systemupload/delete_FilePath_file'
         ]);
 	}
-	
-	
+
+
 	/**
 	* Export to excel
 	*

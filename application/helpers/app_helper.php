@@ -1,5 +1,35 @@
 <?php
 
+//====================
+if(!function_exists('csv_reader')) {
+	function csv_reader($lokasi_file) {
+//library
+// $this->load->library('CSVReader');
+$ci =& get_instance();
+$ci->load->library('CSVReader');
+return $ci->csvreader->parse_file($lokasi_file);
+
+// $csvData = $this->csvreader->parse_file($lokasi_file); //path to csv file
+
+// return $csvData;
+
+
+	}
+}
+
+//==========================
+if(!function_exists('format_opendate_cardlink')) {
+	function format_opendate_cardlink($date)
+	{
+		$d = substr($date,0,2);
+		$m = substr($date,2,2);
+		$y = substr($date,4,2);
+
+		return '20'.$y.'-'.$m.'-'.$d;
+	}
+}
+
+//===========================================================
 if(!function_exists('get_mysql_version')) {
 	function get_mysql_version() {
 		$mysql_info = explode(' ', mysqli_get_client_info());
@@ -208,14 +238,14 @@ if(!function_exists('display_menu_admin')) {
 	    	}
 		   	foreach ($result as $row) {
 
-		   
+
 
 		   		$perms = 'menu_'.strtolower(str_replace(' ', '_', $row->label));
 
 		   		$links = explode('/', $row->link);
 
 				$segments = array_slice($ci->uri->segment_array(), 0, count($links));
-				
+
 		   		if (implode('/', $segments) == implode('/', $links)) {
 		   			$active = 'active';
 		   		} else {
@@ -228,7 +258,7 @@ if(!function_exists('display_menu_admin')) {
 		   		} else {
 			        if ($row->Count > 0) {
 			        	if ($ci->aauth->is_allowed($perms)) {
-				        	$ret .= '<li class="'.$active.' "> 
+				        	$ret .= '<li class="'.$active.' ">
 										        	<a href="'.site_url($row->link).'">';
 
 							if ($parent) {
@@ -250,7 +280,7 @@ if(!function_exists('display_menu_admin')) {
 						}
 			        } elseif ($row->Count==0) {
 			           if ($ci->aauth->is_allowed($perms)) {
-							$ret .= '<li class="'.$active.' "> 
+							$ret .= '<li class="'.$active.' ">
 										        	<a href="'.site_url($row->link).'">';
 
 							if ($parent) {
@@ -298,7 +328,7 @@ if(!function_exists('set_message')) {
 if(!function_exists('form_builder')) {
 	function form_builder($id = 0) {
 		$ci =& get_instance();
-		
+
 		$model_form = $ci->load->model('model_form');
 		$form = $ci->model_form->find($id);
 
@@ -316,24 +346,24 @@ if(!function_exists('form_builder')) {
 if(!function_exists('get_icon_file')) {
 	function get_icon_file($file_name = '') {
 		$extension_list = [
-			'avi' => ['avi'], 
-			'css' => ['css'], 
-			'csv' => ['csv'], 
-			'eps' => ['eps'], 
-			'html' => ['html', 'htm'], 
-			'jpg' => ['jpg', 'jpeg'], 
-			'mov' => ['mov', 'mp4', '3gp'], 
-			'mp3' => ['mp3'], 
-			'pdf' => ['pdf'], 
-			'png' => ['png'], 
-			'ppt' => ['ppt', 'pptx'], 
-			'rar' => ['rar'], 
-			'raw' => ['raw'], 
+			'avi' => ['avi'],
+			'css' => ['css'],
+			'csv' => ['csv'],
+			'eps' => ['eps'],
+			'html' => ['html', 'htm'],
+			'jpg' => ['jpg', 'jpeg'],
+			'mov' => ['mov', 'mp4', '3gp'],
+			'mp3' => ['mp3'],
+			'pdf' => ['pdf'],
+			'png' => ['png'],
+			'ppt' => ['ppt', 'pptx'],
+			'rar' => ['rar'],
+			'raw' => ['raw'],
 			'ttf' => ['ttf'],
-			'txt' => ['txt'], 
-			'wav' => ['wav'], 
-			'xls' => ['xls', 'xlsx'], 
-			'zip' => ['zip'], 
+			'txt' => ['txt'],
+			'wav' => ['wav'],
+			'xls' => ['xls', 'xlsx'],
+			'zip' => ['zip'],
 			'doc' => ['docx', 'doc']
 		];
 
@@ -341,7 +371,7 @@ if(!function_exists('get_icon_file')) {
 		if (is_array($file_name_arr)) {
 			foreach ($extension_list as $ext => $list_ext) {
 				if (in_array(end($file_name_arr), $list_ext)) {
-					return BASE_ASSET . 'img/icon/' . $ext . '.png'; 
+					return BASE_ASSET . 'img/icon/' . $ext . '.png';
 				}
 			}
 		}
@@ -353,7 +383,7 @@ if(!function_exists('get_icon_file')) {
 if(!function_exists('check_is_image_ext')) {
 	function check_is_image_ext($file_name = '') {
 		$extension_list = [
-			'jpg' => ['jpg', 'jpeg'], 
+			'jpg' => ['jpg', 'jpeg'],
 			'png' => ['png']
 		];
 
@@ -686,7 +716,7 @@ if(!function_exists('get_menu')) {
 
 		if(is_numeric($menu_type)) {
 			$menu_type_id = $menu_type;
-		} 
+		}
 		else {
 			$menu_type_id = $ci->model_menu->get_id_menu_type_by_flag($menu_type);
 		}
@@ -703,7 +733,7 @@ if(!function_exists('get_menu')) {
 			->order_by('sort', 'ASC')
 			->get('menu')
 			->result();
-		
+
 
 		$new = array();
 		foreach ($menus as $a){
@@ -734,7 +764,7 @@ if(!function_exists('create_tree')) {
 	            $l->children = create_tree($list, $list[$l->id]);
 	        }
 	        $tree[] = $l;
-	    } 
+	    }
 	    return $tree;
 	}
 }
@@ -842,7 +872,7 @@ if (!function_exists('getallheaders'))
        }
        return $headers;
     }
-} 
+}
 
 if (!function_exists('cclang'))
 {
@@ -861,7 +891,7 @@ if (!function_exists('cclang'))
 
         return preg_replace('/\$([0-9])/', '', $lang);
     }
-} 
+}
 
 if (!function_exists('get_langs'))
 {
@@ -948,7 +978,7 @@ if (!function_exists('get_langs'))
     		],
     	];
     }
-} 
+}
 
 
 if (!function_exists('get_current_lang'))
@@ -958,7 +988,7 @@ if (!function_exists('get_current_lang'))
     	$ci =& get_instance();
     	return get_cookie('language') ? get_cookie('language') : $ci->config->item('language');
     }
-} 
+}
 
 if (!function_exists('get_current_initial_lang'))
 {
@@ -972,12 +1002,12 @@ if (!function_exists('get_current_initial_lang'))
     		}
     	}
     }
-} 
+}
 
 
 
 if (!function_exists('get_geolocation')) {
-    
+
     function get_geolocation($ip) {
 		$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 
@@ -991,7 +1021,7 @@ if (!function_exists('get_geolocation')) {
 
 
 if (!function_exists('get_lang_by_ip')) {
-    
+
     function get_lang_by_ip($ip) {
     	$location = get_geolocation($ip);
 
@@ -1007,7 +1037,7 @@ if (!function_exists('get_lang_by_ip')) {
 
 
 if (!function_exists('debug')) {
-    
+
     function debug($vars = null) {
     	return get_instance()->console->debug($vars);
     }
@@ -1030,36 +1060,36 @@ if (!function_exists('webPageUrl')) {
 }
 
 if (!function_exists('recurse_copy')) {
-	function recurse_copy($src,$dst) { 
-	    $dir = opendir($src); 
-	    @mkdir($dst); 
-	    while(false !== ( $file = readdir($dir)) ) { 
-	        if (( $file != '.' ) && ( $file != '..' )) { 
-	            if ( is_dir($src . '/' . $file) ) { 
-	                recurse_copy($src . '/' . $file,$dst . '/' . $file); 
-	            } 
-	            else { 
-	                copy($src . '/' . $file,$dst . '/' . $file); 
-	            } 
-	        } 
-	    } 
-	    closedir($dir); 
-	} 
+	function recurse_copy($src,$dst) {
+	    $dir = opendir($src);
+	    @mkdir($dst);
+	    while(false !== ( $file = readdir($dir)) ) {
+	        if (( $file != '.' ) && ( $file != '..' )) {
+	            if ( is_dir($src . '/' . $file) ) {
+	                recurse_copy($src . '/' . $file,$dst . '/' . $file);
+	            }
+	            else {
+	                copy($src . '/' . $file,$dst . '/' . $file);
+	            }
+	        }
+	    }
+	    closedir($dir);
+	}
 }
 
 if (!function_exists('create_childern')) {
 
 	function create_childern($childern, $parent, $tree) {
-	   foreach($childern as $child): 
+	   foreach($childern as $child):
 	   	?>
 	    <option <?= $child->id == $parent? 'selected="selected"' : ''; ?> value="<?= $child->id; ?>"><?= str_repeat('----', $tree) ?>   <?= ucwords($child->label); ?></option>
-	    <?php if (isset($child->children) and count($child->children)): 
+	    <?php if (isset($child->children) and count($child->children)):
 	    $tree++;
 	    ?>
 	    <?php create_childern($child->children, $parent, $tree); ?>
 	    <?php endif ?>
-	    <?php endforeach;  
-	} 
+	    <?php endforeach;
+	}
 }
 
 if (!function_exists('extendsObject')) {
