@@ -9,9 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 *| Templateupload site
 *|
 */
-class Templateupload extends Admin	
+class Templateupload extends Admin
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -46,7 +46,7 @@ class Templateupload extends Admin
 		$this->template->title('Templateupload List');
 		$this->render('backend/standart/administrator/templateupload/templateupload_list', $this->data);
 	}
-	
+
 	/**
 	* Add new templateuploads
 	*
@@ -83,10 +83,10 @@ class Templateupload extends Admin
 		$this->form_validation->set_rules('MSO', 'MSO', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('SOURCE_CODE', 'SOURCE CODE', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('POS1', 'POS1', 'trim|required|max_length[5]');
-		
+
 
 		if ($this->form_validation->run()) {
-		
+
 			$save_data = [
 				'BatchID' => $this->input->post('BatchID'),
 				'MID' => $this->input->post('MID'),
@@ -99,7 +99,7 @@ class Templateupload extends Admin
 				'POS1' => $this->input->post('POS1'),
 			];
 
-			
+
 			$save_templateupload = $this->model_templateupload->store($save_data);
 
 			if ($save_templateupload) {
@@ -137,7 +137,7 @@ class Templateupload extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 		/**
 	* Update view Templateuploads
 	*
@@ -167,7 +167,7 @@ class Templateupload extends Admin
 				]);
 			exit;
 		}
-		
+
 		$this->form_validation->set_rules('BatchID', 'BatchID', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('MID', 'MID', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('MERCHAN_DBA_NAME', 'MERCHAN DBA NAME', 'trim|required|max_length[255]');
@@ -177,9 +177,9 @@ class Templateupload extends Admin
 		$this->form_validation->set_rules('MSO', 'MSO', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('SOURCE_CODE', 'SOURCE CODE', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('POS1', 'POS1', 'trim|required|max_length[5]');
-		
+
 		if ($this->form_validation->run()) {
-		
+
 			$save_data = [
 				'BatchID' => $this->input->post('BatchID'),
 				'MID' => $this->input->post('MID'),
@@ -192,7 +192,7 @@ class Templateupload extends Admin
 				'POS1' => $this->input->post('POS1'),
 			];
 
-			
+
 			$save_templateupload = $this->model_templateupload->change($id, $save_data);
 
 			if ($save_templateupload) {
@@ -227,7 +227,7 @@ class Templateupload extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 	/**
 	* delete Templateuploads
 	*
@@ -273,7 +273,7 @@ class Templateupload extends Admin
 		$this->template->title('Templateupload Detail');
 		$this->render('backend/standart/administrator/templateupload/templateupload_view', $this->data);
 	}
-	
+
 	/**
 	* delete Templateuploads
 	*
@@ -283,12 +283,12 @@ class Templateupload extends Admin
 	{
 		$templateupload = $this->model_templateupload->find($id);
 
-		
-		
+
+
 		return $this->model_templateupload->remove($id);
 	}
-	
-	
+
+
 	/**
 	* Export to excel
 	*
@@ -312,6 +312,16 @@ class Templateupload extends Admin
 
 		$this->model_templateupload->pdf('templateupload', 'templateupload');
 	}
+
+
+//=====================================
+public function generate_upload(){
+
+print_r('generateeeeeeeeeee');die();
+
+}
+
+
 }
 
 

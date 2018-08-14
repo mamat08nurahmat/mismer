@@ -53,7 +53,9 @@ jQuery(document).ready(domo);
                   <div class="widget-user-header ">
                      <div class="row pull-right">
                         <?php is_allowed('systemupload_add', function(){?>
-                        <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Systemupload']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/systemupload/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Systemupload']); ?></a>
+                          <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Systemupload']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/systemupload/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Systemupload']); ?></a>
+
+
                         <?php }) ?>
                         <?php is_allowed('systemupload_export', function(){?>
                         <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> Systemupload" href="<?= site_url('administrator/systemupload/export'); ?>"><i class="fa fa-file-excel-o" ></i> <?= cclang('export'); ?> XLS</a>
@@ -130,7 +132,11 @@ jQuery(document).ready(domo);
                                    <img src="<?= get_icon_file($systemupload->FilePath); ?>" class="image-responsive image-icon" alt="image systemupload" title="FilePath <?= $systemupload->FilePath; ?>" width="40px">
                                  </a>
 
-                                 <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/bacacsv/' . $systemupload->ID); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a>
+
+                                 <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/procedure_upload/' . $systemupload->FilePath); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a>
+
+
+                                 <!-- <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/bacacsv/' . $systemupload->ID); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a> -->
                                  <!-- <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/delete/' . $systemupload->ID); ?>" class="label-default remove-data"><i class="fa fa-close"></i> <?= cclang('remove_button'); ?></a> -->
 
                                 <?php endif; ?>

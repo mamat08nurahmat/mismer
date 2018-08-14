@@ -54,6 +54,8 @@ jQuery(document).ready(domo);
                      <div class="row pull-right">
                         <?php is_allowed('templateupload_add', function(){?>
                         <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Templateupload']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/templateupload/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Templateupload']); ?></a>
+
+
                         <?php }) ?>
                         <?php is_allowed('templateupload_export', function(){?>
                         <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> Templateupload" href="<?= site_url('administrator/templateupload/export'); ?>"><i class="fa fa-file-excel-o" ></i> <?= cclang('export'); ?> XLS</a>

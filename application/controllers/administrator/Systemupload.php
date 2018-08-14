@@ -22,6 +22,58 @@ class Systemupload extends Admin
 
 	}
 
+/*
+
+-- SELECT * FROM templateuploadmismer
+-- SELECT * FROM mismer.wilayah;
+
+LOAD DATA INFILE 'c:/tmp/template_upload.csv'
+INTO TABLE templateuploadmismer
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+ IGNORE 1 ROWS;
+
+-- TRUNCATE `mismer`.`templateuploadmismer`;
+-- select count(*) from templateuploadmismer
+
+*/
+
+	public function truncate(){
+		$q = $this->db->query("DELETE FROM templateuploadmismer");
+print_r($q);die();
+
+	}
+
+	public function procedure_upload($nama_file){
+
+$this->db->query("DELETE FROM templateuploadmismer");
+ // BASE_URL . 'uploads/systemupload/' . $systemupload->FilePath;
+ // $lokasi_csv= 'c:/tmp/template_upload.csv';
+ // $lokasi_csv= BASE_URL . 'uploads/systemupload/template_upload.csv';
+ // $nama_file='template_upload.csv';
+ $lokasi_csv= 'c:/xampp/htdocs/mismer/uploads/systemupload/'.$nama_file;
+// print_r($lokasi_csv);die();
+$xxx='"';
+		$q = $this->db->query("
+		LOAD DATA INFILE '$lokasi_csv'
+		INTO TABLE templateuploadmismer
+		FIELDS TERMINATED BY ','
+		ENCLOSED BY '$xxx'
+		LINES TERMINATED BY '\n'
+		 IGNORE 1 ROWS;
+
+		");
+
+		print_r($q);die();
+
+
+
+
+	}
+
+
+
 	public function bacacsv()
 	{
 		// die('ssssssssssssss');

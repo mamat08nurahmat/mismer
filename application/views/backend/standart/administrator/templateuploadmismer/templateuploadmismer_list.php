@@ -53,7 +53,10 @@ jQuery(document).ready(domo);
                   <div class="widget-user-header ">
                      <div class="row pull-right">
                         <?php is_allowed('templateuploadmismer_add', function(){?>
-                        <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Templateuploadmismer']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/templateuploadmismer/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Templateuploadmismer']); ?></a>
+                        <!-- <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Templateuploadmismer']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/templateuploadmismer/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Templateuploadmismer']); ?></a> -->
+
+                        <a class="btn btn-flat btn-success btn_add_generate" id="btn_add_generate" title="generate  (Ctrl+g)" href="<?=  site_url('administrator/templateupload/generate_upload'); ?>"><i class="fa fa-plus-square-o" ></i> Generate</a>
+                        
                         <?php }) ?>
                         <?php is_allowed('templateuploadmismer_export', function(){?>
                         <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> Templateuploadmismer" href="<?= site_url('administrator/templateuploadmismer/export'); ?>"><i class="fa fa-file-excel-o" ></i> <?= cclang('export'); ?> XLS</a>
