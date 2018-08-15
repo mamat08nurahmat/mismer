@@ -142,23 +142,24 @@ $csvData = csv_reader($lokasi_file);
 			exit;
 		}
 
-		$this->form_validation->set_rules('BatchID', 'BatchID', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('UploadBy', 'UploadBy', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('UploadRemark', 'UploadRemark', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('ApplicationSource', 'ApplicationSource', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('ProcessMonth', 'ProcessMonth', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('ProcessYear', 'ProcessYear', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('systemupload_FilePath_name', 'FilePath', 'trim|required');
-		$this->form_validation->set_rules('VirtualPath', 'VirtualPath', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('FileSize', 'FileSize', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('ReportPath', 'ReportPath', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('RowDataCount', 'RowDataCount', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('RowDataSucceed', 'RowDataSucceed', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('RowDataFailed', 'RowDataFailed', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('ApprovalID', 'ApprovalID', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('BatchID', 'BatchID', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('UploadBy', 'UploadBy', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('UploadRemark', 'UploadRemark', 'trim|required|max_length[255]');
+		// $this->form_validation->set_rules('ApplicationSource', 'ApplicationSource', 'trim|required|max_length[255]');
+		// $this->form_validation->set_rules('ProcessMonth', 'ProcessMonth', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('ProcessYear', 'ProcessYear', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('systemupload_FilePath_name', 'FilePath', 'trim|required');
+		// $this->form_validation->set_rules('VirtualPath', 'VirtualPath', 'trim|required|max_length[255]');
+		// $this->form_validation->set_rules('FileSize', 'FileSize', 'trim|required|max_length[255]');
+		// $this->form_validation->set_rules('ReportPath', 'ReportPath', 'trim|required|max_length[255]');
+		// $this->form_validation->set_rules('RowDataCount', 'RowDataCount', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('RowDataSucceed', 'RowDataSucceed', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('RowDataFailed', 'RowDataFailed', 'trim|required|max_length[11]');
+		// $this->form_validation->set_rules('ApprovalID', 'ApprovalID', 'trim|required|max_length[11]');
 
 
 		if ($this->form_validation->run()) {
+
 			$systemupload_FilePath_uuid = $this->input->post('systemupload_FilePath_uuid');
 			$systemupload_FilePath_name = $this->input->post('systemupload_FilePath_name');
 			$save_data = [
@@ -199,7 +200,7 @@ $csvData = csv_reader($lokasi_file);
 				$save_data['FilePath'] = $systemupload_FilePath_name_copy;
 			}
 
-			$csvData = $this->csvreader->parse_file('base_url(uploads/systemupload/.csv)'); //path to csv file
+// $csvData = $this->csvreader->parse_file('base_url(uploads/systemupload/.csv)'); //path to csv file
 // print_r($csvData);die();
 
 			$save_systemupload = $this->model_systemupload->store($save_data);
