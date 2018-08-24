@@ -173,6 +173,16 @@
                         </div>
                                                  
                                                 <div class="form-group ">
+                            <label for="IS_YAP" class="col-sm-2 control-label">IS YAP 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="IS_YAP" id="IS_YAP" placeholder="IS YAP" value="<?= set_value('IS_YAP'); ?>">
+                                <small class="info help-block">
+                                </small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
                             <label for="EDC" class="col-sm-2 control-label">EDC 
                             <i class="required">*</i>
                             </label>

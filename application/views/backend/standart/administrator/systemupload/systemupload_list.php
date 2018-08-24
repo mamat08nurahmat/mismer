@@ -133,7 +133,7 @@ jQuery(document).ready(domo);
                                  </a>
 
 
-                                 <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/procedure_upload/' . $systemupload->FilePath); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a>
+                                 <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/upload/' . $systemupload->FilePath); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a>
 
 
                                  <!-- <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/bacacsv/' . $systemupload->ID); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a> -->

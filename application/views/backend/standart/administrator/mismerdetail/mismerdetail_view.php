@@ -145,6 +145,14 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">IS YAP </label>
+
+                        <div class="col-sm-8">
+                           <?= _ent($mismerdetail->IS_YAP); ?>
+                        </div>
+                    </div>
+                                         
+                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">EDC </label>
 
                         <div class="col-sm-8">

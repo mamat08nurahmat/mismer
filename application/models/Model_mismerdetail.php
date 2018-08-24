@@ -5,7 +5,7 @@ class Model_mismerdetail extends MY_Model {
 
 	private $primary_key 	= 'ID';
 	private $table_name 	= 'mismerdetail';
-	private $field_search 	= ['RowID', 'BatchID', 'OPEN_DATE', 'MID', 'MERCHAN_DBA_NAME', 'MSO', 'SOURCE_CODE', 'POS1', 'WILAYAH', 'CHANNEL', 'EDC', 'EXH'];
+	private $field_search 	= ['RowID', 'BatchID', 'OPEN_DATE', 'MID', 'MERCHAN_DBA_NAME', 'MSO', 'SOURCE_CODE', 'POS1', 'WILAYAH', 'CHANNEL', 'IS_YAP', 'EDC', 'EXH'];
 
 	public function __construct()
 	{

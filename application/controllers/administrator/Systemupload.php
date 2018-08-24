@@ -45,7 +45,11 @@ print_r($q);die();
 
 	}
 
-	public function procedure_upload($nama_file){
+
+// procedure Upload
+//upload file csv berdasrkan nama file
+// delete data templateuploadmismer dan upload data csv
+	public function upload($nama_file){
 
 $this->db->query("DELETE FROM templateuploadmismer");
  // BASE_URL . 'uploads/systemupload/' . $systemupload->FilePath;

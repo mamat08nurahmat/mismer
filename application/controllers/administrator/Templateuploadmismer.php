@@ -9,9 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 *| Templateuploadmismer site
 *|
 */
-class Templateuploadmismer extends Admin	
+class Templateuploadmismer extends Admin
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -19,6 +19,16 @@ class Templateuploadmismer extends Admin
 		$this->load->model('model_templateuploadmismer');
 	}
 
+
+// =================================
+//PROSES GENERATE
+// proses baca table templateupload dan insert ke tabel mismerdetail
+// ==================================
+	public function generate(){
+
+print_r('generateeeeee');
+
+	}
 	/**
 	* show all Templateuploadmismers
 	*
@@ -46,7 +56,7 @@ class Templateuploadmismer extends Admin
 		$this->template->title('Templateuploadmismer List');
 		$this->render('backend/standart/administrator/templateuploadmismer/templateuploadmismer_list', $this->data);
 	}
-	
+
 	/**
 	* Add new templateuploadmismers
 	*
@@ -82,10 +92,10 @@ class Templateuploadmismer extends Admin
 		$this->form_validation->set_rules('MSO', 'MSO', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('SOURCE_CODE', 'SOURCE CODE', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('POS1', 'POS1', 'trim|required|max_length[5]');
-		
+
 
 		if ($this->form_validation->run()) {
-		
+
 			$save_data = [
 				'MID' => $this->input->post('MID'),
 				'MERCHAN_DBA_NAME' => $this->input->post('MERCHAN_DBA_NAME'),
@@ -97,7 +107,7 @@ class Templateuploadmismer extends Admin
 				'POS1' => $this->input->post('POS1'),
 			];
 
-			
+
 			$save_templateuploadmismer = $this->model_templateuploadmismer->store($save_data);
 
 			if ($save_templateuploadmismer) {
@@ -135,7 +145,7 @@ class Templateuploadmismer extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 		/**
 	* Update view Templateuploadmismers
 	*
@@ -165,7 +175,7 @@ class Templateuploadmismer extends Admin
 				]);
 			exit;
 		}
-		
+
 		$this->form_validation->set_rules('MID', 'MID', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('MERCHAN_DBA_NAME', 'MERCHAN DBA NAME', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('STATUS_EDC', 'STATUS EDC', 'trim|required|max_length[5]');
@@ -174,9 +184,9 @@ class Templateuploadmismer extends Admin
 		$this->form_validation->set_rules('MSO', 'MSO', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('SOURCE_CODE', 'SOURCE CODE', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('POS1', 'POS1', 'trim|required|max_length[5]');
-		
+
 		if ($this->form_validation->run()) {
-		
+
 			$save_data = [
 				'MID' => $this->input->post('MID'),
 				'MERCHAN_DBA_NAME' => $this->input->post('MERCHAN_DBA_NAME'),
@@ -188,7 +198,7 @@ class Templateuploadmismer extends Admin
 				'POS1' => $this->input->post('POS1'),
 			];
 
-			
+
 			$save_templateuploadmismer = $this->model_templateuploadmismer->change($id, $save_data);
 
 			if ($save_templateuploadmismer) {
@@ -223,7 +233,7 @@ class Templateuploadmismer extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 	/**
 	* delete Templateuploadmismers
 	*
@@ -269,7 +279,7 @@ class Templateuploadmismer extends Admin
 		$this->template->title('Templateuploadmismer Detail');
 		$this->render('backend/standart/administrator/templateuploadmismer/templateuploadmismer_view', $this->data);
 	}
-	
+
 	/**
 	* delete Templateuploadmismers
 	*
@@ -279,12 +289,12 @@ class Templateuploadmismer extends Admin
 	{
 		$templateuploadmismer = $this->model_templateuploadmismer->find($id);
 
-		
-		
+
+
 		return $this->model_templateuploadmismer->remove($id);
 	}
-	
-	
+
+
 	/**
 	* Export to excel
 	*
