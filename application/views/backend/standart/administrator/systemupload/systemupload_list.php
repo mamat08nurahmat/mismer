@@ -84,12 +84,15 @@ jQuery(document).ready(domo);
                            </th>
                            <th>BatchID</th>
                            <th>UploadDate</th>
+						   
+                           <th>FilePath</th>
+<!--
                            <th>UploadBy</th>
                            <th>UploadRemark</th>
                            <th>ApplicationSource</th>
                            <th>ProcessMonth</th>
                            <th>ProcessYear</th>
-                           <th>FilePath</th>
+						   
                            <th>VirtualPath</th>
                            <th>FileSize</th>
                            <th>ReportPath</th>
@@ -97,6 +100,7 @@ jQuery(document).ready(domo);
                            <th>RowDataSucceed</th>
                            <th>RowDataFailed</th>
                            <th>ApprovalID</th>
+-->						   
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -109,13 +113,7 @@ jQuery(document).ready(domo);
 
                            <td><?= _ent($systemupload->BatchID); ?></td>
                            <td><?= _ent($systemupload->UploadDate); ?></td>
-                           <td><?= _ent($systemupload->username); ?></td>
-
-                           <td><?= _ent($systemupload->UploadRemark); ?></td>
-                           <td><?= _ent($systemupload->ApplicationSource); ?></td>
-
-                           <td><?= _ent($systemupload->ProcessMonth); ?></td>
-                           <td><?= _ent($systemupload->ProcessYear); ?></td>
+						   
                            <td>
                               <?php if (!empty($systemupload->FilePath)): ?>
                                 <?php if (is_image($systemupload->FilePath)): ?>
@@ -141,7 +139,18 @@ jQuery(document).ready(domo);
 
                                 <?php endif; ?>
                               <?php endif; ?>
-                           </td>
+                           </td>						   
+						   
+						   
+<!---
+                           <td><?= _ent($systemupload->username); ?></td>
+
+                           <td><?= _ent($systemupload->UploadRemark); ?></td>
+                           <td><?= _ent($systemupload->ApplicationSource); ?></td>
+
+                           <td><?= _ent($systemupload->ProcessMonth); ?></td>
+                           <td><?= _ent($systemupload->ProcessYear); ?></td>
+
 
                            <td><?= _ent($systemupload->VirtualPath); ?></td>
                            <td><?= _ent($systemupload->FileSize); ?></td>
@@ -150,6 +159,7 @@ jQuery(document).ready(domo);
                            <td><?= _ent($systemupload->RowDataSucceed); ?></td>
                            <td><?= _ent($systemupload->RowDataFailed); ?></td>
                            <td><?= _ent($systemupload->ApprovalID); ?></td>
+-->						   
                            <td width="200">
 
 

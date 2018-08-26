@@ -111,7 +111,8 @@ jQuery(document).ready(domo);
                               <?php endif; ?>
                            </td>
                             
-                           <td><?= _ent($blog->category); ?></td> 
+                           <td><?= _ent($blog->ApplicationSource); ?></td>
+                             
                            <td><?= _ent($blog->created_at); ?></td> 
                            <td width="200">
                               <?php is_allowed('blog_view', function() use ($blog){?>

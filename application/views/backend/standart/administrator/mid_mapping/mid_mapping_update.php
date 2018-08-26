@@ -82,17 +82,6 @@
                         </div>
                                                  
                                                 <div class="form-group ">
-                            <label for="EDC" class="col-sm-2 control-label">EDC 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="EDC" id="EDC" placeholder="EDC" value="<?= set_value('EDC', $mid_mapping->EDC); ?>">
-                                <small class="info help-block">
-                                <b>Input EDC</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
                             <label for="EXH" class="col-sm-2 control-label">EXH 
                             <i class="required">*</i>
                             </label>

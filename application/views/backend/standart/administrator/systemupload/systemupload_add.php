@@ -33,11 +33,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Systemupload        <small><?= cclang('new', ['Systemupload']); ?> </small>
+        Blog        <small><?= cclang('new', ['Blog']); ?> </small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a  href="<?= site_url('administrator/systemupload'); ?>">Systemupload</a></li>
+        <li class=""><a  href="<?= site_url('administrator/blog'); ?>">Blog</a></li>
         <li class="active"><?= cclang('new'); ?></li>
     </ol>
 </section>
@@ -55,187 +55,72 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username">Systemupload</h3>
-                            <h5 class="widget-user-desc"><?= cclang('new', ['Systemupload']); ?></h5>
+                            <h3 class="widget-user-username">Blog</h3>
+                            <h5 class="widget-user-desc"><?= cclang('new', ['Blog']); ?></h5>
                             <hr>
                         </div>
                         <?= form_open('', [
-                            'name'    => 'form_systemupload', 
+                            'name'    => 'form_blog', 
                             'class'   => 'form-horizontal', 
-                            'id'      => 'form_systemupload', 
+                            'id'      => 'form_blog', 
                             'enctype' => 'multipart/form-data', 
                             'method'  => 'POST'
                             ]); ?>
                          
                                                 <div class="form-group ">
-                            <label for="BatchID" class="col-sm-2 control-label">BatchID 
+                            <label for="title" class="col-sm-2 control-label"> Date 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="BatchID" id="BatchID" placeholder="BatchID" value="<?= set_value('BatchID'); ?>">
+                                <input type="date" class="form-control" name="ProcessDate" id="ProcessDate" >
                                 <small class="info help-block">
-                                <b>Input BatchID</b> Max Length : 11.</small>
+                                <b>Input Date</b>YYY-MM-DD</small>
                             </div>
                         </div>
-                                                 
-                         
+                                                                    
                                                 <div class="form-group ">
-                            <label for="UploadBy" class="col-sm-2 control-label">UploadBy 
+                            <label for="content" class="col-sm-2 control-label">Content 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="UploadBy" id="UploadBy" data-placeholder="Select UploadBy" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('aauth_users') as $row): ?>
-                                    <option value="<?= $row->id ?>"><?= $row->username; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
-                                <small class="info help-block">
-                                <b>Input UploadBy</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-
-                                                 
-                                                <div class="form-group ">
-                            <label for="UploadRemark" class="col-sm-2 control-label">UploadRemark 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <textarea id="UploadRemark" name="UploadRemark" rows="5" class="textarea"><?= set_value('UploadRemark'); ?></textarea>
-                                <small class="info help-block">
-                                <b>Input UploadRemark</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="ApplicationSource" class="col-sm-2 control-label">ApplicationSource 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="ApplicationSource" id="ApplicationSource" data-placeholder="Select ApplicationSource" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('applicationtype') as $row): ?>
-                                    <option value="<?= $row->ApplicationSource ?>"><?= $row->ApplicationSource; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
-                                <small class="info help-block">
-                                <b>Input ApplicationSource</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-
-                                                 
-                                                <div class="form-group ">
-                            <label for="ProcessMonth" class="col-sm-2 control-label">ProcessMonth 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="ProcessMonth" id="ProcessMonth" placeholder="ProcessMonth" value="<?= set_value('ProcessMonth'); ?>">
-                                <small class="info help-block">
-                                <b>Input ProcessMonth</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="ProcessYear" class="col-sm-2 control-label">ProcessYear 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="ProcessYear" id="ProcessYear" placeholder="ProcessYear" value="<?= set_value('ProcessYear'); ?>">
-                                <small class="info help-block">
-                                <b>Input ProcessYear</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="FilePath" class="col-sm-2 control-label">FilePath 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <div id="systemupload_FilePath_galery"></div>
-                                <input class="data_file" name="systemupload_FilePath_uuid" id="systemupload_FilePath_uuid" type="hidden" value="<?= set_value('systemupload_FilePath_uuid'); ?>">
-                                <input class="data_file" name="systemupload_FilePath_name" id="systemupload_FilePath_name" type="hidden" value="<?= set_value('systemupload_FilePath_name'); ?>">
+                                <textarea id="content" name="UploadRemark" rows="5" cols="80"><?= set_value('UploadRemark'); ?></textarea>
                                 <small class="info help-block">
                                 </small>
                             </div>
                         </div>
                                                  
                                                 <div class="form-group ">
-                            <label for="VirtualPath" class="col-sm-2 control-label">VirtualPath 
+                            <label for="image" class="col-sm-2 control-label">File 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="VirtualPath" id="VirtualPath" placeholder="VirtualPath" value="<?= set_value('VirtualPath'); ?>">
+                                <div id="blog_image_galery"></div>
+                                <input class="data_file" name="blog_image_uuid" id="blog_image_uuid" type="hidden" value="<?= set_value('blog_image_uuid'); ?>">
+                                <input class="data_file" name="blog_image_name" id="blog_image_name" type="hidden" value="<?= set_value('blog_image_name'); ?>">
                                 <small class="info help-block">
-                                <b>Input VirtualPath</b> Max Length : 255.</small>
+                                </small>
                             </div>
                         </div>
-                                                 
                                                 <div class="form-group ">
-                            <label for="FileSize" class="col-sm-2 control-label">FileSize 
+                            <label for="category" class="col-sm-2 control-label">Category 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="FileSize" id="FileSize" placeholder="FileSize" value="<?= set_value('FileSize'); ?>">
+                                <select  class="form-control chosen chosen-select-deselect" name="category" id="category" data-placeholder="Select Category" >
+                                    <option value=""></option>
+                                    <?php foreach (db_get_all_data('applicationtype') as $row): ?>
+                                    <option value="<?= $row->ApplicationSource ?>"><?= $row->ApplicationSource; ?></option>
+                                    <?php endforeach; ?>  
+                                </select>
                                 <small class="info help-block">
-                                <b>Input FileSize</b> Max Length : 255.</small>
+                                <b>Input Category</b> Max Length : 200.</small>
                             </div>
                         </div>
+<!---
+-->                                                 
+
                                                  
-                                                <div class="form-group ">
-                            <label for="ReportPath" class="col-sm-2 control-label">ReportPath 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="ReportPath" id="ReportPath" placeholder="ReportPath" value="<?= set_value('ReportPath'); ?>">
-                                <small class="info help-block">
-                                <b>Input ReportPath</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="RowDataCount" class="col-sm-2 control-label">RowDataCount 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="RowDataCount" id="RowDataCount" placeholder="RowDataCount" value="<?= set_value('RowDataCount'); ?>">
-                                <small class="info help-block">
-                                <b>Input RowDataCount</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="RowDataSucceed" class="col-sm-2 control-label">RowDataSucceed 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="RowDataSucceed" id="RowDataSucceed" placeholder="RowDataSucceed" value="<?= set_value('RowDataSucceed'); ?>">
-                                <small class="info help-block">
-                                <b>Input RowDataSucceed</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="RowDataFailed" class="col-sm-2 control-label">RowDataFailed 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="RowDataFailed" id="RowDataFailed" placeholder="RowDataFailed" value="<?= set_value('RowDataFailed'); ?>">
-                                <small class="info help-block">
-                                <b>Input RowDataFailed</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="ApprovalID" class="col-sm-2 control-label">ApprovalID 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="ApprovalID" id="ApprovalID" placeholder="ApprovalID" value="<?= set_value('ApprovalID'); ?>">
-                                <small class="info help-block">
-                                <b>Input ApprovalID</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                
+                        
                         <div class="message"></div>
                         <div class="row-fluid col-md-7">
                            <button class="btn btn-flat btn-primary btn_save btn_action" id="btn_save" data-stype='stay' title="<?= cclang('save_button'); ?> (Ctrl+s)">
@@ -262,9 +147,12 @@
     </div>
 </section>
 <!-- /.content -->
+<script src="<?= BASE_ASSET; ?>ckeditor/ckeditor.js"></script>
 <!-- Page script -->
 <script>
     $(document).ready(function(){
+            CKEDITOR.replace('content'); 
+      var content = CKEDITOR.instances.content;
                    
       $('#btn_cancel').click(function(){
         swal({
@@ -289,9 +177,10 @@
     
       $('.btn_save').click(function(){
         $('.message').fadeOut();
-            
-        var form_systemupload = $('#form_systemupload');
-        var data_post = form_systemupload.serializeArray();
+        $('#content').val(content.getData());
+                    
+        var form_blog = $('#form_blog');
+        var data_post = form_blog.serializeArray();
         var save_type = $(this).attr('data-stype');
 
         data_post.push({name: 'save_type', value: save_type});
@@ -306,7 +195,7 @@
         })
         .done(function(res) {
           if(res.success) {
-            var id_FilePath = $('#systemupload_FilePath_galery').find('li').attr('qq-file-id');
+            var id_image = $('#blog_image_galery').find('li').attr('qq-file-id');
             
             if (save_type == 'back') {
               window.location.href = res.redirect;
@@ -316,10 +205,11 @@
             $('.message').printMessage({message : res.message});
             $('.message').fadeIn();
             resetForm();
-            if (typeof id_FilePath !== 'undefined') {
-                    $('#systemupload_FilePath_galery').fineUploader('deleteFile', id_FilePath);
+            if (typeof id_image !== 'undefined') {
+                    $('#blog_image_galery').fineUploader('deleteFile', id_image);
                 }
             $('.chosen option').prop('selected', false).trigger('chosen:updated');
+            content.setData('');
                 
           } else {
             $('.message').printMessage({message : res.message, type : 'warning'});
@@ -339,16 +229,16 @@
       
               var params = {};
        params[csrf] = token;
-
-       $('#systemupload_FilePath_galery').fineUploader({
+//?????????????????????????????????????????????????????
+       $('#blog_image_galery').fineUploader({
           template: 'qq-template-gallery',
           request: {
-              endpoint: BASE_URL + '/administrator/systemupload/upload_FilePath_file',
+              endpoint: BASE_URL + '/administrator/blog/upload_image_file',
               params : params
           },
           deleteFile: {
               enabled: true, 
-              endpoint: BASE_URL + '/administrator/systemupload/delete_FilePath_file',
+              endpoint: BASE_URL + '/administrator/blog/delete_image_file',
           },
           thumbnails: {
               placeholders: {
@@ -367,25 +257,25 @@
           callbacks: {
               onComplete : function(id, name, xhr) {
                 if (xhr.success) {
-                   var uuid = $('#systemupload_FilePath_galery').fineUploader('getUuid', id);
-                   $('#systemupload_FilePath_uuid').val(uuid);
-                   $('#systemupload_FilePath_name').val(xhr.uploadName);
+                   var uuid = $('#blog_image_galery').fineUploader('getUuid', id);
+                   $('#blog_image_uuid').val(uuid);
+                   $('#blog_image_name').val(xhr.uploadName);
                 } else {
                    toastr['error'](xhr.error);
                 }
               },
               onSubmit : function(id, name) {
-                  var uuid = $('#systemupload_FilePath_uuid').val();
-                  $.get(BASE_URL + '/administrator/systemupload/delete_FilePath_file/' + uuid);
+                  var uuid = $('#blog_image_uuid').val();
+                  $.get(BASE_URL + '/administrator/blog/delete_image_file/' + uuid);
               },
               onDeleteComplete : function(id, xhr, isError) {
                 if (isError == false) {
-                  $('#systemupload_FilePath_uuid').val('');
-                  $('#systemupload_FilePath_name').val('');
+                  $('#blog_image_uuid').val('');
+                  $('#blog_image_name').val('');
                 }
               }
           }
-      }); /*end FilePath galery*/
+      }); /*end image galery*/
               
  
        

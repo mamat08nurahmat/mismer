@@ -76,7 +76,6 @@ class Mid_mapping extends Admin
 
 		$this->form_validation->set_rules('MID', 'MID', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('MERCHAN_DBA_NAME', 'MERCHAN DBA NAME', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('EDC', 'EDC', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('EXH', 'EXH', 'trim|required|max_length[11]');
 		
 
@@ -85,7 +84,6 @@ class Mid_mapping extends Admin
 			$save_data = [
 				'MID' => $this->input->post('MID'),
 				'MERCHAN_DBA_NAME' => $this->input->post('MERCHAN_DBA_NAME'),
-				'EDC' => $this->input->post('EDC'),
 				'EXH' => $this->input->post('EXH'),
 			];
 
@@ -160,7 +158,6 @@ class Mid_mapping extends Admin
 		
 		$this->form_validation->set_rules('MID', 'MID', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('MERCHAN_DBA_NAME', 'MERCHAN DBA NAME', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('EDC', 'EDC', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('EXH', 'EXH', 'trim|required|max_length[11]');
 		
 		if ($this->form_validation->run()) {
@@ -168,7 +165,6 @@ class Mid_mapping extends Admin
 			$save_data = [
 				'MID' => $this->input->post('MID'),
 				'MERCHAN_DBA_NAME' => $this->input->post('MERCHAN_DBA_NAME'),
-				'EDC' => $this->input->post('EDC'),
 				'EXH' => $this->input->post('EXH'),
 			];
 

@@ -125,7 +125,18 @@ $csvData = csv_reader($lokasi_file);
 	public function add()
 	{
 		$this->is_allowed('systemupload_add');
-
+/*
+		$where = array(
+			'BatchID' =>888 		
+		);
+	$r = db_get_all_data('systemupload',array('BatchID'=>123));
+*/	
+	
+//	$r =get_BatchID();
+//print_r($r->BatchID);die();
+	//	$data['BatchID']= $r->BatchID;
+		
+//	print_r($data);die();
 		$this->template->title('Systemupload New');
 		$this->render('backend/standart/administrator/systemupload/systemupload_add', $this->data);
 	}
@@ -137,6 +148,129 @@ $csvData = csv_reader($lokasi_file);
 	*/
 	public function add_save()
 	{
+//========
+/*
+		if (!$this->is_allowed('blog_add', false)) {
+			echo json_encode([
+				'success' => false,
+				'message' => cclang('sorry_you_do_not_have_permission_to_access')
+				]);
+			exit;
+		}
+
+		$this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[200]');
+		$this->form_validation->set_rules('content', 'Content', 'trim|required');
+		$this->form_validation->set_rules('blog_image_name', 'Image', 'trim|required');
+		$this->form_validation->set_rules('category', 'Category', 'trim|required|max_length[200]');
+*/
+		
+
+//		if ($this->form_validation->run()) {
+			
+			$blog_image_uuid = $this->input->post('blog_image_uuid');
+			$blog_image_name = $this->input->post('blog_image_name');
+
+//			$BatchID = $this->input->post('BatchID');
+			$ProcessDate = $this->input->post('ProcessDate');
+			$UploadRemark = $this->input->post('UploadRemark');
+			
+			$Y = $this->input->post('ProcessYear');
+			$M = $this->input->post('ProcessMonth');
+			$D = $this->input->post('ProcessDate');
+
+$r =get_BatchID();
+//print_r($r->BatchID);die();
+	//	$data['BatchID']= $r->BatchID;
+			
+
+			$save_data = [
+			
+				'ID' => NULL,
+				'BatchID' => $r->BatchID,
+				'UploadBy' => 999,
+				'UploadRemark' => $UploadRemark,
+				'ApplicationSource' => 'MISMER',
+				'UploadDate' => date('Y-m-d H:i:s'),
+				
+/*
+				'title' => $this->input->post('title'),
+				'content' => $this->input->post('content'),
+				'category' => $this->input->post('category'),
+				'created_at' => date('Y-m-d H:i:s'),
+*/			
+			];
+
+			if (!is_dir(FCPATH . '/uploads/systemupload/')) {
+				mkdir(FCPATH . '/uploads/systemupload/');
+			}
+
+			if (!empty($blog_image_name)) {
+				
+//				$blog_image_name_copy = date('YmdHis') . '-' . $blog_image_name;
+				//$blog_image_name_copy = 'MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
+$blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
+
+				rename(FCPATH . 'uploads/tmp/' . $blog_image_uuid . '/' . $blog_image_name, 
+						FCPATH . 'uploads/systemupload/' . $blog_image_name_copy);
+
+				if (!is_file(FCPATH . '/uploads/systemupload/' . $blog_image_name_copy)) {
+					echo json_encode([
+						'success' => false,
+						'message' => 'Error uploading file'
+						]);
+					exit;
+				}
+
+				$save_data['FilePath'] = $blog_image_name_copy;
+			}
+		
+			$save_blog = $this->model_systemupload->store($save_data);
+
+			
+			if ($save_blog) {
+				if ($this->input->post('save_type') == 'stay') {
+					$this->data['success'] = true;
+					$this->data['id'] 	   = $save_blog;
+					$this->data['message'] = cclang('success_save_data_stay', [
+						anchor('administrator/blog/edit/' . $save_blog, 'Edit Blog'),
+						anchor('administrator/blog', ' Go back to list')
+					]);
+				} else {
+					set_message(
+						cclang('success_save_data_redirect', [
+						anchor('administrator/blog/edit/' . $save_blog, 'Edit Blog')
+					]), 'success');
+
+            		$this->data['success'] = true;
+					$this->data['redirect'] = base_url('administrator/systemupload');
+				}
+			} else {
+				if ($this->input->post('save_type') == 'stay') {
+					$this->data['success'] = false;
+					$this->data['message'] = cclang('data_not_change');
+				} else {
+            		$this->data['success'] = false;
+            		$this->data['message'] = cclang('data_not_change');
+					$this->data['redirect'] = base_url('administrator/systemupload');
+				}
+			}
+/*
+*/			
+/*
+		} else {
+			$this->data['success'] = false;
+			$this->data['message'] = validation_errors();
+		}
+*/
+ 
+
+
+		echo json_encode($this->data);	
+	
+//========================	
+	//print_r('xxxxx');		die();
+
+/*
 		// print_r($this->input->post('systemupload_FilePath_uuid'));die();
 		if (!$this->is_allowed('systemupload_add', false)) {
 			echo json_encode([
@@ -145,7 +279,6 @@ $csvData = csv_reader($lokasi_file);
 				]);
 			exit;
 		}
-
 		// $this->form_validation->set_rules('BatchID', 'BatchID', 'trim|required|max_length[11]');
 		// $this->form_validation->set_rules('UploadBy', 'UploadBy', 'trim|required|max_length[11]');
 		// $this->form_validation->set_rules('UploadRemark', 'UploadRemark', 'trim|required|max_length[255]');
@@ -243,6 +376,8 @@ $csvData = csv_reader($lokasi_file);
 		}
 
 		echo json_encode($this->data);
+*/
+
 	}
 
 		/**

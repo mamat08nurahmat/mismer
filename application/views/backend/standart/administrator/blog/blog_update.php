@@ -106,25 +106,19 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="category" id="category" placeholder="Category" value="<?= set_value('category', $blog->category); ?>">
+                                <select  class="form-control chosen chosen-select-deselect" name="category" id="category" data-placeholder="Select Category" >
+                                    <option value=""></option>
+                                    <?php foreach (db_get_all_data('applicationtype') as $row): ?>
+                                    <option <?=  $row->ApplicationSource ==  $blog->category ? 'selected' : ''; ?> value="<?= $row->ApplicationSource ?>"><?= $row->ApplicationSource; ?></option>
+                                    <?php endforeach; ?>  
+                                </select>
                                 <small class="info help-block">
                                 <b>Input Category</b> Max Length : 200.</small>
                             </div>
                         </div>
+
                                                  
-                                                <div class="form-group ">
-                            <label for="created_at" class="col-sm-2 control-label">Created At 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-6">
-                            <div class="input-group date col-sm-8">
-                              <input type="text" class="form-control pull-right datetimepicker" name="created_at"  placeholder="Created At" id="created_at" value="<?= set_value('created_at', $blog->created_at); ?>">
-                            </div>
-                            <small class="info help-block">
-                            </small>
-                            </div>
-                        </div>
-                                                
+                        
                         <div class="message"></div>
                         <div class="row-fluid col-md-7">
                             <button class="btn btn-flat btn-primary btn_save btn_action" id="btn_save" data-stype='stay' title="<?= cclang('save_button'); ?> (Ctrl+s)">

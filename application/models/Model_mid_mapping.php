@@ -5,7 +5,7 @@ class Model_mid_mapping extends MY_Model {
 
 	private $primary_key 	= 'ID';
 	private $table_name 	= 'mid_mapping';
-	private $field_search 	= ['MID', 'MERCHAN_DBA_NAME', 'EDC', 'EXH'];
+	private $field_search 	= ['MID', 'MERCHAN_DBA_NAME', 'EXH'];
 
 	public function __construct()
 	{

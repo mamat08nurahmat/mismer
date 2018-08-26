@@ -81,14 +81,6 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">EDC </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($mid_mapping->EDC); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">EXH </label>
 
                         <div class="col-sm-8">

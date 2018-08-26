@@ -18,6 +18,9 @@ return $ci->csvreader->parse_file($lokasi_file);
 }
 
 //==========================
+
+//format tanggal carlink DDMMYY --> YYYY-MM-DD
+
 if(!function_exists('format_opendate_cardlink')) {
 	function format_opendate_cardlink($date)
 	{
@@ -28,6 +31,21 @@ if(!function_exists('format_opendate_cardlink')) {
 		return '20'.$y.'-'.$m.'-'.$d;
 	}
 }
+
+
+//BatchID
+if(!function_exists('get_BatchID')) {
+	function get_BatchID() {
+		$ci =& get_instance();
+	  	$query = $ci->db->query("
+		SELECT MAX(BatchID)+1 as BatchID   FROM systemupload
+		");
+
+	    return $query->row();
+	}
+}
+
+
 
 //===========================================================
 if(!function_exists('get_mysql_version')) {

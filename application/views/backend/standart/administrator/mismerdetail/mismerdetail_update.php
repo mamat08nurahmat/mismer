@@ -162,6 +162,16 @@
                         </div>
                                                  
                                                 <div class="form-group ">
+                            <label for="WILAYAH_2" class="col-sm-2 control-label">WILAYAH 2 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="WILAYAH_2" id="WILAYAH_2" placeholder="WILAYAH 2" value="<?= set_value('WILAYAH_2', $mismerdetail->WILAYAH_2); ?>">
+                                <small class="info help-block">
+                                </small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
                             <label for="CHANNEL" class="col-sm-2 control-label">CHANNEL 
                             <i class="required">*</i>
                             </label>

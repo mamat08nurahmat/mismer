@@ -85,7 +85,8 @@ class Model_blog extends MY_Model {
 	}
 
 	public function join_avaiable() {
-		
+		$this->db->join('applicationtype', 'applicationtype.ApplicationSource = blog.category', 'LEFT');
+	    
     	return $this;
 	}
 

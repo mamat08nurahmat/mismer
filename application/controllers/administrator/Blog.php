@@ -78,7 +78,6 @@ class Blog extends Admin
 		$this->form_validation->set_rules('content', 'Content', 'trim|required');
 		$this->form_validation->set_rules('blog_image_name', 'Image', 'trim|required');
 		$this->form_validation->set_rules('category', 'Category', 'trim|required|max_length[200]');
-		$this->form_validation->set_rules('created_at', 'Created At', 'trim|required');
 		
 
 		if ($this->form_validation->run()) {
@@ -89,7 +88,7 @@ class Blog extends Admin
 				'title' => $this->input->post('title'),
 				'content' => $this->input->post('content'),
 				'category' => $this->input->post('category'),
-				'created_at' => $this->input->post('created_at'),
+				'created_at' => date('Y-m-d H:i:s'),
 			];
 
 			if (!is_dir(FCPATH . '/uploads/blog/')) {
@@ -186,7 +185,6 @@ class Blog extends Admin
 		$this->form_validation->set_rules('content', 'Content', 'trim|required');
 		$this->form_validation->set_rules('blog_image_name', 'Image', 'trim|required');
 		$this->form_validation->set_rules('category', 'Category', 'trim|required|max_length[200]');
-		$this->form_validation->set_rules('created_at', 'Created At', 'trim|required');
 		
 		if ($this->form_validation->run()) {
 			$blog_image_uuid = $this->input->post('blog_image_uuid');
@@ -196,7 +194,7 @@ class Blog extends Admin
 				'title' => $this->input->post('title'),
 				'content' => $this->input->post('content'),
 				'category' => $this->input->post('category'),
-				'created_at' => $this->input->post('created_at'),
+				'created_at' => date('Y-m-d H:i:s'),
 			];
 
 			if (!is_dir(FCPATH . '/uploads/blog/')) {

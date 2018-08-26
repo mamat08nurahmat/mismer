@@ -89,6 +89,7 @@ jQuery(document).ready(domo);
                            <th>SOURCE CODE</th>
                            <th>POS1</th>
                            <th>WILAYAH</th>
+                           <th>WILAYAH 2</th>
                            <th>CHANNEL</th>
                            <th>IS YAP</th>
                            <th>EDC</th>
@@ -112,6 +113,7 @@ jQuery(document).ready(domo);
                            <td><?= _ent($mismerdetail->SOURCE_CODE); ?></td> 
                            <td><?= _ent($mismerdetail->POS1); ?></td> 
                            <td><?= _ent($mismerdetail->WILAYAH); ?></td> 
+                           <td><?= _ent($mismerdetail->WILAYAH_2); ?></td> 
                            <td><?= _ent($mismerdetail->CHANNEL); ?></td> 
                            <td><?= _ent($mismerdetail->IS_YAP); ?></td> 
                            <td><?= _ent($mismerdetail->EDC); ?></td> 
@@ -168,6 +170,7 @@ jQuery(document).ready(domo);
                            <option <?= $this->input->get('f') == 'SOURCE_CODE' ? 'selected' :''; ?> value="SOURCE_CODE">SOURCE CODE</option>
                            <option <?= $this->input->get('f') == 'POS1' ? 'selected' :''; ?> value="POS1">POS1</option>
                            <option <?= $this->input->get('f') == 'WILAYAH' ? 'selected' :''; ?> value="WILAYAH">WILAYAH</option>
+                           <option <?= $this->input->get('f') == 'WILAYAH_2' ? 'selected' :''; ?> value="WILAYAH_2">WILAYAH 2</option>
                            <option <?= $this->input->get('f') == 'CHANNEL' ? 'selected' :''; ?> value="CHANNEL">CHANNEL</option>
                            <option <?= $this->input->get('f') == 'IS_YAP' ? 'selected' :''; ?> value="IS_YAP">IS YAP</option>
                            <option <?= $this->input->get('f') == 'EDC' ? 'selected' :''; ?> value="EDC">EDC</option>

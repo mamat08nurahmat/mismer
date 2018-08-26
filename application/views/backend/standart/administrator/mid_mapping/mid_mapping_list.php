@@ -82,7 +82,6 @@ jQuery(document).ready(domo);
                            </th>
                            <th>MID</th>
                            <th>MERCHAN DBA NAME</th>
-                           <th>EDC</th>
                            <th>EXH</th>
                            <th>Action</th>
                         </tr>
@@ -96,7 +95,6 @@ jQuery(document).ready(domo);
                            
                            <td><?= _ent($mid_mapping->MID); ?></td> 
                            <td><?= _ent($mid_mapping->MERCHAN_DBA_NAME); ?></td> 
-                           <td><?= _ent($mid_mapping->EDC); ?></td> 
                            <td><?= _ent($mid_mapping->EXH); ?></td> 
                            <td width="200">
                               <?php is_allowed('mid_mapping_view', function() use ($mid_mapping){?>
@@ -143,7 +141,6 @@ jQuery(document).ready(domo);
                            <option value=""><?= cclang('all'); ?></option>
                             <option <?= $this->input->get('f') == 'MID' ? 'selected' :''; ?> value="MID">MID</option>
                            <option <?= $this->input->get('f') == 'MERCHAN_DBA_NAME' ? 'selected' :''; ?> value="MERCHAN_DBA_NAME">MERCHAN DBA NAME</option>
-                           <option <?= $this->input->get('f') == 'EDC' ? 'selected' :''; ?> value="EDC">EDC</option>
                            <option <?= $this->input->get('f') == 'EXH' ? 'selected' :''; ?> value="EXH">EXH</option>
                           </select>
                      </div>
