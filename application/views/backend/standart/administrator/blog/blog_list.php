@@ -42,7 +42,7 @@ jQuery(document).ready(domo);
 </section>
 <!-- Main content -->
 <section class="content">
-   <div class="row" >
+   <div class="row" >\
 
       <div class="col-md-12">
          <div class="box box-warning">
@@ -84,8 +84,12 @@ jQuery(document).ready(domo);
                     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> -->
 
 <?php
-echo datatables_source();
+// echo datatables_source();
 ?>
+<script type="text/javascript" src="<?= BASE_ASSET; ?>/datatables/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="<?= BASE_ASSET; ?>/datatables/jquery.dataTables.min.css">
+
+<!-- <script src="<?= BASE_ASSET; ?>/js/jquery.hotkeys.js"></script> -->
 
 	<table id="datatables" class="display" style="width:100%">
     <thead>
