@@ -9,9 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 *| Mismerdetail site
 *|
 */
-class Mismerdetail extends Admin	
+class Mismerdetail extends Admin
 {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -19,6 +19,40 @@ class Mismerdetail extends Admin
 		$this->load->model('model_mismerdetail');
 	}
 
+// ======================
+public function dev($offset = 0)
+{
+	$this->is_allowed('mismerdetail_list');
+
+	$filter = $this->input->get('q');
+	$field 	= $this->input->get('f');
+if($field==""){
+	$this->data['mismerdetails'] = $this->model_mismerdetail->get($filter, $field, $this->limit_page, $offset);
+	$this->data['mismerdetail_counts'] = 0;
+
+}else {
+
+$this->data['mismerdetails'] = $this->model_mismerdetail->get($filter, $field, $this->limit_page, $offset);
+$this->data['mismerdetail_counts'] = $this->model_mismerdetail->count_all($filter, $field);
+
+}
+
+	$config = [
+		'base_url'     => 'administrator/mismerdetail/dev/',
+		'total_rows'   => $this->model_mismerdetail->count_all($filter, $field),
+		'per_page'     => $this->limit_page,
+		'uri_segment'  => 4,
+	];
+
+	$this->data['pagination'] = $this->pagination($config);
+
+	$this->template->title('Mismerdetail List');
+	$this->render('backend/standart/administrator/mismerdetail/mismerdetail_list_dev', $this->data);
+}
+
+// dev====================
+
+// =============================================
 	/**
 	* show all Mismerdetails
 	*
@@ -30,9 +64,17 @@ class Mismerdetail extends Admin
 
 		$filter = $this->input->get('q');
 		$field 	= $this->input->get('f');
+// if($field==""){
+// 	$this->data['mismerdetails'] = $this->model_mismerdetail->get($filter, $field, $this->limit_page, $offset);
+// 	$this->data['mismerdetail_counts'] = 0;
+//
+// }else {
 
-		$this->data['mismerdetails'] = $this->model_mismerdetail->get($filter, $field, $this->limit_page, $offset);
-		$this->data['mismerdetail_counts'] = $this->model_mismerdetail->count_all($filter, $field);
+$this->data['mismerdetails'] = $this->model_mismerdetail->get($filter, $field, $this->limit_page, $offset);
+
+// $this->data['mismerdetails'] = $this->model_mismerdetail->get_all();
+	$this->data['mismerdetail_counts'] = $this->model_mismerdetail->count_all($filter, $field);
+// }
 
 		$config = [
 			'base_url'     => 'administrator/mismerdetail/index/',
@@ -46,7 +88,7 @@ class Mismerdetail extends Admin
 		$this->template->title('Mismerdetail List');
 		$this->render('backend/standart/administrator/mismerdetail/mismerdetail_list', $this->data);
 	}
-	
+
 	/**
 	* Add new mismerdetails
 	*
@@ -86,10 +128,10 @@ class Mismerdetail extends Admin
 		$this->form_validation->set_rules('CHANNEL', 'CHANNEL', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('EDC', 'EDC', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('EXH', 'EXH', 'trim|required|max_length[11]');
-		
+
 
 		if ($this->form_validation->run()) {
-		
+
 			$save_data = [
 				'RowID' => $this->input->post('RowID'),
 				'BatchID' => $this->input->post('BatchID'),
@@ -107,7 +149,7 @@ class Mismerdetail extends Admin
 				'EXH' => $this->input->post('EXH'),
 			];
 
-			
+
 			$save_mismerdetail = $this->model_mismerdetail->store($save_data);
 
 			if ($save_mismerdetail) {
@@ -145,7 +187,7 @@ class Mismerdetail extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 		/**
 	* Update view Mismerdetails
 	*
@@ -175,7 +217,7 @@ class Mismerdetail extends Admin
 				]);
 			exit;
 		}
-		
+
 		$this->form_validation->set_rules('RowID', 'RowID', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('BatchID', 'BatchID', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('OPEN_DATE', 'OPEN DATE', 'trim|required');
@@ -188,9 +230,9 @@ class Mismerdetail extends Admin
 		$this->form_validation->set_rules('CHANNEL', 'CHANNEL', 'trim|required|max_length[255]');
 		$this->form_validation->set_rules('EDC', 'EDC', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('EXH', 'EXH', 'trim|required|max_length[11]');
-		
+
 		if ($this->form_validation->run()) {
-		
+
 			$save_data = [
 				'RowID' => $this->input->post('RowID'),
 				'BatchID' => $this->input->post('BatchID'),
@@ -208,7 +250,7 @@ class Mismerdetail extends Admin
 				'EXH' => $this->input->post('EXH'),
 			];
 
-			
+
 			$save_mismerdetail = $this->model_mismerdetail->change($id, $save_data);
 
 			if ($save_mismerdetail) {
@@ -243,7 +285,7 @@ class Mismerdetail extends Admin
 
 		echo json_encode($this->data);
 	}
-	
+
 	/**
 	* delete Mismerdetails
 	*
@@ -274,7 +316,34 @@ class Mismerdetail extends Admin
 
 		redirect_back();
 	}
+//=======================
+public function exh($id = null)
+{
+	// $this->is_allowed('mismerdetail_delete');
 
+	$this->load->helper('file');
+
+	$arr_id = $this->input->get('id');
+	$approve = false;
+
+	if (!empty($id)) {
+		$approve = $this->_approve($id);
+	} elseif (count($arr_id) >0) {
+		foreach ($arr_id as $id) {
+			$approve = $this->_approve($id);
+		}
+	}
+
+	if ($approve) {
+					set_message(cclang('has_been_approve', 'mismerdetail'), 'success');
+			} else {
+					set_message(cclang('error_approve', 'mismerdetail'), 'error');
+			}
+
+	redirect_back();
+}
+
+//============
 		/**
 	* View view Mismerdetails
 	*
@@ -289,7 +358,7 @@ class Mismerdetail extends Admin
 		$this->template->title('Mismerdetail Detail');
 		$this->render('backend/standart/administrator/mismerdetail/mismerdetail_view', $this->data);
 	}
-	
+
 	/**
 	* delete Mismerdetails
 	*
@@ -299,12 +368,21 @@ class Mismerdetail extends Admin
 	{
 		$mismerdetail = $this->model_mismerdetail->find($id);
 
-		
-		
+
+
 		return $this->model_mismerdetail->remove($id);
 	}
-	
-	
+
+
+//==============
+private function _approve($id)
+{
+	$mismerdetail = $this->model_mismerdetail->find($id);
+	return $this->model_mismerdetail->bulk_update_exh($id);
+}
+
+//===========
+
 	/**
 	* Export to excel
 	*

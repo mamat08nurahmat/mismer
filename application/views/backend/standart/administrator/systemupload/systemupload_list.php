@@ -55,13 +55,15 @@ jQuery(document).ready(domo);
                         <?php is_allowed('systemupload_add', function(){?>
                           <a class="btn btn-flat btn-success btn_add_new" id="btn_add_new" title="<?= cclang('add_new_button', ['Systemupload']); ?>  (Ctrl+a)" href="<?=  site_url('administrator/systemupload/add'); ?>"><i class="fa fa-plus-square-o" ></i> <?= cclang('add_new_button', ['Systemupload']); ?></a>
 
+                          <a class="btn btn-flat btn-success btn_add_generate" id="btn_add_generate" title="generate  (Ctrl+g)" href="<?=  site_url('administrator/systemupload/gen'); ?>"><i class="fa fa-plus-square-o" ></i> Generate</a>
+
 
                         <?php }) ?>
                         <?php is_allowed('systemupload_export', function(){?>
                         <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> Systemupload" href="<?= site_url('administrator/systemupload/export'); ?>"><i class="fa fa-file-excel-o" ></i> <?= cclang('export'); ?> XLS</a>
                         <?php }) ?>
                         <?php is_allowed('systemupload_export', function(){?>
-                        <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> pdf Systemupload" href="<?= site_url('administrator/systemupload/export_pdf'); ?>"><i class="fa fa-file-pdf-o" ></i> <?= cclang('export'); ?> PDF</a>
+                        <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> pdf Systemupload" href="<?= site_url('uploads/systemupload/format_upload.csv'); ?>"><i class="fa fa-file-file-o" ></i> <?= cclang('export'); ?> FORMAT UPLOAD</a>
                         <?php }) ?>
                      </div>
                      <div class="widget-user-image">
@@ -84,7 +86,7 @@ jQuery(document).ready(domo);
                            </th>
                            <th>BatchID</th>
                            <th>UploadDate</th>
-						   
+
                            <th>FilePath</th>
 <!--
                            <th>UploadBy</th>
@@ -92,7 +94,7 @@ jQuery(document).ready(domo);
                            <th>ApplicationSource</th>
                            <th>ProcessMonth</th>
                            <th>ProcessYear</th>
-						   
+
                            <th>VirtualPath</th>
                            <th>FileSize</th>
                            <th>ReportPath</th>
@@ -100,8 +102,8 @@ jQuery(document).ready(domo);
                            <th>RowDataSucceed</th>
                            <th>RowDataFailed</th>
                            <th>ApprovalID</th>
--->						   
                            <th>Action</th>
+                         -->
                         </tr>
                      </thead>
                      <tbody id="tbody_systemupload">
@@ -113,7 +115,7 @@ jQuery(document).ready(domo);
 
                            <td><?= _ent($systemupload->BatchID); ?></td>
                            <td><?= _ent($systemupload->UploadDate); ?></td>
-						   
+
                            <td>
                               <?php if (!empty($systemupload->FilePath)): ?>
                                 <?php if (is_image($systemupload->FilePath)): ?>
@@ -130,18 +132,28 @@ jQuery(document).ready(domo);
                                    <img src="<?= get_icon_file($systemupload->FilePath); ?>" class="image-responsive image-icon" alt="image systemupload" title="FilePath <?= $systemupload->FilePath; ?>" width="40px">
                                  </a>
 
+                                 <a class="btn btn-flat btn-danger btn_del_temp" id="btn_add_generate"   href="<?=  site_url('administrator/systemupload/del_temp'); ?>">DELETE TEMP_UPLOAD</a>
+                                 <!-- <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/upload/' . $systemupload->FilePath); ?>" class=" btn btn-primary approve-data"></i>APPROVE</a> -->
 
-                                 <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/upload/' . $systemupload->FilePath); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a>
-
+<!--cek template kosong  -->
+<?php
+// print_r(cek_temp_upload());
+$temp = cek_temp_upload();
+ if($temp==0){
+?>
+<a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/upload/' . $systemupload->FilePath); ?>" class=" btn btn-primary approve-data"></i>APPROVE</a>
+<?php
+}
+?>
 
                                  <!-- <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/bacacsv/' . $systemupload->ID); ?>" class=" btn btn-primary approve-data"><i class="fa fa-gear"></i>APPROVE</a> -->
                                  <!-- <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/delete/' . $systemupload->ID); ?>" class="label-default remove-data"><i class="fa fa-close"></i> <?= cclang('remove_button'); ?></a> -->
 
                                 <?php endif; ?>
                               <?php endif; ?>
-                           </td>						   
-						   
-						   
+                           </td>
+
+
 <!---
                            <td><?= _ent($systemupload->username); ?></td>
 
@@ -159,8 +171,8 @@ jQuery(document).ready(domo);
                            <td><?= _ent($systemupload->RowDataSucceed); ?></td>
                            <td><?= _ent($systemupload->RowDataFailed); ?></td>
                            <td><?= _ent($systemupload->ApprovalID); ?></td>
--->						   
-                           <td width="200">
+-->
+                           <!-- <td width="200">
 
 
 
@@ -174,6 +186,8 @@ jQuery(document).ready(domo);
                               <a href="javascript:void(0);" data-href="<?= site_url('administrator/systemupload/delete/' . $systemupload->ID); ?>" class="label-default remove-data"><i class="fa fa-close"></i> <?= cclang('remove_button'); ?></a>
                                <?php }) ?>
                            </td>
+ -->
+
                         </tr>
                       <?php endforeach; ?>
                       <?php if ($systemupload_counts == 0) :?>
@@ -258,7 +272,7 @@ jQuery(document).ready(domo);
       var url = $(this).attr('data-href');
 
       swal({
-          title: "<?= cclang('are_you_sure'); ?>",
+          title: "Approve Data Upload ?",
           text: "<?= cclang('data_to_be_approve_can_not_be_restored'); ?>",
           type: "warning",
           showCancelButton: true,

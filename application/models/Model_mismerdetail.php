@@ -5,7 +5,7 @@ class Model_mismerdetail extends MY_Model {
 
 	private $primary_key 	= 'ID';
 	private $table_name 	= 'mismerdetail';
-	private $field_search 	= ['RowID', 'BatchID', 'OPEN_DATE', 'MID', 'MERCHAN_DBA_NAME', 'MSO', 'SOURCE_CODE', 'POS1', 'WILAYAH', 'WILAYAH_2', 'CHANNEL', 'IS_YAP', 'EDC', 'EXH'];
+	private $field_search 	= ['RowID', 'BatchID', 'OPEN_DATE', 'MID', 'MERCHAN_DBA_NAME', 'MSO', 'SOURCE_CODE', 'POS1', 'WILAYAH',  'CHANNEL','TYPE_MID'];
 
 	public function __construct()
 	{
@@ -17,6 +17,8 @@ class Model_mismerdetail extends MY_Model {
 
 		parent::__construct($config);
 	}
+
+//sort by date=============>>>??????????
 
 	public function count_all($q = null, $field = null)
 	{
@@ -74,7 +76,7 @@ class Model_mismerdetail extends MY_Model {
         if (is_array($select_field) AND count($select_field)) {
         	$this->db->select($select_field);
         }
-		
+
 		$this->join_avaiable();
         $this->db->where($where);
         $this->db->limit($limit, $offset);
@@ -85,7 +87,7 @@ class Model_mismerdetail extends MY_Model {
 	}
 
 	public function join_avaiable() {
-		
+
     	return $this;
 	}
 

@@ -61,10 +61,22 @@ public function bulk_update_exh($id = NULL)
 
     public function remove($id = NULL)
     {
-        $this->db->where($this->primary_key, $id);
-        return $this->db->delete($this->table_name);
+        // $this->db->where($this->primary_key, $id);
+        // return $this->db->delete($this->table_name);
+        return $this->db->query("
+UPDATE '$this->table_name'
+SET EXH=1
+WHERE '$this->primary_key' = '$id'
+        ");
     }
+// ========
+public function approve($id = NULL)
+{
+    $this->db->where($this->primary_key, $id);
+    return $this->db->delete($this->table_name);
+}
 
+//=============
     public function change($id = NULL, $data = array())
     {
         $this->db->where($this->primary_key, $id);

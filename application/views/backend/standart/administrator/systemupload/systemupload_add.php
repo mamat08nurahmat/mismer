@@ -9,25 +9,25 @@
 <script src="<?= BASE_ASSET; ?>/js/jquery.hotkeys.js"></script>
 <script type="text/javascript">
     function domo(){
-     
+
        // Binding keys
        $('*').bind('keydown', 'Ctrl+s', function assets() {
           $('#btn_save').trigger('click');
            return false;
        });
-    
+
        $('*').bind('keydown', 'Ctrl+x', function assets() {
           $('#btn_cancel').trigger('click');
            return false;
        });
-    
+
       $('*').bind('keydown', 'Ctrl+d', function assets() {
           $('.btn_save_back').trigger('click');
            return false;
        });
-        
+
     }
-    
+
     jQuery(document).ready(domo);
 </script>
 <!-- Content Header (Page header) -->
@@ -60,15 +60,15 @@
                             <hr>
                         </div>
                         <?= form_open('', [
-                            'name'    => 'form_blog', 
-                            'class'   => 'form-horizontal', 
-                            'id'      => 'form_blog', 
-                            'enctype' => 'multipart/form-data', 
+                            'name'    => 'form_blog',
+                            'class'   => 'form-horizontal',
+                            'id'      => 'form_blog',
+                            'enctype' => 'multipart/form-data',
                             'method'  => 'POST'
                             ]); ?>
-                         
+
                                                 <div class="form-group ">
-                            <label for="title" class="col-sm-2 control-label"> Date 
+                            <label for="title" class="col-sm-2 control-label"> Date
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
@@ -77,9 +77,9 @@
                                 <b>Input Date</b>YYY-MM-DD</small>
                             </div>
                         </div>
-                                                                    
+
                                                 <div class="form-group ">
-                            <label for="content" class="col-sm-2 control-label">Content 
+                            <label for="content" class="col-sm-2 control-label">Remark
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
@@ -88,9 +88,9 @@
                                 </small>
                             </div>
                         </div>
-                                                 
+
                                                 <div class="form-group ">
-                            <label for="image" class="col-sm-2 control-label">File 
+                            <label for="image" class="col-sm-2 control-label">File
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
@@ -101,8 +101,8 @@
                                 </small>
                             </div>
                         </div>
-                                                <div class="form-group ">
-                            <label for="category" class="col-sm-2 control-label">Category 
+                                                <!-- <div class="form-group ">
+                            <label for="category" class="col-sm-2 control-label">Category
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
@@ -110,17 +110,17 @@
                                     <option value=""></option>
                                     <?php foreach (db_get_all_data('applicationtype') as $row): ?>
                                     <option value="<?= $row->ApplicationSource ?>"><?= $row->ApplicationSource; ?></option>
-                                    <?php endforeach; ?>  
+                                    <?php endforeach; ?>
                                 </select>
                                 <small class="info help-block">
                                 <b>Input Category</b> Max Length : 200.</small>
                             </div>
-                        </div>
+                        </div> -->
 <!---
--->                                                 
+-->
 
-                                                 
-                        
+
+
                         <div class="message"></div>
                         <div class="row-fluid col-md-7">
                            <button class="btn btn-flat btn-primary btn_save btn_action" id="btn_save" data-stype='stay' title="<?= cclang('save_button'); ?> (Ctrl+s)">
@@ -133,7 +133,7 @@
                             <i class="fa fa-undo" ></i> <?= cclang('cancel_button'); ?>
                             </a>
                             <span class="loading loading-hide">
-                            <img src="<?= BASE_ASSET; ?>/img/loading-spin-primary.svg"> 
+                            <img src="<?= BASE_ASSET; ?>/img/loading-spin-primary.svg">
                             <i><?= cclang('loading_saving_data'); ?></i>
                             </span>
                         </div>
@@ -151,9 +151,9 @@
 <!-- Page script -->
 <script>
     $(document).ready(function(){
-            CKEDITOR.replace('content'); 
+            CKEDITOR.replace('content');
       var content = CKEDITOR.instances.content;
-                   
+
       $('#btn_cancel').click(function(){
         swal({
             title: "<?= cclang('are_you_sure'); ?>",
@@ -171,22 +171,22 @@
               window.location.href = BASE_URL + 'administrator/systemupload';
             }
           });
-    
+
         return false;
       }); /*end btn cancel*/
-    
+
       $('.btn_save').click(function(){
         $('.message').fadeOut();
         $('#content').val(content.getData());
-                    
+
         var form_blog = $('#form_blog');
         var data_post = form_blog.serializeArray();
         var save_type = $(this).attr('data-stype');
 
         data_post.push({name: 'save_type', value: save_type});
-    
+
         $('.loading').show();
-    
+
         $.ajax({
           url: BASE_URL + '/administrator/systemupload/add_save',
           type: 'POST',
@@ -196,12 +196,12 @@
         .done(function(res) {
           if(res.success) {
             var id_image = $('#blog_image_galery').find('li').attr('qq-file-id');
-            
+
             if (save_type == 'back') {
               window.location.href = res.redirect;
               return;
             }
-    
+
             $('.message').printMessage({message : res.message});
             $('.message').fadeIn();
             resetForm();
@@ -210,11 +210,11 @@
                 }
             $('.chosen option').prop('selected', false).trigger('chosen:updated');
             content.setData('');
-                
+
           } else {
             $('.message').printMessage({message : res.message, type : 'warning'});
           }
-    
+
         })
         .fail(function() {
           $('.message').printMessage({message : 'Error save data', type : 'warning'});
@@ -223,22 +223,22 @@
           $('.loading').hide();
           $('html, body').animate({ scrollTop: $(document).height() }, 2000);
         });
-    
+
         return false;
       }); /*end btn save*/
-      
+
               var params = {};
        params[csrf] = token;
 //?????????????????????????????????????????????????????
        $('#blog_image_galery').fineUploader({
           template: 'qq-template-gallery',
           request: {
-              endpoint: BASE_URL + '/administrator/blog/upload_image_file',
+              endpoint: BASE_URL + '/administrator/systemupload/upload_FilePath_file',
               params : params
           },
           deleteFile: {
-              enabled: true, 
-              endpoint: BASE_URL + '/administrator/blog/delete_image_file',
+              enabled: true,
+              endpoint: BASE_URL + '/administrator/systemupload/delete_FilePath_file',
           },
           thumbnails: {
               placeholders: {
@@ -266,7 +266,7 @@
               },
               onSubmit : function(id, name) {
                   var uuid = $('#blog_image_uuid').val();
-                  $.get(BASE_URL + '/administrator/blog/delete_image_file/' + uuid);
+                  $.get(BASE_URL + '/administrator/systemupload/delete_FilePath_file/' + uuid);
               },
               onDeleteComplete : function(id, xhr, isError) {
                 if (isError == false) {
@@ -276,10 +276,10 @@
               }
           }
       }); /*end image galery*/
-              
- 
-       
-    
-    
+
+
+
+
+
     }); /*end doc ready*/
 </script>

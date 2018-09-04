@@ -46,50 +46,278 @@ print_r($q);die();
 	}
 
 
-// procedure Upload
-//upload file csv berdasrkan nama file
-// delete data templateuploadmismer dan upload data csv
-	public function upload($nama_file){
 
-$this->db->query("DELETE FROM templateuploadmismer");
- // BASE_URL . 'uploads/systemupload/' . $systemupload->FilePath;
- // $lokasi_csv= 'c:/tmp/template_upload.csv';
- // $lokasi_csv= BASE_URL . 'uploads/systemupload/template_upload.csv';
- // $nama_file='template_upload.csv';
- $lokasi_csv= 'c:/xampp/htdocs/mismer/uploads/systemupload/'.$nama_file;
-// print_r($lokasi_csv);die();
-$xxx='"';
-		$q = $this->db->query("
-		LOAD DATA INFILE '$lokasi_csv'
-		INTO TABLE templateuploadmismer
-		FIELDS TERMINATED BY ','
-		ENCLOSED BY '$xxx'
-		LINES TERMINATED BY '\n'
-		 IGNORE 1 ROWS;
-
-		");
-
-		print_r($q);die();
-
-
-
+	public function tes01($x){
+// $x=88;
+$value = str_pad($x,2,"0",STR_PAD_LEFT);
+// print_r($value);
+return $value;
 
 	}
 
+public function tes_tes01(){
+print_r($this->tes01(8));
 
+}
 
-	public function bacacsv()
+	public function bacacsv($Y,$M,$D)
 	{
 		// die('ssssssssssssss');
-$lokasi_file = base_url('/uploads/systemupload/mismer.csv');
+		// $csv_file = 'MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
+		// $VirtualPath = '/uploads/systemupload/MISMER_'.$Y.'-'.$M.'-'.$D.'.csv'; //before
+		$VirtualPath = '/uploads/systemupload/MISMER_'.$Y.'-'.$this->tes01($M).'-'.$this->tes01($D).'.csv';
+
+	 $lokasi_csv= 'c:/xampp/htdocs/mismer'.$VirtualPath;
 // print_r($lokasi_file);die();
 		// code...
 // <a href="<?= BASE_URL . 'uploads/systemupload/' . $systemupload->FilePath; ">
  // $csvData = $this->csvreader->parse_file($lokasi_file); //path to csv file
-$csvData = csv_reader($lokasi_file);
- print_r($csvData);
+$csvData = csv_reader($lokasi_csv);
+$RowDataCount = count($csvData);
+$FileSize = filesize($lokasi_csv);
+
+// print_r($RowDataCount);
+// print_r('<br>');
+// print_r($FileSize);
+$data = array('RowDataCount' => $RowDataCount ,'FileSize' => $FileSize, );
+// $data['RowDataCount'] = $RowDataCount;
+// print_r($data['FileSize']);
+// print_r($data);
+return $data;
+ }
+
+ 	public function cek_csv(){
+
+		$Year=2019;
+		$Month=01;
+		$Date=01;
+//
+// $Year="$Y";
+// $Month="$M";
+// $Date="$D";
+
+
+ // $Year=$Y;
+ // $Month=$this->tes01($M);
+ // $Date=$this->tes01($D);
+
+//  print_r(gettype($Year));
+//  print_r('<br>');
+//  print_r(gettype($Y));
+//
+// die();
+
+$_csv = $this->bacacsv($Year,$Month,$Date);
+// $_csv = $this->bacacsv(2019,01,01);
+$RowDataCount = $_csv['RowDataCount'];
+$FileSize = $_csv['FileSize'];
+
+print_r($FileSize.'<br>'.$RowDataCount);
+
+	}
+// ==================================
+
+
+
+//------------
+public function reset(){
+
+$g = $this->db->query("
+CALL P_reset()
+
+");
+
+if($g){
+echo "
+<script>
+alert('RESET ');
+</script>
+
+";
+redirect('/administrator/systemupload/','refresh');
+
+}
+
+}
+
+// =======================================================================
+// =======================================================================
+
+//-----STEP 1
+//DELETE templateuploadmismer
+public function del_temp(){
+// print_r('ddddddddddddd');
+$d = $this->db->query("DELETE FROM templateuploadmismer ");
+// print_r('DELELLL templateuploadmismer');
+if($d){
+
+echo "
+<script>
+alert('Temp DELETE');
+</script>
+
+";
+
+redirect('/administrator/systemupload/','refresh');
+}
+
+}
+//----STEP 2 APPROVE UPLOAD
+//INSERT bulk csv to 	templateuploadmismer
+
+
+// procedure Upload
+//upload file csv berdasrkan nama file
+// delete data templateuploadmismer dan upload data csv
+	public function upload($nama_file){
+		$Y = SUBSTR($nama_file,7,4);
+		$M = SUBSTR($nama_file,12,2);
+		$D = SUBSTR($nama_file,15,2);
+// $this->approve($y,$m,$d);
+// LOAD DATA INFILE 'C:/xampp/htdocs/mismer/uploads/systemupload/MISMER_2018-08-06.csv'
+// FCPATH . '/uploads/systemupload/' . $blog_image_name_copy
+
+
+$lokasi_csv= 'c:/xampp/htdocs/mismer/uploads/systemupload/MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
+// print_r($lokasi_csv);die();
+
+// $lokasi_csv= FCPATH . '/uploads/systemupload/MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
+//File 'C:\xampp\mysql\data\xampphtdocsmismer\uploads\systemupload\MISMER_2018-09-03.csv' not found (Errcode: 2 "No such file or directory")
+
+$xxx='"';
+	 $q = $this->db->query("
+	 LOAD DATA INFILE '$lokasi_csv'
+	 INTO TABLE templateuploadmismer
+	 FIELDS TERMINATED BY ','
+	 ENCLOSED BY '$xxx'
+	 LINES TERMINATED BY '\n'
+		IGNORE 1 ROWS;
+
+	 ");
+
+	 // print_r($q);die();
+if($q){
+
+echo "
+<script>
+alert('Approved Upload');
+</script>
+
+";
+redirect('/administrator/systemupload/','refresh');
+
+}
+
+
+
 	}
 
+	// =======================================================================
+	// =======================================================================
+
+		public function approve($Y,$M,$D){
+
+		// $q = 	$this->db->query("DELETE FROM templateuploadmismer");
+
+
+			 // LOAD DATA INFILE 'C:/xampp/htdocs/mismer/uploads/systemupload/MISMER_2018-08-06.csv'
+			 $lokasi_csv= 'c:/xampp/htdocs/mismer/uploads/systemupload/MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
+			// print_r($lokasi_csv);die();
+			$xxx='"';
+					$q = $this->db->query("
+					LOAD DATA INFILE '$lokasi_csv'
+					INTO TABLE templateuploadmismer
+					FIELDS TERMINATED BY ','
+					ENCLOSED BY '$xxx'
+					LINES TERMINATED BY '\n'
+					 IGNORE 1 ROWS;
+
+					");
+
+					// print_r($q);die();
+if($q){
+
+echo "
+<script>
+alert('Approved Upload');
+</script>
+
+";
+ redirect('/administrator/systemupload/','refresh');
+
+}
+
+		}
+
+		public function gen(){
+
+$g = $this->db->query("
+CALL P_Generate()
+
+");
+
+if($g){
+	echo "
+	<script>
+	alert('GENERATE ');
+	</script>
+
+	";
+	 redirect('/administrator/systemupload/','refresh');
+
+}
+
+
+// public function reset(){
+//
+// $g = $this->db->query("
+// TRUNCATE templateuploadmismer
+// ");
+//
+//
+// $h = $this->db->query("
+// TRUNCATE mismerdetail
+// ");
+//
+// $i = $this->db->query("
+// DELETE FROM SystemUpload WHERE BatchID=1
+// ");
+//
+//
+// if($g){
+// echo "
+// <script>
+// alert('GENERATE ');
+// </script>
+//
+// ";
+// redirect('/administrator/systemupload/','refresh');
+//
+// }
+
+
+
+			// CALL P_Delete_Mismerdetail_by_batchid();
+			// $g = $this->db->query("
+      //
+      //
+      //
+			// ");
+		  // // print_r('DELELLL templateuploadmismer');
+		  // if($g){
+      //
+		  // echo "
+		  // <script>
+		  // alert('Temp DELETE');
+		  // </script>
+      //
+		  // ";
+      //
+		  // redirect('/administrator/systemupload/','refresh');
+
+		}
+
+	// =======================================================================
 	/**
 	* show all Systemuploads
 	*
@@ -127,15 +355,15 @@ $csvData = csv_reader($lokasi_file);
 		$this->is_allowed('systemupload_add');
 /*
 		$where = array(
-			'BatchID' =>888 		
+			'BatchID' =>888
 		);
 	$r = db_get_all_data('systemupload',array('BatchID'=>123));
-*/	
-	
+*/
+
 //	$r =get_BatchID();
 //print_r($r->BatchID);die();
 	//	$data['BatchID']= $r->BatchID;
-		
+
 //	print_r($data);die();
 		$this->template->title('Systemupload New');
 		$this->render('backend/standart/administrator/systemupload/systemupload_add', $this->data);
@@ -148,6 +376,11 @@ $csvData = csv_reader($lokasi_file);
 	*/
 	public function add_save()
 	{
+
+
+    // CSVReader
+
+// die();
 //========
 /*
 		if (!$this->is_allowed('blog_add', false)) {
@@ -163,41 +396,66 @@ $csvData = csv_reader($lokasi_file);
 		$this->form_validation->set_rules('blog_image_name', 'Image', 'trim|required');
 		$this->form_validation->set_rules('category', 'Category', 'trim|required|max_length[200]');
 */
-		
+
 
 //		if ($this->form_validation->run()) {
-			
+
 			$blog_image_uuid = $this->input->post('blog_image_uuid');
 			$blog_image_name = $this->input->post('blog_image_name');
 
 //			$BatchID = $this->input->post('BatchID');
 			$ProcessDate = $this->input->post('ProcessDate');
 			$UploadRemark = $this->input->post('UploadRemark');
-			
-			$Y = $this->input->post('ProcessYear');
-			$M = $this->input->post('ProcessMonth');
-			$D = $this->input->post('ProcessDate');
-
+// 2018-08-27
+			$Y = SUBSTR($ProcessDate,0,4);
+			$M = SUBSTR($ProcessDate,5,2);
+			$D = SUBSTR($ProcessDate,8,2);
+// Get BatchID Auto Increment
 $r =get_BatchID();
 //print_r($r->BatchID);die();
 	//	$data['BatchID']= $r->BatchID;
-			
 
+	// $_csv = $this->bacacsv(2018,08,27);
+	// $_csv = $this->bacacsv($Y,$M,$D);
+	// $RowDataCount = $_csv['RowDataCount'];
+	// $FileSize = $_csv['FileSize'];
+		$RowDataCount=123;
+		$FileSize =456;
+// $ApprovalID= ;
+// ???????????
+
+$ApprovalID= 999;
+
+	$VirtualPath = '/uploads/systemupload/MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
 			$save_data = [
-			
+
 				'ID' => NULL,
 				'BatchID' => $r->BatchID,
 				'UploadBy' => 999,
+				'ProcessYear' => $Y,
+				'ProcessMonth' => $M,
+				'ProcessDate' => $D,
 				'UploadRemark' => $UploadRemark,
 				'ApplicationSource' => 'MISMER',
 				'UploadDate' => date('Y-m-d H:i:s'),
-				
+				// 'VirtualPath' => '/uploads/systemupload/MISMER_'.$ProcessDate.'.csv',
+				'VirtualPath' => $VirtualPath,
+
+				// 'ReportPath' => $ReportPath,
+				'FileSize'=>$FileSize,
+				'RowDataCount' =>$RowDataCount,
+				// // 'RowDataSucceed' => $RowDataSucceed,
+				// // 'RowDataFailed' => $RowDataFailed,
+				'ApprovalID' => $ApprovalID
+        //
+
+
 /*
 				'title' => $this->input->post('title'),
 				'content' => $this->input->post('content'),
 				'category' => $this->input->post('category'),
 				'created_at' => date('Y-m-d H:i:s'),
-*/			
+*/
 			];
 
 			if (!is_dir(FCPATH . '/uploads/systemupload/')) {
@@ -205,12 +463,12 @@ $r =get_BatchID();
 			}
 
 			if (!empty($blog_image_name)) {
-				
+
 //				$blog_image_name_copy = date('YmdHis') . '-' . $blog_image_name;
 				//$blog_image_name_copy = 'MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
 $blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
 
-				rename(FCPATH . 'uploads/tmp/' . $blog_image_uuid . '/' . $blog_image_name, 
+				rename(FCPATH . 'uploads/tmp/' . $blog_image_uuid . '/' . $blog_image_name,
 						FCPATH . 'uploads/systemupload/' . $blog_image_name_copy);
 
 				if (!is_file(FCPATH . '/uploads/systemupload/' . $blog_image_name_copy)) {
@@ -223,10 +481,10 @@ $blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
 
 				$save_data['FilePath'] = $blog_image_name_copy;
 			}
-		
+
 			$save_blog = $this->model_systemupload->store($save_data);
 
-			
+
 			if ($save_blog) {
 				if ($this->input->post('save_type') == 'stay') {
 					$this->data['success'] = true;
@@ -255,19 +513,19 @@ $blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
 				}
 			}
 /*
-*/			
+*/
 /*
 		} else {
 			$this->data['success'] = false;
 			$this->data['message'] = validation_errors();
 		}
 */
- 
 
 
-		echo json_encode($this->data);	
-	
-//========================	
+
+		echo json_encode($this->data);
+
+//========================
 	//print_r('xxxxx');		die();
 
 /*
@@ -502,7 +760,35 @@ $blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
 
 		echo json_encode($this->data);
 	}
+// ================
+// public function exh($id = null)
+// {
+// 	// $this->is_allowed('systemupload_delete');
+//
+// 	$this->load->helper('file');
+//
+// 	$arr_id = $this->input->get('id');
+// 	$remove = false;
+//
+// 	if (!empty($id)) {
+// 		$approve = $this->_approve($id);
+// 	} elseif (count($arr_id) >0) {
+// 		foreach ($arr_id as $id) {
+// 			$approve = $this->_approve($id);
+// 		}
+// 	}
+//
+// 	if ($approve) {
+// 					set_message(cclang('has_been_approve', 'systemupload'), 'success');
+// 			} else {
+// 					set_message(cclang('error_approve', 'systemupload'), 'error');
+// 			}
+//
+// 	redirect_back();
+// }
 
+
+//=============
 	/**
 	* delete Systemuploads
 	*
@@ -548,7 +834,19 @@ $blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
 		$this->template->title('Systemupload Detail');
 		$this->render('backend/standart/administrator/systemupload/systemupload_view', $this->data);
 	}
-
+//================
+// private function _approve($id)
+// {
+// 	$systemupload = $this->model_systemupload->find($id);
+//
+// 	if (!empty($systemupload->FilePath)) {
+// 		$path = FCPATH . '/uploads/systemupload/' . $systemupload->FilePath;
+//
+// 		if (is_file($path)) {
+// 			$delete_file = unlink($path);
+// 		}
+// 	}
+//=================
 	/**
 	* delete Systemuploads
 	*

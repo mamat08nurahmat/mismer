@@ -1,5 +1,58 @@
 <?php
 
+//BatchID
+if(!function_exists('cek_temp_upload')) {
+	function cek_temp_upload() {
+		$ci =& get_instance();
+	  	$query = $ci->db->query("
+		SELECT COUNT(*) DATA   FROM templateuploadmismer
+		");
+$q = $query->row();
+$q = $q->DATA;
+	    return $q ;
+	}
+}
+
+
+if(!function_exists('datatables_source')) {
+	function datatables_source() {
+
+
+		$output='';
+		$output.='<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>';
+		$output.='<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">';
+
+
+return $output;
+
+
+	}
+}
+
+
+if(!function_exists('datatables_script')) {
+	function datatables_script() {
+
+
+		$output='';
+		$output.='
+
+		<script type="text/javascript">
+		$(document).ready(function() {
+		  $("#datatables").DataTable();
+		} );
+		</script>
+
+		';
+
+
+return $output;
+
+
+	}
+}
+
+
 //====================
 if(!function_exists('csv_reader')) {
 	function csv_reader($lokasi_file) {
