@@ -406,6 +406,7 @@ if($g){
 //			$BatchID = $this->input->post('BatchID');
 			$ProcessDate = $this->input->post('ProcessDate');
 			$UploadRemark = $this->input->post('UploadRemark');
+			$ApplicationSource = $this->input->post('ApplicationSource');
 // 2018-08-27
 			$Y = SUBSTR($ProcessDate,0,4);
 			$M = SUBSTR($ProcessDate,5,2);
@@ -426,7 +427,7 @@ $r =get_BatchID();
 
 $ApprovalID= 999;
 
-	$VirtualPath = '/uploads/systemupload/MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
+	$VirtualPath = '/uploads/systemupload/'.$ApplicationSource.'_'.$Y.'-'.$M.'-'.$D.'.csv';
 			$save_data = [
 
 				'ID' => NULL,
@@ -436,7 +437,7 @@ $ApprovalID= 999;
 				'ProcessMonth' => $M,
 				'ProcessDate' => $D,
 				'UploadRemark' => $UploadRemark,
-				'ApplicationSource' => 'MISMER',
+				'ApplicationSource' => $ApplicationSource,
 				'UploadDate' => date('Y-m-d H:i:s'),
 				// 'VirtualPath' => '/uploads/systemupload/MISMER_'.$ProcessDate.'.csv',
 				'VirtualPath' => $VirtualPath,
@@ -466,8 +467,9 @@ $ApprovalID= 999;
 
 //				$blog_image_name_copy = date('YmdHis') . '-' . $blog_image_name;
 				//$blog_image_name_copy = 'MISMER_'.$Y.'-'.$M.'-'.$D.'.csv';
-$blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
 
+// $blog_image_name_copy = 'MISMER_'.$ProcessDate.'.csv';
+$blog_image_name_copy = $ApplicationSource.'_'.$Y.'-'.$M.'-'.$D.'.csv';
 				rename(FCPATH . 'uploads/tmp/' . $blog_image_uuid . '/' . $blog_image_name,
 						FCPATH . 'uploads/systemupload/' . $blog_image_name_copy);
 

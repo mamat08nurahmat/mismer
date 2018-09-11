@@ -101,21 +101,19 @@
                                 </small>
                             </div>
                         </div>
-                                                <!-- <div class="form-group ">
-                            <label for="category" class="col-sm-2 control-label">Category
+                                                 <div class="form-group ">
+                            <label for="category" class="col-sm-2 control-label">Jenis Upload
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="category" id="category" data-placeholder="Select Category" >
+                                <select  class="form-control chosen chosen-select-deselect" name="ApplicationSource" id="ApplicationSource" data-placeholder="Select ApplicationSource" >
                                     <option value=""></option>
                                     <?php foreach (db_get_all_data('applicationtype') as $row): ?>
                                     <option value="<?= $row->ApplicationSource ?>"><?= $row->ApplicationSource; ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <small class="info help-block">
-                                <b>Input Category</b> Max Length : 200.</small>
                             </div>
-                        </div> -->
+                        </div> 
 <!---
 -->
 

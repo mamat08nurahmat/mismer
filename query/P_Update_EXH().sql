@@ -1,0 +1,8 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `P_Update_EXH`()
+BEGIN
+
+UPDATE MismerDetail
+SET CHANNEL='EXH'
+WHERE MERCHAN_DBA_NAME like '%EXH%'
+;
+END

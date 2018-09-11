@@ -1,6 +1,31 @@
 <?php
 
 //BatchID
+if(!function_exists('baca_bulan')) {
+	function baca_bulan($bulan_ke) {
+
+		$nama_bulan = array(
+			'1' => 'Januari',
+			'2' => 'Februari',
+			'3' => 'Maret',
+			'4' => 'April',
+			'5' => 'Mei',
+			'6' => 'Juni',
+			'7' => 'Juli',
+			'8' => 'Agustus',
+			'9' => 'September',
+			'10' => 'Oktober',
+			'11' => 'November',
+			'12' => 'Desember',
+		);
+
+return $nama_bulan[$bulan_ke];
+
+	}
+}
+
+
+//BatchID
 if(!function_exists('cek_temp_upload')) {
 	function cek_temp_upload() {
 		$ci =& get_instance();

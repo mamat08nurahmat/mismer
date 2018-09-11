@@ -41,33 +41,33 @@ public function bulk_update_edc($id = NULL)
 
 //EDIT BULK EXH
 // UPDATE BULK edc
-public function bulk_update_exh($id = NULL)
-{
+// public function bulk_update_exh($id = NULL)
+// {
 
-  $data = array(
-    'EDC' => 0,
-    'EXH' => 1,
-  );
-    // $this->db->where($this->primary_key, $id);
-    // return $this->db->delete($this->table_name);
-    $this->db->where($this->primary_key, $id);
-    $this->db->update($this->table_name, $data);
+//   $data = array(
+//     'EDC' => 0,
+//     'EXH' => 1,
+//   );
+//     // $this->db->where($this->primary_key, $id);
+//     // return $this->db->delete($this->table_name);
+//     $this->db->where($this->primary_key, $id);
+//     $this->db->update($this->table_name, $data);
 
-    return $this->db->affected_rows();
+//     return $this->db->affected_rows();
 
 
-}
+// }
 
 
     public function remove($id = NULL)
     {
-        // $this->db->where($this->primary_key, $id);
-        // return $this->db->delete($this->table_name);
-        return $this->db->query("
-UPDATE '$this->table_name'
-SET EXH=1
-WHERE '$this->primary_key' = '$id'
-        ");
+        $this->db->where($this->primary_key, $id);
+        return $this->db->delete($this->table_name);
+//         return $this->db->query("
+// UPDATE '$this->table_name'
+// SET EXH=1
+// WHERE '$this->primary_key' = '$id'
+//         ");
     }
 // ========
 public function approve($id = NULL)
