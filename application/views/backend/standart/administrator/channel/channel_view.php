@@ -65,18 +65,10 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">ChannelID </label>
+                        <label for="content" class="col-sm-2 control-label">Channel </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($channel->ChannelID); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">ChannelCode </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($channel->ChannelCode); ?>
+                           <?= _ent($channel->channel); ?>
                         </div>
                     </div>
                                         

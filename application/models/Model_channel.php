@@ -5,7 +5,7 @@ class Model_channel extends MY_Model {
 
 	private $primary_key 	= 'ID';
 	private $table_name 	= 'channel';
-	private $field_search 	= ['ChannelID', 'ChannelCode'];
+	private $field_search 	= ['channel'];
 
 	public function __construct()
 	{

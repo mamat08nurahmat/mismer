@@ -46,6 +46,10 @@ CALL P_update_EXH();
 
 select distinct CHANNEL from mismerdetail -- WHERE WILAYAH IS NULL
 
+-- ----------------
+
+INSERT INTO mismerunmatch
+
 SELECT 
 ID,
 RowID,
@@ -54,15 +58,20 @@ MID,
 WILAYAH,
 CHANNEL,
 TYPE_MID,
+OPEN_DATE,
 0 ISUPDATE
 
  FROM mismerdetail
-WHERE CHANNEL IS NULL AND TYPE_MID='EDC'
+WHERE CHANNEL IS NULL AND TYPE_MID='EDC';
+
+
 -- =========================================================================================
 -- STEP 4 =====UNMATCH==== 
 -- select unmatch mismerdetail WHERE null EDC inser into mismerunmatch
 -- ?????
--- SELECT * FROM mismerunmatch
+-- truncate mismerunmatch
+CALL P_MismerUnmatch();
+ SELECT count(*) FROM mismerunmatch
 -- =========================================================================================
 create table mismerunmatch (
 ID int(11) not null auto_increment,

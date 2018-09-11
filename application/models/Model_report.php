@@ -134,6 +134,20 @@ class Model_report extends MY_Model {
 		")->result();
 
 	}
+// ==================
+public function get_report_unmatch($bulan,$tahun){
+
+	return $this->db->query("
+	
+	SELECT * FROM mismerunmatch
+	WHERE EXTRACT(YEAR FROM OPEN_DATE)='$tahun'
+	AND EXTRACT(MONTH FROM OPEN_DATE)='$bulan'	
+	")->result();
+
+}
+
+
+
 
 	public function getModal($tahun,$bulan,$wilayah){
 

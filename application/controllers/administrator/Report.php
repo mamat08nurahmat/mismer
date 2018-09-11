@@ -17,6 +17,8 @@ class Report extends Admin
 		parent::__construct();
 
 		$this->load->model('model_Report');
+
+		$this->load->model('model_mismerunmatch');		
 	}
 
 // ======================
@@ -43,6 +45,29 @@ class Report extends Admin
 		$this->template->title('Report List');
 		$this->render('backend/standart/administrator/Report/Report_list', $this->data);
 	}
+
+
+
+// dev
+public function unmatch()
+{
+
+
+	$tahun = $this->input->get('tahun');
+	$bulan 	= $this->input->get('bulan');
+	
+	$this->data['query'] = $this->model_Report->get_report_unmatch($bulan, $tahun);
+	
+	$this->data['tahun'] = $tahun;
+	$this->data['bulan'] = $bulan;
+
+	$this->template->title('Report List');
+	$this->render('backend/standart/administrator/Report/Report_unmatch_list', $this->data);
+}
+
+
+
+
 
 
 	// hardcode
@@ -387,12 +412,18 @@ public function excel_unmatch($tahun,$bulan)
 
 	$result = $this->db->query("
 
-SELECT * FROM mismerdetail
+SELECT 
+MID,
+WILAYAH,
+CHANNEL,
+OPEN_DATE
+
+FROM mismerunmatch
 WHERE TYPE_MID='EDC' AND CHANNEL IS NULL
 
 AND EXTRACT(MONTH FROM OPEN_DATE)='$bulan'
 AND EXTRACT(YEAR FROM OPEN_DATE)='$tahun'
-
+AND ISUPDATE=0
 	");
 
 	// print_r($result->result());die;

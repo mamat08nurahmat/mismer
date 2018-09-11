@@ -58,6 +58,26 @@ public function bulk_update_edc($id = NULL)
 
 // }
 
+// dev templateunmatch
+public function removexxx($id = NULL)
+{
+    // $this->db->where($this->primary_key, $id);
+    // return $this->db->delete($this->table_name);
+        return $this->db->query("
+        select 
+        tu.MID,
+        c.CHANNEL
+         from templateunmatch tu
+        left join channel c on tu.CHANNEL=c.ID
+        WHERE tu.ID='$id'
+        
+        ")->row();
+}
+
+// ========
+
+
+
 
     public function remove($id = NULL)
     {

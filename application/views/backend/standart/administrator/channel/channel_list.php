@@ -81,7 +81,7 @@ jQuery(document).ready(domo);
                             <input type="checkbox" class="flat-red toltip" id="check_all" name="check_all" title="check all">
                            </th>
                            <th>ChannelID</th>
-                           <th>ChannelCode</th>
+                           <th>Channel</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -92,8 +92,8 @@ jQuery(document).ready(domo);
                               <input type="checkbox" class="flat-red check" name="id[]" value="<?= $channel->ID; ?>">
                            </td>
                            
-                           <td><?= _ent($channel->ChannelID); ?></td> 
-                           <td><?= _ent($channel->ChannelCode); ?></td> 
+                           <td><?= _ent($channel->ID); ?></td> 
+                           <td><?= _ent($channel->channel); ?></td> 
                            <td width="200">
                               <?php is_allowed('channel_view', function() use ($channel){?>
                               <a href="<?= site_url('administrator/channel/view/' . $channel->ID); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> <?= cclang('view_button'); ?>
@@ -137,8 +137,7 @@ jQuery(document).ready(domo);
                      <div class="col-sm-3 padd-left-0 " >
                         <select type="text" class="form-control chosen chosen-select" name="f" id="field" >
                            <option value=""><?= cclang('all'); ?></option>
-                            <option <?= $this->input->get('f') == 'ChannelID' ? 'selected' :''; ?> value="ChannelID">ChannelID</option>
-                           <option <?= $this->input->get('f') == 'ChannelCode' ? 'selected' :''; ?> value="ChannelCode">ChannelCode</option>
+                            <option <?= $this->input->get('f') == 'channel' ? 'selected' :''; ?> value="channel">Channel</option>
                           </select>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">

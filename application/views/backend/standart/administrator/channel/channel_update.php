@@ -60,23 +60,13 @@
                             ]); ?>
                          
                                                 <div class="form-group ">
-                            <label for="ChannelID" class="col-sm-2 control-label">ChannelID 
+                            <label for="channel" class="col-sm-2 control-label">Channel 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="ChannelID" id="ChannelID" placeholder="ChannelID" value="<?= set_value('ChannelID', $channel->ChannelID); ?>">
+                                <input type="text" class="form-control" name="channel" id="channel" placeholder="Channel" value="<?= set_value('channel', $channel->channel); ?>">
                                 <small class="info help-block">
-                                <b>Input ChannelID</b> Max Length : 5.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="ChannelCode" class="col-sm-2 control-label">ChannelCode 
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="ChannelCode" id="ChannelCode" placeholder="ChannelCode" value="<?= set_value('ChannelCode', $channel->ChannelCode); ?>">
-                                <small class="info help-block">
-                                </small>
+                                <b>Input Channel</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                 

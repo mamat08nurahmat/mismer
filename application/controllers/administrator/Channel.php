@@ -74,14 +74,13 @@ class Channel extends Admin
 			exit;
 		}
 
-		$this->form_validation->set_rules('ChannelID', 'ChannelID', 'trim|required|max_length[5]');
+		$this->form_validation->set_rules('channel', 'Channel', 'trim|required|max_length[55]');
 		
 
 		if ($this->form_validation->run()) {
 		
 			$save_data = [
-				'ChannelID' => $this->input->post('ChannelID'),
-				'ChannelCode' => $this->input->post('ChannelCode'),
+				'channel' => $this->input->post('channel'),
 			];
 
 			
@@ -153,13 +152,12 @@ class Channel extends Admin
 			exit;
 		}
 		
-		$this->form_validation->set_rules('ChannelID', 'ChannelID', 'trim|required|max_length[5]');
+		$this->form_validation->set_rules('channel', 'Channel', 'trim|required|max_length[55]');
 		
 		if ($this->form_validation->run()) {
 		
 			$save_data = [
-				'ChannelID' => $this->input->post('ChannelID'),
-				'ChannelCode' => $this->input->post('ChannelCode'),
+				'channel' => $this->input->post('channel'),
 			];
 
 			

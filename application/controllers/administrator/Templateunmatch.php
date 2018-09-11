@@ -253,14 +253,113 @@ class Templateunmatch extends Admin
 	*/
 	private function _remove($id)
 	{
-		$templateunmatch = $this->model_templateunmatch->find($id);
+
+
+        $tes =  $this->db->query("
+        select 
+        tu.ID,
+        tu.MID,
+        c.CHANNEL
+         from templateunmatch tu
+        left join channel c on tu.CHANNEL=c.ID
+		WHERE tu.ID='$id'
+        
+		")->row();
+		
+
+		$mid = $tes->MID;
+		$channel = $tes->CHANNEL;
 
 		
 		
-		return $this->model_templateunmatch->remove($id);
+		$md_u	=	$this->mismerdetail_update($mid,$channel);
+		$mu_u	=	$this->mismerunmatch_update($mid,$channel);
+		
+		
+		return  $this->model_templateunmatch->remove($id);
+
+
+/*
+$templateunmatch = $this->model_templateunmatch->find($id);		
+return $this->model_templateunmatch->removexxx($id);
+// return $this->model_templateunmatch->remove($id);
+*/
 	}
 	
+
+	public function tes_remove($id)
+	{
+		// print_r($id);
+
+        $tes =  $this->db->query("
+        select 
+        tu.ID,
+        tu.MID,
+        c.CHANNEL
+         from templateunmatch tu
+        left join channel c on tu.CHANNEL=c.ID
+		WHERE tu.ID='$id'
+        
+		")->row();
+		
+
+		$mid = $tes->MID;
+		$channel = $tes->CHANNEL;
+
+		
+		print_r($tes->MID);
+		print_r('<hr>');
+		print_r($tes->CHANNEL);
+		print_r('<hr>');
+		
+		$md_u	=	$this->mismerdetail_update($mid,$channel);
+		print_r($md_u);
+		print_r('<hr>');
+		// $this->db->where('MID', $tes->MID);
+		// $this->db->update('mismerdetail', array('CHANNEL'=>$tes->CHANNEL));
+		// $up_md =  $this->db->affected_rows();
+		// print_r($up_md);
+		// return $this->db->affected_rows();
+		
+		$mu_u	=	$this->mismerunmatch_update($mid,$channel);
+		print_r($mu_u);
+		print_r('<hr>');
+		
+		
+		$del =  $this->model_templateunmatch->remove($id);
+		print_r('<hr>');
+		
+		// $this->db->where('MID', $tes->MID);
+		// $this->db->update('mismerdetail', array('ISUPDATE'=>1));
+		
+		/*
+		*/		
+
+
+	}
 	
+	public function mismerdetail_update($mid,$channel){		        
+		
+        $this->db->where('MID', $mid);
+		$this->db->update('mismerdetail', array('CHANNEL'=>$channel));
+
+		return  $this->db->affected_rows();
+
+
+	}
+
+
+	public function mismerunmatch_update($mid,$channel){		        
+		
+        $this->db->where('MID', $mid);
+		$this->db->update('mismerunmatch', array('CHANNEL'=>$channel,'ISUPDATE'=>1));
+
+		return  $this->db->affected_rows();
+
+
+	}
+
+
 	/**
 	* Export to excel
 	*

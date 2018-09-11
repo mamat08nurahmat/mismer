@@ -47,6 +47,59 @@ class Mismerunmatch extends Admin
 		$this->render('backend/standart/administrator/mismerunmatch/mismerunmatch_list', $this->data);
 	}
 	
+	public function getGenerate($tahun,$bulan){
+
+// $where = array(
+// EXTRACT(MONTH FROM `mismerdetail`.`OPEN_DATE`) AS `BULAN`,
+// );
+		// $this->model_mismerunmatch->get_single($where);
+
+$mismerunmatchs = 	$this->db->query("
+SELECT * FROM mismerunmatch
+WHERE EXTRACT(YEAR FROM OPEN_DATE)=2018
+AND EXTRACT(MONTH FROM OPEN_DATE)=5
+")->result();
+
+$output='<table class="table table-bordered table-striped dataTable">';
+// <th>
+//  <input type="checkbox" class="flat-red toltip" id="check_all" name="check_all" title="check all">
+// </th>
+
+$output.=$tahun;
+$output.='<hr>';
+$output.=$bulan;
+
+$output.='
+		
+		<thead>
+		<tr>
+		   <th>MID</th>
+		   <th>WILAYAH</th>
+		   <th>CHANNEL</th>
+		   <th>OPEN_DATE</th>
+		</tr>
+	 </thead>		
+		';
+		$output.='<tbody id="tbody_mismerunmatch">';
+
+		foreach($mismerunmatchs as $mismerunmatch): 
+		$output.='<tr>';
+		$output.='<td>'.$mismerunmatch->MID.'<td>';
+		$output.='<td>'.$mismerunmatch->WILAYAH.'<td>';
+		$output.='<td>'.$mismerunmatch->CHANNEL.'<td>';
+		$output.='<td>'.$mismerunmatch->OPEN_DATE.'<td>';
+		$output.='<tr>';
+		endforeach;
+
+		$output.='</tbody>';
+		$output.='</tabel>';
+		
+		
+		echo  $output;
+		
+
+	}
+
 	/**
 	* Add new mismerunmatchs
 	*
