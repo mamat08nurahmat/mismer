@@ -74,6 +74,10 @@ class Mso_channel extends Admin
 			exit;
 		}
 
+		$this->form_validation->set_rules('Wilayah', 'Wilayah', 'trim|required|max_length[55]');
+		$this->form_validation->set_rules('KodeWilayah', 'KodeWilayah', 'trim|required|max_length[55]');
+		$this->form_validation->set_rules('MSO', 'MSO', 'trim|required|max_length[55]');
+		$this->form_validation->set_rules('Channel', 'Channel', 'trim|required|max_length[55]');
 		
 
 		if ($this->form_validation->run()) {
@@ -154,6 +158,10 @@ class Mso_channel extends Admin
 			exit;
 		}
 		
+		$this->form_validation->set_rules('Wilayah', 'Wilayah', 'trim|required|max_length[55]');
+		$this->form_validation->set_rules('KodeWilayah', 'KodeWilayah', 'trim|required|max_length[55]');
+		$this->form_validation->set_rules('MSO', 'MSO', 'trim|required|max_length[55]');
+		$this->form_validation->set_rules('Channel', 'Channel', 'trim|required|max_length[55]');
 		
 		if ($this->form_validation->run()) {
 		

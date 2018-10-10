@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_systemupload extends MY_Model {
 
-	private $primary_key 	= 'ID';
+	private $primary_key 	= 'BatchID';
 	private $table_name 	= 'systemupload';
-	private $field_search 	= ['BatchID', 'UploadDate', 'UploadBy', 'UploadRemark', 'ApplicationSource', 'ProcessMonth', 'ProcessYear', 'FilePath', 'VirtualPath', 'FileSize', 'ReportPath', 'RowDataCount', 'RowDataSucceed', 'RowDataFailed', 'ApprovalID'];
+	private $field_search 	= ['UploadDate', 'UploadBy', 'UploadRemark', 'ApplicationSource', 'ProcessYear', 'ProcessMonth', 'ProcessDate', 'FilePath', 'VirtualPath', 'FileSize', 'ReportPath', 'RowDataCount', 'RowDataSucceed', 'RowDataFailed', 'ApprovalID', 'IS_APPROVED'];
 
 	public function __construct()
 	{
@@ -85,9 +85,7 @@ class Model_systemupload extends MY_Model {
 	}
 
 	public function join_avaiable() {
-		$this->db->join('aauth_users', 'aauth_users.id = systemupload.UploadBy', 'LEFT');
-	    $this->db->join('applicationtype', 'applicationtype.ApplicationSource = systemupload.ApplicationSource', 'LEFT');
-	    
+		
     	return $this;
 	}
 

@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_templateuploadmismer extends MY_Model {
 
-	private $primary_key 	= 'RowID';
+	private $primary_key 	= 'ID';
 	private $table_name 	= 'templateuploadmismer';
-	private $field_search 	= ['MID', 'MERCHAN_DBA_NAME', 'STATUS_EDC', 'OPEN_DATE', 'CITY', 'MSO', 'SOURCE_CODE', 'POS1'];
+	private $field_search 	= ['MID', 'MERCHAN_DBA_NAME', 'STATUS_EDC', 'OPEN_DATE', 'MSO', 'SOURCE_CODE', 'POS1', 'IS_VALID'];
 
 	public function __construct()
 	{

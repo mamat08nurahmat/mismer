@@ -102,7 +102,7 @@ jQuery(document).ready(domo);
                         <label for="content" class="col-sm-2 control-label">Category </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($blog->ApplicationSource); ?>
+                           <?= _ent($blog->category_name); ?>
                         </div>
                     </div>
                                          

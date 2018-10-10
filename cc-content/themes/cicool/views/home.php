@@ -1,17 +1,72 @@
 <?= get_header(); ?>
 <body id="page-top">
    <?= get_navigation(); ?>
+   
    <header>
       <div class="header-content" >
          <div class="header-content-inner">
-            <h1 id="homeHeading"><?= cclang('get_your_system_cms_ecomerce_in_one_time'); ?></h1>
+            <h1 id="homeHeading">
+              WELCOME
+              <?//= cclang('get_your_system_cms_ecomerce_in_one_time'); ?>
+            </h1>
             <hr>
-            <p><?= cclang('cicool_web_builder_is_used__incridible'); ?></p>
-            <a href="<?= site_url('page/about'); ?>" class="btn btn-primary btn-xl page-scroll"><?= cclang('find_out_more'); ?></a>
+            <p><?//= cclang('cicool_web_builder_is_used__incridible'); ?></p>
+            <a href="<?= site_url('administrator/login'); ?>" class="btn btn-primary btn-xl page-scroll">LOGIN<?//= cclang('find_out_more'); ?></a>
          </div>
       </div>
    </header>
-   <section class="bg-primary" id="about">
+
+<!-- //  -->
+<!--<section class="bg-primary" >
+      <div class="container">
+         <div class="row">
+
+            <div class="col-md-6">
+               <div class="box box-primary">
+                  <div class="box-header with-border">
+                     <h3 class="box-title">Area Chart</h3>
+                  </div>
+                  <div class="box-body chart-responsive">
+                     <div class="chart" id="revenue-chart" style="height: 300px;"></div>
+                  </div>
+               </div>
+               <div class="box box-danger">
+                  <div class="box-header with-border">
+                     <h3 class="box-title">Donut Chart</h3>
+                  </div>
+                  <div class="box-body chart-responsive">
+                     <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-md-6">
+               <div class="box box-info">
+                  <div class="box-header with-border">
+                     <h3 class="box-title">Line Chart</h3>
+                  </div>
+                  <div class="box-body chart-responsive">
+                     <div class="chart" id="line-chart" style="height: 300px;"></div>
+                  </div>
+               </div>
+               <div class="box box-success">
+                  <div class="box-header with-border">
+                     <h3 class="box-title">Bar Chart</h3>
+                  </div>
+                  <div class="box-body chart-responsive">
+                     <div class="chart" id="bar-chart" style="height: 300px;"></div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </section>-->
+
+<!-- //  -->
+
+
+   <!-- <section class="bg-primary" id="about">
       <div class="container">
          <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -80,48 +135,9 @@
                 </div>
        </div>
    </section>
-   <section class="bg-primary" >
-      <div class="container">
-         <div class="row">
-            <div class="col-md-6">
-               <div class="box box-primary">
-                  <div class="box-header with-border">
-                     <h3 class="box-title">Area Chart</h3>
-                  </div>
-                  <div class="box-body chart-responsive">
-                     <div class="chart" id="revenue-chart" style="height: 300px;"></div>
-                  </div>
-               </div>
-               <div class="box box-danger">
-                  <div class="box-header with-border">
-                     <h3 class="box-title">Donut Chart</h3>
-                  </div>
-                  <div class="box-body chart-responsive">
-                     <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="box box-info">
-                  <div class="box-header with-border">
-                     <h3 class="box-title">Line Chart</h3>
-                  </div>
-                  <div class="box-body chart-responsive">
-                     <div class="chart" id="line-chart" style="height: 300px;"></div>
-                  </div>
-               </div>
-               <div class="box box-success">
-                  <div class="box-header with-border">
-                     <h3 class="box-title">Bar Chart</h3>
-                  </div>
-                  <div class="box-body chart-responsive">
-                     <div class="chart" id="bar-chart" style="height: 300px;"></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
+
+
+
    <section id="services">
       <div class="container">
          <div class="row">
@@ -182,15 +198,17 @@
             </div>
          </div>
       </div>
-   </section>
-   <aside class="bg-dark">
+   </section> -->
+
+   <!--<aside class="bg-dark">
       <div class="container text-center">
          <div class="call-to-action">
             <h2><?= cclang('buy_now_and_you_wil_not_be_reversal'); ?></h2>
             <a href="https://codecanyon.net/item/cicool-page-form-rest-api-and-crud-generator/19207897?ref=ridwanskaterocks" class="btn btn-default btn-xl sr-button"><?= cclang('buy_now'); ?>!</a>
          </div>
       </div>
-   </aside>
+   </aside>-->
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
    <script src="<?= BASE_ASSET; ?>admin-lte/plugins/morris/morris.min.js"></script>
    <script>
@@ -249,9 +267,23 @@
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a"],
           data: [
-            {label: "Download Sales", value: 12},
-            {label: "In-Store Sales", value: 30},
-            {label: "Mail-Order Sales", value: 20}
+            {label: "WMD", value: 12},
+            {label: "WPD", value: 30},
+            {label: "WPL", value: 20},
+            {label: "WBN", value: 12},
+            {label: "WSM", value: 30},
+            {label: "WSY", value: 20},
+            {label: "WMK", value: 12},
+            {label: "WDR", value: 30},
+            {label: "WBJ", value: 20},
+            {label: "WJS", value: 12},
+            {label: "WMO", value: 30},
+            {label: "WJK", value: 20},
+            {label: "WJB", value: 12},
+            {label: "WJY", value: 30},
+            {label: "WPU", value: 20},
+            {label: "WYK", value: 12},
+            {label: "WMA", value: 30}
           ],
           hideHover: 'auto'
         });
@@ -260,18 +292,39 @@
           element: 'bar-chart',
           resize: true,
           data: [
-            {y: '2006', a: 100, b: 90},
-            {y: '2007', a: 75, b: 65},
-            {y: '2008', a: 50, b: 40},
-            {y: '2009', a: 75, b: 65},
-            {y: '2010', a: 50, b: 40},
-            {y: '2011', a: 75, b: 65},
-            {y: '2012', a: 100, b: 90}
+            {y: 'WMD', a: 100, b: 90},
+            {y: 'WPD', a: 75, b: 65},
+            {y: 'WPL', a: 50, b: 40},
+            {y: 'WBN', a: 75, b: 65},
+            {y: 'WSM', a: 50, b: 40},
+            {y: 'WSY', a: 75, b: 65},
+            {y: 'WMK', a: 100, b: 90},
+            {y: 'WDR', a: 75, b: 65},
+            {y: 'WBJ', a: 50, b: 40},
+            {y: 'WJS', a: 75, b: 65},
+            {y: 'WMO', a: 50, b: 40},
+            {y: 'WJK', a: 75, b: 65},
+            {y: 'WJB', a: 100, b: 90},
+            {y: 'WJY', a: 75, b: 65},
+            {y: 'WPU', a: 50, b: 40},
+            {y: 'WYK', a: 75, b: 65},
+            {y: 'WMA', a: 75, b: 65}
+
+            // {y: 'PPU', a: 100, b: 90},
+            // {y: 'PPP', a: 75, b: 65},
+            // {y: 'BDP', a: 50, b: 40},
+            // {y: 'MBA', a: 75, b: 65},
+            // {y: 'TDP', a: 50, b: 40},
+            // {y: 'CABANG', a: 75, b: 65},
+            // {y: 'MBR', a: 100, b: 90},
+            // {y: 'WDR', a: 75, b: 65}
+
+
           ],
           barColors: ['#00a65a', '#f56954'],
           xkey: 'y',
           ykeys: ['a', 'b'],
-          labels: ['CPU', 'DISK'],
+          labels: ['EDC', 'YAP'],
           hideHover: 'auto'
         });
       });

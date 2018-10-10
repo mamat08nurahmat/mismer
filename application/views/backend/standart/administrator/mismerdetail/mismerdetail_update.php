@@ -60,17 +60,6 @@
                             ]); ?>
                          
                                                 <div class="form-group ">
-                            <label for="RowID" class="col-sm-2 control-label">RowID 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="RowID" id="RowID" placeholder="RowID" value="<?= set_value('RowID', $mismerdetail->RowID); ?>">
-                                <small class="info help-block">
-                                <b>Input RowID</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
                             <label for="BatchID" class="col-sm-2 control-label">BatchID 
                             <i class="required">*</i>
                             </label>
@@ -102,7 +91,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="MID" id="MID" placeholder="MID" value="<?= set_value('MID', $mismerdetail->MID); ?>">
                                 <small class="info help-block">
-                                <b>Input MID</b> Max Length : 255.</small>
+                                <b>Input MID</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -113,7 +102,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="MERCHAN_DBA_NAME" id="MERCHAN_DBA_NAME" placeholder="MERCHAN DBA NAME" value="<?= set_value('MERCHAN_DBA_NAME', $mismerdetail->MERCHAN_DBA_NAME); ?>">
                                 <small class="info help-block">
-                                <b>Input MERCHAN DBA NAME</b> Max Length : 255.</small>
+                                <b>Input MERCHAN DBA NAME</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -124,7 +113,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="MSO" id="MSO" placeholder="MSO" value="<?= set_value('MSO', $mismerdetail->MSO); ?>">
                                 <small class="info help-block">
-                                <b>Input MSO</b> Max Length : 255.</small>
+                                <b>Input MSO</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -135,7 +124,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="SOURCE_CODE" id="SOURCE_CODE" placeholder="SOURCE CODE" value="<?= set_value('SOURCE_CODE', $mismerdetail->SOURCE_CODE); ?>">
                                 <small class="info help-block">
-                                <b>Input SOURCE CODE</b> Max Length : 255.</small>
+                                <b>Input SOURCE CODE</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -146,7 +135,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="POS1" id="POS1" placeholder="POS1" value="<?= set_value('POS1', $mismerdetail->POS1); ?>">
                                 <small class="info help-block">
-                                <b>Input POS1</b> Max Length : 255.</small>
+                                <b>Input POS1</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -157,17 +146,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="WILAYAH" id="WILAYAH" placeholder="WILAYAH" value="<?= set_value('WILAYAH', $mismerdetail->WILAYAH); ?>">
                                 <small class="info help-block">
-                                <b>Input WILAYAH</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="WILAYAH_2" class="col-sm-2 control-label">WILAYAH 2 
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="WILAYAH_2" id="WILAYAH_2" placeholder="WILAYAH 2" value="<?= set_value('WILAYAH_2', $mismerdetail->WILAYAH_2); ?>">
-                                <small class="info help-block">
-                                </small>
+                                <b>Input WILAYAH</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -178,39 +157,18 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="CHANNEL" id="CHANNEL" placeholder="CHANNEL" value="<?= set_value('CHANNEL', $mismerdetail->CHANNEL); ?>">
                                 <small class="info help-block">
-                                <b>Input CHANNEL</b> Max Length : 255.</small>
+                                <b>Input CHANNEL</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
                                                 <div class="form-group ">
-                            <label for="IS_YAP" class="col-sm-2 control-label">IS YAP 
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="IS_YAP" id="IS_YAP" placeholder="IS YAP" value="<?= set_value('IS_YAP', $mismerdetail->IS_YAP); ?>">
-                                <small class="info help-block">
-                                </small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="EDC" class="col-sm-2 control-label">EDC 
+                            <label for="TYPE_MID" class="col-sm-2 control-label">TYPE MID 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="EDC" id="EDC" placeholder="EDC" value="<?= set_value('EDC', $mismerdetail->EDC); ?>">
+                                <input type="text" class="form-control" name="TYPE_MID" id="TYPE_MID" placeholder="TYPE MID" value="<?= set_value('TYPE_MID', $mismerdetail->TYPE_MID); ?>">
                                 <small class="info help-block">
-                                <b>Input EDC</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="EXH" class="col-sm-2 control-label">EXH 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="EXH" id="EXH" placeholder="EXH" value="<?= set_value('EXH', $mismerdetail->EXH); ?>">
-                                <small class="info help-block">
-                                <b>Input EXH</b> Max Length : 11.</small>
+                                <b>Input TYPE MID</b> Max Length : 45.</small>
                             </div>
                         </div>
                                                 

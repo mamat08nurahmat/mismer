@@ -66,34 +66,17 @@
                             'method'  => 'POST'
                             ]); ?>
                          
-                                                <div class="form-group ">
-                            <label for="BatchID" class="col-sm-2 control-label">BatchID 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="BatchID" id="BatchID" placeholder="BatchID" value="<?= set_value('BatchID', $systemupload->BatchID); ?>">
-                                <small class="info help-block">
-                                <b>Input BatchID</b> Max Length : 11.</small>
-                            </div>
-                        </div>
-                                                 
                          
                                                 <div class="form-group ">
                             <label for="UploadBy" class="col-sm-2 control-label">UploadBy 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="UploadBy" id="UploadBy" data-placeholder="Select UploadBy" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('aauth_users') as $row): ?>
-                                    <option <?=  $row->id ==  $systemupload->UploadBy ? 'selected' : ''; ?> value="<?= $row->id ?>"><?= $row->username; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
+                                <input type="number" class="form-control" name="UploadBy" id="UploadBy" placeholder="UploadBy" value="<?= set_value('UploadBy', $systemupload->UploadBy); ?>">
                                 <small class="info help-block">
                                 <b>Input UploadBy</b> Max Length : 11.</small>
                             </div>
                         </div>
-
                                                  
                                                 <div class="form-group ">
                             <label for="UploadRemark" class="col-sm-2 control-label">UploadRemark 
@@ -111,26 +94,13 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="ApplicationSource" id="ApplicationSource" data-placeholder="Select ApplicationSource" >
+                                <select  class="form-control chosen chosen-select" name="ApplicationSource" id="ApplicationSource" data-placeholder="Select ApplicationSource" >
                                     <option value=""></option>
-                                    <?php foreach (db_get_all_data('applicationtype') as $row): ?>
-                                    <option <?=  $row->ApplicationSource ==  $systemupload->ApplicationSource ? 'selected' : ''; ?> value="<?= $row->ApplicationSource ?>"><?= $row->ApplicationSource; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
+                                    <option <?= $systemupload->ApplicationSource == "MISMER" ? 'selected' :''; ?> value="MISMER">MISMER</option>
+                                    <option <?= $systemupload->ApplicationSource == "UMNATCH" ? 'selected' :''; ?> value="UMNATCH">UNMATCH</option>
+                                    </select>
                                 <small class="info help-block">
-                                <b>Input ApplicationSource</b> Max Length : 255.</small>
-                            </div>
-                        </div>
-
-                                                 
-                                                <div class="form-group ">
-                            <label for="ProcessMonth" class="col-sm-2 control-label">ProcessMonth 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" name="ProcessMonth" id="ProcessMonth" placeholder="ProcessMonth" value="<?= set_value('ProcessMonth', $systemupload->ProcessMonth); ?>">
-                                <small class="info help-block">
-                                <b>Input ProcessMonth</b> Max Length : 11.</small>
+                                </small>
                             </div>
                         </div>
                                                  
@@ -139,9 +109,45 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="ProcessYear" id="ProcessYear" placeholder="ProcessYear" value="<?= set_value('ProcessYear', $systemupload->ProcessYear); ?>">
+                                <select  class="form-control chosen chosen-select" name="ProcessYear" id="ProcessYear" data-placeholder="Select ProcessYear" >
+                                    <option value=""></option>
+                                    <option <?= $systemupload->ProcessYear == "2018" ? 'selected' :''; ?> value="2018">2018</option>
+                                    <option <?= $systemupload->ProcessYear == "2017" ? 'selected' :''; ?> value="2017">2017</option>
+                                    </select>
                                 <small class="info help-block">
-                                <b>Input ProcessYear</b> Max Length : 11.</small>
+                                </small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="ProcessMonth" class="col-sm-2 control-label">ProcessMonth 
+                            <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-8">
+                                <select  class="form-control chosen chosen-select" name="ProcessMonth" id="ProcessMonth" data-placeholder="Select ProcessMonth" >
+                                    <option value=""></option>
+                                    <option <?= $systemupload->ProcessMonth == "1" ? 'selected' :''; ?> value="1">Januari</option>
+                                    <option <?= $systemupload->ProcessMonth == "2" ? 'selected' :''; ?> value="2">Februari</option>
+                                    <option <?= $systemupload->ProcessMonth == "3" ? 'selected' :''; ?> value="3">Maret</option>
+                                    </select>
+                                <small class="info help-block">
+                                </small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="ProcessDate" class="col-sm-2 control-label">ProcessDate 
+                            <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-8">
+                                <select  class="form-control chosen chosen-select" name="ProcessDate" id="ProcessDate" data-placeholder="Select ProcessDate" >
+                                    <option value=""></option>
+                                    <option <?= $systemupload->ProcessDate == "1" ? 'selected' :''; ?> value="1">1</option>
+                                    <option <?= $systemupload->ProcessDate == "2" ? 'selected' :''; ?> value="2">2</option>
+                                    <option <?= $systemupload->ProcessDate == "3" ? 'selected' :''; ?> value="3">3</option>
+                                    </select>
+                                <small class="info help-block">
+                                </small>
                             </div>
                         </div>
                                                  
@@ -232,6 +238,17 @@
                                 <input type="number" class="form-control" name="ApprovalID" id="ApprovalID" placeholder="ApprovalID" value="<?= set_value('ApprovalID', $systemupload->ApprovalID); ?>">
                                 <small class="info help-block">
                                 <b>Input ApprovalID</b> Max Length : 11.</small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="IS_APPROVED" class="col-sm-2 control-label">IS APPROVED 
+                            <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" name="IS_APPROVED" id="IS_APPROVED" placeholder="IS APPROVED" value="<?= set_value('IS_APPROVED', $systemupload->IS_APPROVED); ?>">
+                                <small class="info help-block">
+                                <b>Input IS APPROVED</b> Max Length : 11.</small>
                             </div>
                         </div>
                                                 
@@ -351,7 +368,7 @@
               }
           },
            session : {
-             endpoint: BASE_URL + 'administrator/systemupload/get_FilePath_file/<?= $systemupload->ID; ?>',
+             endpoint: BASE_URL + 'administrator/systemupload/get_FilePath_file/<?= $systemupload->BatchID; ?>',
              refreshOnRequest:true
            },
           multiple : false,

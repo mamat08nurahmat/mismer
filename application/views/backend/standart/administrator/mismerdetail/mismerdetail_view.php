@@ -57,14 +57,6 @@ jQuery(document).ready(domo);
                   <div class="form-horizontal" name="form_mismerdetail" id="form_mismerdetail" >
                    
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">ID </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($mismerdetail->ID); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">RowID </label>
 
                         <div class="col-sm-8">
@@ -137,14 +129,6 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">WILAYAH 2 </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($mismerdetail->WILAYAH_2); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">CHANNEL </label>
 
                         <div class="col-sm-8">
@@ -153,26 +137,10 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">IS YAP </label>
+                        <label for="content" class="col-sm-2 control-label">TYPE MID </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($mismerdetail->IS_YAP); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">EDC </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($mismerdetail->EDC); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">EXH </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($mismerdetail->EXH); ?>
+                           <?= _ent($mismerdetail->TYPE_MID); ?>
                         </div>
                     </div>
                                         
@@ -181,7 +149,7 @@ jQuery(document).ready(domo);
 
                     <div class="view-nav">
                         <?php is_allowed('mismerdetail_update', function() use ($mismerdetail){?>
-                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit mismerdetail (Ctrl+e)" href="<?= site_url('administrator/mismerdetail/edit/'.$mismerdetail->ID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Mismerdetail']); ?> </a>
+                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit mismerdetail (Ctrl+e)" href="<?= site_url('administrator/mismerdetail/edit/'.$mismerdetail->RowID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Mismerdetail']); ?> </a>
                         <?php }) ?>
                         <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/mismerdetail/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Mismerdetail']); ?></a>
                      </div>

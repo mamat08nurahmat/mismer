@@ -21,64 +21,14 @@ class MY_Model extends CI_Model {
         $this->load->database();
     }
 
-// UPDATE BULK edc
-public function bulk_update_edc($id = NULL)
-{
-
-  $data = array(
-    'EDC' => 1,
-    'EXH' => 0,
-  );
-    // $this->db->where($this->primary_key, $id);
-    // return $this->db->delete($this->table_name);
-    $this->db->where($this->primary_key, $id);
-    $this->db->update($this->table_name, $data);
-
-    return $this->db->affected_rows();
-
-
-}
-
-//EDIT BULK EXH
-// UPDATE BULK edc
-public function bulk_update_exh($id = NULL)
-{
-
-  $data = array(
-    'EDC' => 0,
-    'EXH' => 1,
-  );
-    // $this->db->where($this->primary_key, $id);
-    // return $this->db->delete($this->table_name);
-    $this->db->where($this->primary_key, $id);
-    $this->db->update($this->table_name, $data);
-
-    return $this->db->affected_rows();
-
-
-}
-
-
     public function remove($id = NULL)
     {
-        // $this->db->where($this->primary_key, $id);
-        // return $this->db->delete($this->table_name);
-        return $this->db->query("
-UPDATE '$this->table_name'
-SET EXH=1
-WHERE '$this->primary_key' = '$id'
-        ");
+        $this->db->where($this->primary_key, $id);
+        return $this->db->delete($this->table_name);
     }
-// ========
-public function approve($id = NULL)
-{
-    $this->db->where($this->primary_key, $id);
-    return $this->db->delete($this->table_name);
-}
 
-//=============
     public function change($id = NULL, $data = array())
-    {
+    {        
         $this->db->where($this->primary_key, $id);
         $this->db->update($this->table_name, $data);
 
@@ -191,23 +141,23 @@ public function approve($id = NULL)
         );
 
         $phpColor = new PHPExcel_Style_Color();
-        $phpColor->setRGB('FFFFFF');
+        $phpColor->setRGB('FFFFFF');  
 
         $this->excel->getActiveSheet()->getStyle('A1:'.$col_total.'1')->getFont()->setColor($phpColor);
 
         $this->excel->getActiveSheet()->getRowDimension(1)->setRowHeight(40);
 
         $this->excel->getActiveSheet()->getStyle('A1:'.$col_total.'1')
-        ->getAlignment()->setWrapText(true);
+        ->getAlignment()->setWrapText(true); 
 
         $col = 0;
         foreach ($fields as $field)
         {
-
+            
             $this->excel->getActiveSheet()->setCellValueByColumnAndRow($col, 1, ucwords(str_replace('_', ' ', $field)));
             $col++;
         }
-
+ 
         $row = 2;
         foreach($result->result() as $data)
         {
@@ -217,7 +167,7 @@ public function approve($id = NULL)
                 $this->excel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $data->$field);
                 $col++;
             }
-
+ 
             $row++;
         }
 
@@ -238,8 +188,8 @@ public function approve($id = NULL)
         header('Cache-Control: max-age=0');
         header('Cache-Control: max-age=1');
 
-        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); 
         header ('Cache-Control: cache, must-revalidate');
         header ('Pragma: public');
 
@@ -250,7 +200,7 @@ public function approve($id = NULL)
     public function pdf($table, $title)
     {
         $this->load->library('HtmlPdf');
-
+      
         $config = array(
             'orientation' => 'p',
             'format' => 'a4',

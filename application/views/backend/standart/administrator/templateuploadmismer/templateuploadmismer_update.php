@@ -64,9 +64,9 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="MID" id="MID" placeholder="MID" value="<?= set_value('MID', $templateuploadmismer->MID); ?>">
+                                <input type="number" class="form-control" name="MID" id="MID" placeholder="MID" value="<?= set_value('MID', $templateuploadmismer->MID); ?>">
                                 <small class="info help-block">
-                                <b>Input MID</b> Max Length : 255.</small>
+                                <b>Input MID</b> Max Length : 11.</small>
                             </div>
                         </div>
                                                  
@@ -77,7 +77,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="MERCHAN_DBA_NAME" id="MERCHAN_DBA_NAME" placeholder="MERCHAN DBA NAME" value="<?= set_value('MERCHAN_DBA_NAME', $templateuploadmismer->MERCHAN_DBA_NAME); ?>">
                                 <small class="info help-block">
-                                <b>Input MERCHAN DBA NAME</b> Max Length : 255.</small>
+                                <b>Input MERCHAN DBA NAME</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -86,9 +86,9 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="STATUS_EDC" id="STATUS_EDC" placeholder="STATUS EDC" value="<?= set_value('STATUS_EDC', $templateuploadmismer->STATUS_EDC); ?>">
+                                <input type="text" class="form-control" name="STATUS_EDC" id="STATUS_EDC" placeholder="STATUS EDC" value="<?= set_value('STATUS_EDC', $templateuploadmismer->STATUS_EDC); ?>">
                                 <small class="info help-block">
-                                <b>Input STATUS EDC</b> Max Length : 5.</small>
+                                <b>Input STATUS EDC</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -96,23 +96,15 @@
                             <label for="OPEN_DATE" class="col-sm-2 control-label">OPEN DATE 
                             <i class="required">*</i>
                             </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="OPEN_DATE" id="OPEN_DATE" placeholder="OPEN DATE" value="<?= set_value('OPEN_DATE', $templateuploadmismer->OPEN_DATE); ?>">
-                                <small class="info help-block">
-                                <b>Input OPEN DATE</b> Max Length : 255.</small>
+                            <div class="col-sm-6">
+                            <div class="input-group date col-sm-8">
+                              <input type="text" class="form-control pull-right datepicker" name="OPEN_DATE"  placeholder="OPEN DATE" id="OPEN_DATE" value="<?= set_value('templateuploadmismer_OPEN_DATE_name', $templateuploadmismer->OPEN_DATE); ?>">
+                            </div>
+                            <small class="info help-block">
+                            </small>
                             </div>
                         </div>
-                                                 
-                                                <div class="form-group ">
-                            <label for="CITY" class="col-sm-2 control-label">CITY 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="CITY" id="CITY" placeholder="CITY" value="<?= set_value('CITY', $templateuploadmismer->CITY); ?>">
-                                <small class="info help-block">
-                                <b>Input CITY</b> Max Length : 255.</small>
-                            </div>
-                        </div>
+                       
                                                  
                                                 <div class="form-group ">
                             <label for="MSO" class="col-sm-2 control-label">MSO 
@@ -121,7 +113,7 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="MSO" id="MSO" placeholder="MSO" value="<?= set_value('MSO', $templateuploadmismer->MSO); ?>">
                                 <small class="info help-block">
-                                <b>Input MSO</b> Max Length : 255.</small>
+                                <b>Input MSO</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
@@ -141,9 +133,20 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="POS1" id="POS1" placeholder="POS1" value="<?= set_value('POS1', $templateuploadmismer->POS1); ?>">
+                                <input type="text" class="form-control" name="POS1" id="POS1" placeholder="POS1" value="<?= set_value('POS1', $templateuploadmismer->POS1); ?>">
                                 <small class="info help-block">
-                                <b>Input POS1</b> Max Length : 5.</small>
+                                <b>Input POS1</b> Max Length : 25.</small>
+                            </div>
+                        </div>
+                                                 
+                                                <div class="form-group ">
+                            <label for="IS_VALID" class="col-sm-2 control-label">IS VALID 
+                            <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" name="IS_VALID" id="IS_VALID" placeholder="IS VALID" value="<?= set_value('IS_VALID', $templateuploadmismer->IS_VALID); ?>">
+                                <small class="info help-block">
+                                <b>Input IS VALID</b> Max Length : 11.</small>
                             </div>
                         </div>
                                                 

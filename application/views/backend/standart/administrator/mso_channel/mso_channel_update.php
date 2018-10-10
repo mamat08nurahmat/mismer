@@ -61,41 +61,45 @@
                          
                                                 <div class="form-group ">
                             <label for="Wilayah" class="col-sm-2 control-label">Wilayah 
+                            <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="Wilayah" id="Wilayah" placeholder="Wilayah" value="<?= set_value('Wilayah', $mso_channel->Wilayah); ?>">
                                 <small class="info help-block">
-                                </small>
+                                <b>Input Wilayah</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
                                                 <div class="form-group ">
                             <label for="KodeWilayah" class="col-sm-2 control-label">KodeWilayah 
+                            <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="KodeWilayah" id="KodeWilayah" placeholder="KodeWilayah" value="<?= set_value('KodeWilayah', $mso_channel->KodeWilayah); ?>">
                                 <small class="info help-block">
-                                </small>
+                                <b>Input KodeWilayah</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
                                                 <div class="form-group ">
                             <label for="MSO" class="col-sm-2 control-label">MSO 
+                            <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="MSO" id="MSO" placeholder="MSO" value="<?= set_value('MSO', $mso_channel->MSO); ?>">
                                 <small class="info help-block">
-                                </small>
+                                <b>Input MSO</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                  
                                                 <div class="form-group ">
                             <label for="Channel" class="col-sm-2 control-label">Channel 
+                            <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="Channel" id="Channel" placeholder="Channel" value="<?= set_value('Channel', $mso_channel->Channel); ?>">
                                 <small class="info help-block">
-                                </small>
+                                <b>Input Channel</b> Max Length : 55.</small>
                             </div>
                         </div>
                                                 

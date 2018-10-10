@@ -9,5 +9,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Your site name,
 |
 */
-$config['site_name'] = 'MISMER Dashboard';
+$config['site_name'] = 'CICOOL DEV';
 $config['version'] = '2.6.8';

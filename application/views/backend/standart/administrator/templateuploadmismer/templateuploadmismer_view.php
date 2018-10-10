@@ -57,14 +57,6 @@ jQuery(document).ready(domo);
                   <div class="form-horizontal" name="form_templateuploadmismer" id="form_templateuploadmismer" >
                    
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">RowID </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($templateuploadmismer->RowID); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">MID </label>
 
                         <div class="col-sm-8">
@@ -97,14 +89,6 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">CITY </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($templateuploadmismer->CITY); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">MSO </label>
 
                         <div class="col-sm-8">
@@ -127,13 +111,29 @@ jQuery(document).ready(domo);
                            <?= _ent($templateuploadmismer->POS1); ?>
                         </div>
                     </div>
+                                         
+                    <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">IS VALID </label>
+
+                        <div class="col-sm-8">
+                           <?= _ent($templateuploadmismer->IS_VALID); ?>
+                        </div>
+                    </div>
+                                         
+                    <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">ID </label>
+
+                        <div class="col-sm-8">
+                           <?= _ent($templateuploadmismer->ID); ?>
+                        </div>
+                    </div>
                                         
                     <br>
                     <br>
 
                     <div class="view-nav">
                         <?php is_allowed('templateuploadmismer_update', function() use ($templateuploadmismer){?>
-                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit templateuploadmismer (Ctrl+e)" href="<?= site_url('administrator/templateuploadmismer/edit/'.$templateuploadmismer->RowID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Templateuploadmismer']); ?> </a>
+                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit templateuploadmismer (Ctrl+e)" href="<?= site_url('administrator/templateuploadmismer/edit/'.$templateuploadmismer->ID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Templateuploadmismer']); ?> </a>
                         <?php }) ?>
                         <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/templateuploadmismer/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Templateuploadmismer']); ?></a>
                      </div>

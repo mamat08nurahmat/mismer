@@ -57,14 +57,6 @@ jQuery(document).ready(domo);
                   <div class="form-horizontal" name="form_systemupload" id="form_systemupload" >
                    
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">ID </label>
-
-                        <div class="col-sm-8">
-                           <?= _ent($systemupload->ID); ?>
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">BatchID </label>
 
                         <div class="col-sm-8">
@@ -84,7 +76,7 @@ jQuery(document).ready(domo);
                         <label for="content" class="col-sm-2 control-label">UploadBy </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($systemupload->username); ?>
+                           <?= _ent($systemupload->UploadBy); ?>
                         </div>
                     </div>
                                          
@@ -105,6 +97,14 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">ProcessYear </label>
+
+                        <div class="col-sm-8">
+                           <?= _ent($systemupload->ProcessYear); ?>
+                        </div>
+                    </div>
+                                         
+                    <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">ProcessMonth </label>
 
                         <div class="col-sm-8">
@@ -113,10 +113,10 @@ jQuery(document).ready(domo);
                     </div>
                                          
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">ProcessYear </label>
+                        <label for="content" class="col-sm-2 control-label">ProcessDate </label>
 
                         <div class="col-sm-8">
-                           <?= _ent($systemupload->ProcessYear); ?>
+                           <?= _ent($systemupload->ProcessDate); ?>
                         </div>
                     </div>
                                          
@@ -193,13 +193,21 @@ jQuery(document).ready(domo);
                            <?= _ent($systemupload->ApprovalID); ?>
                         </div>
                     </div>
+                                         
+                    <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">IS APPROVED </label>
+
+                        <div class="col-sm-8">
+                           <?= _ent($systemupload->IS_APPROVED); ?>
+                        </div>
+                    </div>
                                         
                     <br>
                     <br>
 
                     <div class="view-nav">
                         <?php is_allowed('systemupload_update', function() use ($systemupload){?>
-                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit systemupload (Ctrl+e)" href="<?= site_url('administrator/systemupload/edit/'.$systemupload->ID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Systemupload']); ?> </a>
+                        <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit systemupload (Ctrl+e)" href="<?= site_url('administrator/systemupload/edit/'.$systemupload->BatchID); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Systemupload']); ?> </a>
                         <?php }) ?>
                         <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/systemupload/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Systemupload']); ?></a>
                      </div>

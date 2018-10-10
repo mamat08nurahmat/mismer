@@ -16,33 +16,33 @@ class MY_Controller extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-
+        
         $this->config->set_item('language', 'english');
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         $this->output->set_header("Cache-Control: private, no-store, max-age=0, no-cache, must-revalidate, post-check=0, pre-check=0");
-        $this->output->set_header("Pragma: no-cache");
+        $this->output->set_header("Pragma: no-cache"); 
 
         $this->load->helper(['cookie']);
 
-        if ($lang = get_cookie('language')) {
+        // if ($lang = get_cookie('language')) {
 
-            $this->lang->load([
-                'web',
-                'form_validation',
-                'upload',
-                'db',
-            ], $lang);
-        } else {
-            $lang = get_lang_by_ip($this->input->ip_address());
+        //     $this->lang->load([
+        //         'web',
+        //         'form_validation',
+        //         'upload',
+        //         'db',
+        //     ], $lang);
+        // } else {
+        //     $lang = get_lang_by_ip($this->input->ip_address());
 
-            $this->lang->load([
-                'web',
-                'form_validation',
-                'upload',
-                'db',
-            ], $lang);
-            set_cookie('language', $lang, (60 * 60 * 24) * 365 );
-        }
+        //     $this->lang->load([
+        //         'web',
+        //         'form_validation',
+        //         'upload',
+        //         'db',
+        //     ], $lang);
+        //     set_cookie('language', $lang, (60 * 60 * 24) * 365 );
+        // }
 
         if (installation_complete()) {
             date_default_timezone_set(get_option('timezone', 'asia/jakarta'));
@@ -59,7 +59,7 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Response JSON
-    *
+    * 
     * @param Array $data
     * @param String $status
     *
@@ -77,15 +77,15 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Render pagination
-    *
-    * @param Array $config
+    * 
+    * @param Array $config 
     *
     * @return HTML
     */
     public function pagination($config = [])
     {
         $this->load->library('pagination');
-
+        
         $config = [
             'suffix'           => isset($_GET)?'?'.http_build_query($_GET):'',
             'base_url'         => site_url($config['base_url']),
@@ -114,14 +114,14 @@ class MY_Controller extends CI_Controller {
         ];
 
         $this->pagination->initialize($config);
-
+        
         return  '<center>'.$this->pagination->create_links().'</center>';
     }
 
     /**
     * Valid number
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -138,9 +138,9 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Regular expression validation
-    *
-    * @param String $str
-    * @param String $val
+    * 
+    * @param String $str 
+    * @param String $val 
     *
     * @return boolean
     */
@@ -157,8 +157,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * datetime validation
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -175,8 +175,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Date validation
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -193,8 +193,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Group validation
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -212,8 +212,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Valid regex validation
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -226,11 +226,11 @@ class MY_Controller extends CI_Controller {
 
        return true;
     }
-
+    
     /**
     * Valid regex validation
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -242,8 +242,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Valid disallowed chars
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -255,11 +255,11 @@ class MY_Controller extends CI_Controller {
        }
        return true;
     }
-
+    
     /**
     * Valid regex validation
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -273,8 +273,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Valid multiple value validation
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -286,8 +286,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Valid table is avaiable
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -300,8 +300,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Valid captcha
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -324,8 +324,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Valid extension list
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -362,8 +362,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Validation max selected option
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -388,8 +388,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Validation min selected option
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -414,8 +414,8 @@ class MY_Controller extends CI_Controller {
 
     /**
     * Check field has rules
-    *
-    * @param String $str
+    * 
+    * @param String $str 
     *
     * @return boolean
     */
@@ -428,7 +428,7 @@ class MY_Controller extends CI_Controller {
                         if (is_array($option['postdata'])) {
                             if (in_array($post_data, $option['postdata'])) {
                                 return str_replace('[]', '', $field_name);
-                            }
+                            } 
                         }
                     }
                 }
@@ -450,20 +450,20 @@ class Admin extends MY_Controller
 
     public function __construct()
     {
-        parent::__construct();
-
+        parent::__construct();  
+        
         if (!installation_complete()) {
             redirect('');
-        }
+        }      
     }
 
 
     /**
     * render admin page
-    *
-    * @param String $view
-    * @param Array $data
-    * @param Boolean $bool
+    * 
+    * @param String $view 
+    * @param Array $data 
+    * @param Boolean $bool 
     *
     * @return JSON
     */
@@ -476,9 +476,9 @@ class Admin extends MY_Controller
 
     /**
     * User is allowed
-    *
-    * @param String $perm
-    * @param Boolean $redirect
+    * 
+    * @param String $perm 
+    * @param Boolean $redirect 
     *
     * @return JSON
     */
@@ -507,19 +507,19 @@ class Admin extends MY_Controller
 
     /**
     * Upload Files tmp
-    *
-    * @param Array $data
+    * 
+    * @param Array $data 
     *
     * @return JSON
     */
     public function upload_file($data = [])
     {
         $default = [
-            'uuid'          => '',
-            'allowed_types' => '*',
-            'max_size'      => '',
-            'max_width'     => '',
-            'max_height'    => '',
+            'uuid'          => '', 
+            'allowed_types' => '*', 
+            'max_size'      => '', 
+            'max_width'     => '', 
+            'max_height'    => '', 
             'upload_path'   => './uploads/tmp/',
             'input_files'   => 'qqfile',
             'table_name'    => '',
@@ -548,7 +548,7 @@ class Admin extends MY_Controller
             'max_height'        => $default['max_height'],
             'file_name'         => $default['file_name']
         ];
-
+        
         $this->load->library('upload', $config);
         $this->load->helper('file');
 
@@ -574,17 +574,17 @@ class Admin extends MY_Controller
 
     /**
     * Delete Files tmp
-    *
-    * @param Array $data
+    * 
+    * @param Array $data 
     *
     * @return JSON
     */
     public function delete_file($data = [])
     {
         $default = [
-            'uuid'              => '',
-            'delete_by'         => '',
-            'field_name'        => 'image',
+            'uuid'              => '', 
+            'delete_by'         => '', 
+            'field_name'        => 'image', 
             'upload_path_tmp'   => './uploads/tmp/',
             'table_name'        => 'test',
             'primary_key'       => 'id',
@@ -643,17 +643,17 @@ class Admin extends MY_Controller
 
     /**
     * Get Files
-    *
-    * @param Array $data
+    * 
+    * @param Array $data 
     *
     * @return JSON
     */
     public function get_file($data = [])
     {
         $default = [
-            'uuid'              => '',
-            'delete_by'         => '',
-            'field_name'        => 'image',
+            'uuid'              => '', 
+            'delete_by'         => '', 
+            'field_name'        => 'image', 
             'table_name'        => 'test',
             'primary_key'       => 'id',
             'upload_path'       => 'uploads/blog/',
@@ -665,7 +665,7 @@ class Admin extends MY_Controller
                 $default[$key] = $value;
             }
         }
-
+        
         $row = $this->db->get_where($default['table_name'], [$default['primary_key'] => $default['uuid']])->row();
 
         if (!$row) {
@@ -736,15 +736,15 @@ class Front extends MY_Controller
             $this->cc_app->onEvent('front_navigation', function(){
                 return $this->template->build('navigation', [], true);
             });
-        }
+        } 
     }
 
     /**
     * Render front page
-    *
-    * @param String $view
-    * @param Array $data
-    * @param Boolean $bool
+    * 
+    * @param String $view 
+    * @param Array $data 
+    * @param Boolean $bool 
     *
     * @return JSON
     */
@@ -768,7 +768,7 @@ class Front extends MY_Controller
 class API extends REST_Controller
 {
     public $limit_page = 10;
-
+    
     public function __construct()
     {
         parent::__construct();
@@ -906,9 +906,9 @@ class API extends REST_Controller
 
     /**
     * User is allowed
-    *
-    * @param String $perm
-    * @param Boolean $redirect
+    * 
+    * @param String $perm 
+    * @param Boolean $redirect 
     *
     * @return JSON
     */
@@ -929,7 +929,7 @@ class API extends REST_Controller
             if (!isset($user->id)) {
                 return true;
             }
-
+            
             if ($this->aauth->is_allowed($perm, $user->id)) {
                 return true;
             } else {
@@ -969,9 +969,9 @@ class API extends REST_Controller
 
     /**
     * User is allowed
-    *
-    * @param String $perm
-    * @param Boolean $redirect
+    * 
+    * @param String $perm 
+    * @param Boolean $redirect 
     *
     * @return JSON
     */
@@ -1006,10 +1006,10 @@ class API extends REST_Controller
     public function upload_file($input_name, $data)
     {
         $default = [
-            'allowed_types' => '*',
-            'max_size'      => '',
-            'max_width'     => '',
-            'max_height'    => '',
+            'allowed_types' => '*', 
+            'max_size'      => '', 
+            'max_width'     => '', 
+            'max_height'    => '', 
             'upload_path'   => './uploads/user/',
             'table_name'    => '',
             'required'      => false,
@@ -1020,7 +1020,7 @@ class API extends REST_Controller
                 $default[$key] = $value;
             }
         }
-
+        
         $this->load->library('upload', $default);
 
         if ($default['required']) {

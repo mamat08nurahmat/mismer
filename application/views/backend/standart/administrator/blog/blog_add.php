@@ -109,8 +109,8 @@
                             <div class="col-sm-8">
                                 <select  class="form-control chosen chosen-select-deselect" name="category" id="category" data-placeholder="Select Category" >
                                     <option value=""></option>
-                                    <?php foreach (db_get_all_data('applicationtype') as $row): ?>
-                                    <option value="<?= $row->ApplicationSource ?>"><?= $row->ApplicationSource; ?></option>
+                                    <?php foreach (db_get_all_data('blog_category') as $row): ?>
+                                    <option value="<?= $row->category_id ?>"><?= $row->category_name; ?></option>
                                     <?php endforeach; ?>  
                                 </select>
                                 <small class="info help-block">
