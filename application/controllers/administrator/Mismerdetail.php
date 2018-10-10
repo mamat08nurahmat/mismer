@@ -354,6 +354,35 @@ class Mismerdetail extends Admin
 		AND CHANNEL IS NULL
 		;
 		");		
+
+//---yap channel and wilayah null
+$this->db->query(" 
+INSERT INTO mismerunmatch
+
+SELECT 
+RowID,
+BatchID,
+OPEN_DATE,
+MID,
+MERCHAN_DBA_NAME,
+MSO,
+SOURCE_CODE,
+POS1,
+WILAYAH,
+CHANNEL,
+TYPE_MID,
+0 IS_UPDATE
+
+FROM mismerdetail
+WHERE TYPE_MID='YAP'
+AND CHANNEL IS NULL
+AND WILAYAH IS NULL
+;
+");		
+
+
+
+
 		// redirect mismerdetail
 		redirect(site_url('administrator/mismerdetail'),'refresh');
 	}

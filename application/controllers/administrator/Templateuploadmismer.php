@@ -622,9 +622,42 @@ ORDER BY MID ASC LIMIT 100
 //================================
 
 // ============generate all===
-public function gen_all(){
+public function gen_all($limit=1){
 // get all id templateuploadmismer
-print_r('generate all');die();
+// $templateuploadmismer_all = $this->model_templateuploadmismer->find_all();
+
+// print_r($templateuploadmismer_all);die();
+// $arr_id = $templateuploadmismer_all;
+
+	// $arr_id = $this->input->get('id');
+	$arr_id = $this->db->query("
+	SELECT ID FROM templateuploadmismer LIMIT $limit 
+	")->result();
+// print_r($arr_id);die();
+
+$remove = false;
+
+foreach ($arr_id as $id) {
+	$generate = $this->_generate($id->ID);
+}
+
+
+// if (!empty($id)) {
+// 	$generate = $this->_generate($id);
+// } elseif (count($arr_id) >0) {
+// 	foreach ($arr_id as $id) {
+// 		$generate = $this->_generate($id->ID);
+// 	}
+// }
+
+if ($generate) {
+	set_message(cclang('has_been_generate', 'templateuploadmismer'), 'success');
+} else {
+	set_message(cclang('error_generate', 'templateuploadmismer'), 'error');
+}
+
+redirect_back();
+
 }
 
 // generate by checkbox===========================
@@ -661,16 +694,18 @@ private function _generate($id)
 	$templateuploadmismer = $this->model_templateuploadmismer->find($id);
 // print_r($templateuploadmismer);die();
 // act generate	
-$del = 			$this->db->query("DELETE FROM mismerdetail WHERE MID='$templateuploadmismer->MID'");
 
-$res = 			$this->db->query("
+$return['detail'] = $templateuploadmismer;
+$return['del_update'] =	$this->db->query("DELETE FROM mismerdetail WHERE MID='$templateuploadmismer->MID'");
+
+$return['result'] = $this->db->query("
 	INSERT INTO mismerdetail
 
 	SELECT 
 	NULL RowID,
 	-- a.RowID,
-	-- (SELECT max(BatchID) as BatchID FROM systemupload) BatchID,
-	999 BatchID,
+	 (SELECT max(BatchID) as BatchID FROM systemupload) BatchID,
+	-- 999 BatchID,
 	
 	--  date_format(str_to_date(a.OPEN_DATE,'%m/%d/%Y'),'%Y/%m/%d')
 	-- AS OPEN_DATE , 
@@ -758,14 +793,22 @@ $res = 			$this->db->query("
 	
 	");
 
+$return['del_temp'] =	$this->model_templateuploadmismer->remove($id);	
 
-	print_r($templateuploadmismer);
-	print_r('<hr>');
-	print_r($del);
-	print_r('<hr>');
-	print_r($res);
+	// print_r($templateuploadmismer);
+	// print_r('<hr>');
+	// print_r($del);
+	// print_r('<hr>');
+	// print_r($res);
+	// print_r('<hr>');
+	// print_r($del_temp);
 
-die();
+	// print_r($return);
+
+	// update_unmatch	
+// die();
+return 'okk';
+
 	// return $this->model_mismerdetail->remove($id);
 }
 
