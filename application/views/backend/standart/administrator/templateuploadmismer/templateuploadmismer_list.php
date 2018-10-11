@@ -96,7 +96,8 @@ jQuery(document).ready(domo);
                            <th>MSO</th>
                            <th>SOURCE CODE</th>
                            <th>POS1</th>
-                           <th>IS VALID</th>
+                           <!-- <th>IS VALID</th> -->
+                           <th>BatchID</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -114,7 +115,8 @@ jQuery(document).ready(domo);
                            <td><?= _ent($templateuploadmismer->MSO); ?></td> 
                            <td><?= _ent($templateuploadmismer->SOURCE_CODE); ?></td> 
                            <td><?= _ent($templateuploadmismer->POS1); ?></td> 
-                           <td><?= _ent($templateuploadmismer->IS_VALID); ?></td> 
+                           <!-- <td><?= _ent($templateuploadmismer->IS_VALID); ?></td>  -->
+                           <td><?= _ent($templateuploadmismer->BatchID); ?></td> 
                            <td width="200">
                               <?php is_allowed('templateuploadmismer_view', function() use ($templateuploadmismer){?>
                               <a href="<?= site_url('administrator/templateuploadmismer/view/' . $templateuploadmismer->ID); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> <?= cclang('view_button'); ?>
@@ -147,7 +149,7 @@ jQuery(document).ready(domo);
                         <select type="text" class="form-control chosen chosen-select" name="bulk" id="bulk" placeholder="Site Email" >
                            <option value="">Bulk</option>
                            <option value="generate">Generate</option>
-                           <option value="delete">Delete</option>
+                           <!-- <option value="delete">Delete</option> -->
                         </select>
                      </div>
                      <div class="col-sm-2 padd-left-0 ">

@@ -17,6 +17,7 @@ class Mismerdetail extends Admin
 		parent::__construct();
 		$this->load->model('model_Report');
 		$this->load->model('model_mismerdetail');
+		$this->load->model('model_mismerunmatch');
 	}
 
 	/**
@@ -316,6 +317,80 @@ class Mismerdetail extends Admin
 
 		$this->model_mismerdetail->pdf('mismerdetail', 'mismerdetail');
 	}
+// GENERATE UNMATCH BY BATCH
+	public function gen_unmatch($BatchID){
+
+		// $exh = 			$this->db->query("
+		
+		// UPDATE
+		// mismerdetail
+		// SET CHANNEL='EXH'
+		// WHERE MERCHAN_DBA_NAME like'%EXH%';
+
+		// ");
+
+		$arr_id = $this->db->query("
+
+		SELECT RowID,BatchID FROM  mismerdetail 
+		WHERE  TYPE_MID='EDC'
+		AND CHANNEL IS NULL AND IS_GENERATE=0 AND BatchID=$BatchID
+		UNION ALL
+		SELECT RowID,BatchID FROM mismerdetail 
+		WHERE TYPE_MID='YAP'
+		AND CHANNEL IS NULL
+		AND WILAYAH IS NULL	AND IS_GENERATE=0 AND BatchID=$BatchID
+		")->result();
+
+// print_r(count($arr_id));die();
+foreach ($arr_id as $id) {
+	$generate = $this->_generate_unmatch($id->RowID);
+}
+
+	}
+
+
+	private function _generate_unmatch($RowID)
+	{
+		$mismerdetail = $this->model_mismerdetail->find($RowID);
+	// print_r($mismerdetail->MID);die();
+	// act generate	
+	// delete mismerunmatch where MID?
+// 	$return['delete_unmatch'] = $this->db->query("
+// 	SET SQL_SAFE_UPDATES = 0; 
+// 	DELETE FROM mismerunmatch WHERE MID='$mismerdetail->MID'
+// ");
+// print_r($return);die();	
+
+// INSERT INTO mismerunmatch
+		// delete templateuploadmismer
+	$return['del_unmatch'] =	$this->model_mismerunmatch->remove($RowID);		
+$return['insert_unmatch'] =	$this->db->query(" 
+		INSERT INTO mismerunmatch
+		
+		SELECT 
+		RowID,
+		BatchID,
+		OPEN_DATE,
+		MID,
+		MERCHAN_DBA_NAME,
+		MSO,
+		SOURCE_CODE,
+		POS1,
+		WILAYAH,
+		CHANNEL,
+		TYPE_MID,
+		0 IS_UPDATE
+		
+		FROM mismerdetail
+		WHERE MID='$mismerdetail->MID'		;
+		");		
+
+
+		$return['is_generate'] =$this->model_mismerdetail->change($RowID,$data=array('IS_GENERATE'=>1));				
+// print_r($return);die();
+return $return;
+	// $return['detail'] = $templateuploadmismer;
+	}	
 
 	public function update_unmatch(){
 

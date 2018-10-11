@@ -635,7 +635,7 @@ public function gen_all($limit=1){
 	")->result();
 // print_r($arr_id);die();
 
-$remove = false;
+$generate = false;
 
 foreach ($arr_id as $id) {
 	$generate = $this->_generate($id->ID);
@@ -656,7 +656,8 @@ if ($generate) {
 	set_message(cclang('error_generate', 'templateuploadmismer'), 'error');
 }
 
-redirect_back();
+// redirect_back();
+redirect(site_url('administrator/templateuploadmismer'),'refresh');
 
 }
 
@@ -696,11 +697,10 @@ private function _generate($id)
 // act generate	
 
 $return['detail'] = $templateuploadmismer;
-$return['del_update'] =	$this->db->query("DELETE FROM mismerdetail WHERE MID='$templateuploadmismer->MID'");
 
+$return['del_update'] =	$this->db->query("DELETE FROM mismerdetail WHERE MID='$templateuploadmismer->MID'");
 $return['result'] = $this->db->query("
 	INSERT INTO mismerdetail
-
 	SELECT 
 	NULL RowID,
 	-- a.RowID,
@@ -792,6 +792,8 @@ $return['result'] = $this->db->query("
 	WHERE a.ID='$templateuploadmismer->ID' 			
 	
 	");
+	
+	print_r($return);die();
 
 $return['del_temp'] =	$this->model_templateuploadmismer->remove($id);	
 
@@ -803,11 +805,11 @@ $return['del_temp'] =	$this->model_templateuploadmismer->remove($id);
 	// print_r('<hr>');
 	// print_r($del_temp);
 
-	// print_r($return);
+	print_r($return);
+	die(); 
 
 	// update_unmatch	
-// die();
-return 'okk';
+// return 'okk';
 
 	// return $this->model_mismerdetail->remove($id);
 }

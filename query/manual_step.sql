@@ -15,18 +15,19 @@
 -- ==================
 truncate templateuploadmismer;
 
-LOAD DATA INFILE 'C:/xampp/htdocs/cicooldev/sample_csv/DevUploadMismer.csv' 
+LOAD DATA INFILE 'C:/xampp/htdocs/mismer/2-MISMER.csv' 
 INTO TABLE templateuploadmismer
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
  IGNORE 1 ROWS
-(MID,MERCHAN_DBA_NAME,STATUS_EDC,@OPEN_DATE,MSO,SOURCE_CODE,POS1,IS_VALID,ID)
-SET OPEN_DATE = STR_TO_DATE(@OPEN_DATE, '%m/%d/%Y');
+(MID,MERCHAN_DBA_NAME,STATUS_EDC,@OPEN_DATE,MSO,SOURCE_CODE,POS1,IS_VALID,BatchID,ID)
+SET OPEN_DATE = STR_TO_DATE(@OPEN_DATE, '%m/%d/%Y'),BatchID=123
+;
 
 
 -- truncate templateuploadmismer
--- select * from templateuploadmismer
+-- select * from templateuploadmismer where MERCHAN_DBA_NAME=' LUCKY STAR KOMPUTINDO MBL'
 -- select count(*) from templateuploadmismer
 
 -- ==================
